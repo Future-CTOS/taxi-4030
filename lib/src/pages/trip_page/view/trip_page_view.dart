@@ -9,5 +9,5 @@ class TripPageView extends GetView<TripPageController> {
 
   @override
   Widget build(BuildContext context) =>
-      CustomScaffold(pageTitle: '-', body: Placeholder());
+      CustomScaffold(title: '-', body: Placeholder());
 }

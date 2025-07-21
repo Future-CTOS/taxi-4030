@@ -3,7 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taxi_4030/src/infrastructures/routes/route_names.dart';
-import 'package:taxi_4030/src/infrastructures/theme/spacing.dart';
+import 'package:taxi_4030/src/infrastructures/utils/spacing.dart';
 
 import '../../generated/locales.g.dart';
 import '../infrastructures/theme/theme_controller.dart';
@@ -12,8 +12,9 @@ import 'image_builder.dart';
 class CustomScaffold extends StatelessWidget {
   const CustomScaffold({
     super.key,
-    required this.pageTitle,
     required this.body,
+    this.title,
+    this.appBarTitle,
     this.bottomNavigationBar,
     this.onBackTap,
     this.onRefresh,
@@ -22,7 +23,8 @@ class CustomScaffold extends StatelessWidget {
     this.appBar,
   });
 
-  final String pageTitle;
+  final String? title;
+  final Widget? appBarTitle;
   final bool? showEndDrawer;
   final bool? resizeToAvoidBottomInset;
   final PreferredSizeWidget? appBar;
@@ -142,6 +144,7 @@ class CustomScaffold extends StatelessWidget {
           )
         : null,
     actions: [
+      if (appBarTitle != null) ...[appBarTitle!, const Spacer()],
       IconButton(
         tooltip: 'Toggle Theme',
         icon: Icon(isDark ? Icons.dark_mode : Icons.light_mode),
@@ -149,7 +152,7 @@ class CustomScaffold extends StatelessWidget {
       ),
       if (showEndDrawer ?? false) _endDrawerBuilder(),
     ],
-    title: Text(pageTitle),
+    title: title != null ? Text(title!) : null,
     centerTitle: true,
   );
 
