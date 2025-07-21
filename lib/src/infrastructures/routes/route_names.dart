@@ -1,4 +1,4 @@
-import 'package:taxi_4030/src/infrastructures/routes/route_paths.dart';
+import 'route_paths.dart';
 
 class Routes {
   final String uri;
@@ -26,5 +26,9 @@ class TaxiRouteNames extends Routes {
   static const Routes loginPage = Routes(
     RoutePaths.logInPage,
     RoutePaths.logInPage,
+  );
+  static const Routes signUpPage = Routes(
+    RoutePaths.signUpPage,
+    RoutePaths.signUpPage,
   );
 }

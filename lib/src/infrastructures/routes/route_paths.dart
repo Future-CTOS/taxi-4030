@@ -7,4 +7,5 @@ class RoutePaths {
 
   /// Authentication
   static const String logInPage = '/log-in';
+  static const String signUpPage = '/sign-up';
 }
