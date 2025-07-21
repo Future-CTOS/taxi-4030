@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppSpacing{
+class AppSpacing {
   static const double tinySpace = 2;
   static const double smallSpace = 4;
   static const double mediumSpace = 8;
@@ -21,15 +21,19 @@ class AppSpacing{
   static const SizedBox largeHorizontalSpacer = SizedBox(width: largeSpace);
   static const SizedBox giantHorizontalSpacer = SizedBox(width: giantSpace);
 
-  static const EdgeInsetsDirectional tinyPadding =
-  EdgeInsetsDirectional.all(tinySpace);
-  static const EdgeInsetsDirectional smallPadding =
-  EdgeInsetsDirectional.all(smallSpace);
-  static const EdgeInsetsDirectional mediumPadding =
-  EdgeInsetsDirectional.all(mediumSpace);
-  static const EdgeInsetsDirectional largePadding =
-  EdgeInsetsDirectional.all(largeSpace);
-  static const EdgeInsetsDirectional giantPadding =
-  EdgeInsetsDirectional.all(giantSpace);
-
+  static const EdgeInsetsDirectional tinyPadding = EdgeInsetsDirectional.all(
+    tinySpace,
+  );
+  static const EdgeInsetsDirectional smallPadding = EdgeInsetsDirectional.all(
+    smallSpace,
+  );
+  static const EdgeInsetsDirectional mediumPadding = EdgeInsetsDirectional.all(
+    mediumSpace,
+  );
+  static const EdgeInsetsDirectional largePadding = EdgeInsetsDirectional.all(
+    largeSpace,
+  );
+  static const EdgeInsetsDirectional giantPadding = EdgeInsetsDirectional.all(
+    giantSpace,
+  );
 }

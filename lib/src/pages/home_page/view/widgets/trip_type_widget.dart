@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taxi_4030/src/infrastructures/theme/spacing.dart';
+import 'package:taxi_4030/src/infrastructures/utils/spacing.dart';
 
 class TripTypeWidget extends StatelessWidget {
   const TripTypeWidget({

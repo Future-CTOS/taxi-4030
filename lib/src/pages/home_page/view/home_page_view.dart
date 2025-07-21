@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:taxi_4030/src/infrastructures/theme/spacing.dart';
+import 'package:taxi_4030/src/infrastructures/utils/spacing.dart';
 
 import '../../../components/scaffold.dart';
 import '../../../infrastructures/utils/utils.dart';
@@ -15,7 +15,7 @@ class HomePage extends GetView<HomePageController> {
 
   @override
   Widget build(BuildContext context) =>
-      CustomScaffold(pageTitle: '-', body: _body(context), showEndDrawer: true);
+      CustomScaffold(title: '-', body: _body(context), showEndDrawer: true);
 
   Widget _body(BuildContext context) => Column(
     children: [

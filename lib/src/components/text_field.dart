@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:taxi_4030/src/infrastructures/theme/spacing.dart';
+import 'package:taxi_4030/src/infrastructures/utils/spacing.dart';
 
 class CustomTextField extends StatefulWidget {
   const CustomTextField({
@@ -47,12 +47,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
       child: DecoratedBox(
         decoration: BoxDecoration(
           border: Border.all(
-            width: 0.5,
+            width: 1,
             strokeAlign: BorderSide.strokeAlignOutside,
+            color: Theme.of(context).colorScheme.secondary,
           ),
           color: Theme.of(context).colorScheme.surface,
           borderRadius: const BorderRadius.all(
-            Radius.circular(AppSpacing.giantSpace),
+            Radius.circular(AppSpacing.mediumSpace),
           ),
         ),
         child: TextFormField(

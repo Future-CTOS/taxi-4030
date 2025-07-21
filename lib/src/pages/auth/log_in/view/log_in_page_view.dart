@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taxi_4030/src/components/button.dart';
 import 'package:taxi_4030/src/infrastructures/theme/colors.dart';
-import 'package:taxi_4030/src/infrastructures/theme/spacing.dart';
+import 'package:taxi_4030/src/infrastructures/utils/spacing.dart';
 
 import '../../../../../generated/locales.g.dart';
 import '../../../../components/text_field.dart';
