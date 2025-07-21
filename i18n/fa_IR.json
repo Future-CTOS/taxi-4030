@@ -3,7 +3,8 @@
     "auth": {
       "enter_phone_number": "شماره تلفن خود را وارد کنید",
       "password": "پسورد",
-      "sign_in": "ورود",
+      "sign_up": "ثبت نام",
+      "log_in": "ورود",
       "submit_phone_number": "تایید شماره تلفن"
     },
     "routes": {

@@ -13,7 +13,8 @@ class LocaleKeys {
   static const taxi_4030_app_auth_enter_phone_number =
       'taxi_4030_app_auth_enter_phone_number';
   static const taxi_4030_app_auth_password = 'taxi_4030_app_auth_password';
-  static const taxi_4030_app_auth_sign_in = 'taxi_4030_app_auth_sign_in';
+  static const taxi_4030_app_auth_sign_up = 'taxi_4030_app_auth_sign_up';
+  static const taxi_4030_app_auth_log_in = 'taxi_4030_app_auth_log_in';
   static const taxi_4030_app_auth_submit_phone_number =
       'taxi_4030_app_auth_submit_phone_number';
   static const taxi_4030_app_routes_home_page =
@@ -38,7 +39,8 @@ class Locales {
   static const fa_IR = {
     'taxi_4030_app_auth_enter_phone_number': 'شماره تلفن خود را وارد کنید',
     'taxi_4030_app_auth_password': 'پسورد',
-    'taxi_4030_app_auth_sign_in': 'ورود',
+    'taxi_4030_app_auth_sign_up': 'ثبت نام',
+    'taxi_4030_app_auth_log_in': 'ورود',
     'taxi_4030_app_auth_submit_phone_number': 'تایید شماره تلفن',
     'taxi_4030_app_routes_home_page': 'خانه',
     'taxi_4030_app_routes_log_in': 'ورود',
