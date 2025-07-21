@@ -1,0 +1,9 @@
+get: flutter pub get
+
+reget:
+  - flutter clean
+  - flutter pub get
+
+locale: get generate locales i18n
+
+generate: flutter pub run build_runner build --delete-conflicting-outputs

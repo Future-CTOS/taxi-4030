@@ -1,0 +1,26 @@
+{
+  "taxi_4030_app": {
+    "auth": {
+      "enter_phone_number": "شماره تلفن خود را وارد کنید",
+      "password": "پسورد",
+      "sign_in": "ورود",
+      "submit_phone_number": "تایید شماره تلفن"
+    },
+    "routes": {
+      "home_page": "خانه",
+      "log_in": "ورود",
+      "sign_in": "ورود",
+      "sign_up": "ثبت نام",
+      "trip_page": "سفر"
+    },
+    "shared": {
+      "about_us": "درباره ما",
+      "contact_us": "تماس با ما",
+      "email": "ایمیل",
+      "log_out": "خروج",
+      "no_item": "آیتمی وجود ندارد",
+      "notification": "اعلان ها",
+      "settings": "تنظیمات"
+    }
+  }
+}
