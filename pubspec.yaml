@@ -30,4 +30,30 @@ flutter:
   assets:
     - lib/assets/
 
+fonts:
+  - family: YekanBakh
+    fonts:
+       - asset: assets/fonts/YekanBakh-Bold.ttf
+         weight: 900
+
+  - family: YekanBakh
+    fonts:
+      - asset: assets/fonts/YekanBakh-SemiBold.ttf
+        weight: 700
+
+  - family: YekanBakh
+    fonts:
+      - asset: assets/fonts/YekanBakh-Regular.ttf
+        weight: 500
+
+  - family: YekanBakh
+    fonts:
+      - asset: assets/fonts/YekanBakh-Light.ttf
+        weight: 300
+
+  - family: YekanBakh
+    fonts:
+      - asset: assets/fonts/YekanBakh-Thin.ttf
+        weight: 100
+
 scripts: derry.yaml
