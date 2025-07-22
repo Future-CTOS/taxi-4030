@@ -4,18 +4,20 @@ import 'colors.dart';
 
 class AppTypography {
   static final TextStyle headline = TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
-    color: AppColors.textColor,
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    color: AppColors.secondaryColor.shade900,
   );
 
   static final TextStyle body = TextStyle(
     fontSize: 16,
-    color: AppColors.textColor,
+    fontWeight: FontWeight.w500,
+    color: AppColors.secondaryColor.shade900,
   );
 
   static final TextStyle caption = TextStyle(
     fontSize: 12,
-    color: AppColors.textColor,
+    fontWeight: FontWeight.w300,
+    color: AppColors.secondaryColor.shade700,
   );
 }
