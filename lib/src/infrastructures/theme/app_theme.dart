@@ -8,13 +8,14 @@ class AppTheme {
     primaryColor: AppColors.primaryColor,
     scaffoldBackgroundColor: AppColors.backgroundColor,
     textTheme: TextTheme(
-      titleLarge: AppTypography.headline.copyWith(color: AppColors.textColor),
-      bodyMedium: AppTypography.body.copyWith(color: AppColors.textColor),
-      bodySmall: AppTypography.caption.copyWith(color: AppColors.textColor),
+      titleLarge: AppTypography.headline,
+      bodyMedium: AppTypography.body,
+      bodySmall: AppTypography.caption,
     ),
     colorScheme: ColorScheme.light(
       primary: AppColors.primaryColor,
-      secondary: AppColors.secondaryColor,
+      secondary: AppColors.secondaryColor.shade300,
+      onSecondary: AppColors.secondaryColor.shade500,
       onPrimary: AppColors.textColor,
     ),
   );
