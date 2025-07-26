@@ -20,6 +20,8 @@ class AppColors {
       });
   static const int _secondaryPrimaryValue = 0xFFCED2DA;
 
+  static const Color errorColor = Color(0xffF64C4C);
+
   /// light
   static const Color backgroundColor = Color(0xffF2FDFF);
   static const Color textColor = Color(0xff191919);
