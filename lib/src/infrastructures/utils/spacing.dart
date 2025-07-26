@@ -13,7 +13,9 @@ class AppSpacing {
   static const SizedBox smallVerticalSpacer = SizedBox(height: smallSpace);
   static const SizedBox mediumVerticalSpacer = SizedBox(height: mediumSpace);
   static const SizedBox largeVerticalSpacer = SizedBox(height: largeSpace);
+  static const SizedBox xxLargeVerticalSpacer = SizedBox(height: xxLargeSpace);
   static const SizedBox giantVerticalSpacer = SizedBox(height: giantSpace);
+
 
   static const SizedBox tinyHorizontalSpacer = SizedBox(width: tinySpace);
   static const SizedBox smallHorizontalSpacer = SizedBox(width: smallSpace);
