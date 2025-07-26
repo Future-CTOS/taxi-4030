@@ -9,6 +9,7 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.backgroundColor,
     textTheme: TextTheme(
       titleLarge: AppTypography.headline,
+      bodyLarge: AppTypography.bodyLarge,
       bodyMedium: AppTypography.body,
       bodySmall: AppTypography.caption,
     ),
@@ -17,6 +18,7 @@ class AppTheme {
       secondary: AppColors.secondaryColor.shade300,
       onSecondary: AppColors.secondaryColor.shade500,
       onPrimary: AppColors.textColor,
+      error: AppColors.errorColor,
     ),
   );
 
