@@ -1,7 +1,7 @@
-class LogInDto {
+class OtpVerifyDto {
   final String mobile;
 
-  LogInDto({required this.mobile});
+  OtpVerifyDto({required this.mobile});
 
   Map<String, dynamic> toJson() => {"mobile": mobile};
 }
