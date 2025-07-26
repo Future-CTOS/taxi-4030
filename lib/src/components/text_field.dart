@@ -6,6 +6,7 @@ class CustomTextField extends StatefulWidget {
   const CustomTextField({
     super.key,
     required this.textController,
+    required this.isReceiveCodeActive,
     this.title,
     this.onChange,
     this.isRequired = false,
@@ -24,6 +25,7 @@ class CustomTextField extends StatefulWidget {
   final String? title;
   final bool? isPassword;
   final TextEditingController textController;
+  final bool isReceiveCodeActive;
   final Function(String)? onChange;
   final bool? isRequired;
   final GlobalKey<FormState>? formKey;
@@ -42,73 +44,70 @@ class _CustomTextFieldState extends State<CustomTextField> {
   bool _obscureText = false;
 
   @override
-  Widget build(BuildContext context) =>
-      Form(
-        key: widget.formKey,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            border: Border.all(
-              width: 1,
-              strokeAlign: BorderSide.strokeAlignOutside,
-              color: Theme
-                  .of(context)
-                  .colorScheme
-                  .secondary,
-            ),
-            color: Theme
-                .of(context)
-                .colorScheme
-                .surface,
-            borderRadius: const BorderRadius.all(
-              Radius.circular(AppSpacing.mediumSpace),
-            ),
-          ),
-          child: TextFormField(
-            readOnly: widget.readOnly!,
-            validator: widget.isRequired!
-                ? (value) {
-              if (value == null || value.isEmpty) {
-                return 'required';
+  Widget build(BuildContext context) => Form(
+    key: widget.formKey,
+    child: DecoratedBox(
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 1,
+          strokeAlign: BorderSide.strokeAlignOutside,
+          color: Theme.of(context).colorScheme.secondary,
+        ),
+        color: Theme.of(context).colorScheme.surface,
+        borderRadius: const BorderRadius.all(
+          Radius.circular(AppSpacing.mediumSpace),
+        ),
+      ),
+      child: TextFormField(
+        readOnly: widget.readOnly!,
+        validator: widget.isRequired!
+            ? (value) {
+                if (value == null || value.isEmpty) {
+                  return 'required';
+                }
+                return null;
               }
-              return null;
-            }
-                : (value) => null,
-            maxLines: widget.maxLines ?? 1,
-            controller: widget.textController,
-            obscureText: _getVisibility(
-                _obscureText, widget.isPassword ?? false),
-            showCursor: true,
-            onChanged: widget.onChange,
-            decoration: InputDecoration(
-              suffixIcon: widget.suffixIcon != null
-                  ? Icon(widget.suffixIcon!, color: Colors.white70)
-                  : widget.isPassword!
-                  ? IconButton(
-                onPressed: () =>
-                    setState(() => _obscureText = !_obscureText),
-                icon: _obscureText
-                    ? const Icon(Icons.visibility_off, color: Colors.white)
-                    : const Icon(Icons.visibility, color: Colors.white),
-              )
-                  : null,
-              border: const OutlineInputBorder(borderSide: BorderSide.none),
-              hintText: widget.hint,
-              hintStyle: TextStyle(fontSize: 20),
-            ),
-            inputFormatters: widget.isNumber!
-                ? <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly]
-                : null,
-            keyboardType: widget.isNumber! ? TextInputType.number : null,
-            maxLength: widget.maxLength,
-            buildCounter:
-                (context, {
+            : (value) => null,
+        maxLines: widget.maxLines ?? 1,
+        controller: widget.textController,
+        obscureText: _getVisibility(_obscureText, widget.isPassword ?? false),
+        showCursor: true,
+        onChanged: widget.onChange,
+        decoration: InputDecoration(
+          suffixIcon: widget.suffixIcon != null
+              ? Icon(widget.suffixIcon!, color: Colors.white70)
+              : widget.isPassword!
+              ? IconButton(
+                  onPressed: () => setState(() => _obscureText = !_obscureText),
+                  icon: _obscureText
+                      ? const Icon(Icons.visibility_off, color: Colors.white)
+                      : const Icon(Icons.visibility, color: Colors.white),
+                )
+              : null,
+          border: const OutlineInputBorder(borderSide: BorderSide.none),
+          hintText: widget.hint,
+          hintStyle: TextStyle(fontSize: 20),
+        ),
+        inputFormatters: widget.isNumber!
+            ? <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly]
+            : null,
+        keyboardType: widget.isNumber! ? TextInputType.number : null,
+        maxLength: widget.maxLength,
+        buildCounter:
+            (
+              context, {
               required currentLength,
               required isFocused,
               required maxLength,
             }) => null,
-          ),
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+          color: widget.isReceiveCodeActive
+              ? Theme.of(context).colorScheme.onPrimary
+              : Theme.of(context).colorScheme.secondary,
         ),
-      );
+      ),
+    ),
+  );
 
   bool _getVisibility(bool isHidden, bool isPassword) {
     if (!isPassword) {
