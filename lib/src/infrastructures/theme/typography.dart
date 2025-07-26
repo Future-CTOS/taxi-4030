@@ -9,6 +9,12 @@ class AppTypography {
     color: AppColors.secondaryColor.shade900,
   );
 
+  static final TextStyle bodyLarge = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    color: AppColors.secondaryColor.shade900,
+  );
+
   static final TextStyle body = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
@@ -16,8 +22,8 @@ class AppTypography {
   );
 
   static final TextStyle caption = TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.w300,
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
     color: AppColors.secondaryColor.shade700,
   );
 }
