@@ -6,6 +6,9 @@ class RoutePaths {
   static const String tripPage = '/trip';
 
   /// Authentication
-  static const String logInPage = '/log-in';
-  static const String signUpPage = '/sign-up';
+  static const String otpVerify = '/otp-verify';
+  static const String phoneInput = '/phone-input';
+
+  // register
+  static const String register = '/register';
 }

@@ -23,12 +23,18 @@ class TaxiRouteNames extends Routes {
   );
 
   /// Authentication
-  static const Routes loginPage = Routes(
-    RoutePaths.logInPage,
-    RoutePaths.logInPage,
+  static const Routes otpVerify = Routes(
+    RoutePaths.phoneInput + RoutePaths.otpVerify,
+    RoutePaths.otpVerify,
   );
-  static const Routes signUpPage = Routes(
-    RoutePaths.signUpPage,
-    RoutePaths.signUpPage,
+  static const Routes phoneInput = Routes(
+    RoutePaths.phoneInput,
+    RoutePaths.phoneInput,
   );
+
+  static const Routes register = Routes(
+    RoutePaths.register,
+    RoutePaths.register,
+  );
+
 }
