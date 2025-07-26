@@ -16,7 +16,6 @@ class CustomScaffold extends StatelessWidget {
     this.title,
     this.appBarTitle,
     this.bottomNavigationBar,
-    this.onBackTap,
     this.onRefresh,
     this.showEndDrawer,
     this.resizeToAvoidBottomInset,
@@ -28,8 +27,6 @@ class CustomScaffold extends StatelessWidget {
   final bool? showEndDrawer;
   final bool? resizeToAvoidBottomInset;
   final PreferredSizeWidget? appBar;
-
-  final Function()? onBackTap;
   final Future<void> Function()? onRefresh;
 
   final Widget body;
@@ -38,13 +35,14 @@ class CustomScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeController themeController = Get.find();
-
+    final bool canPop = Navigator.of(context).canPop();
     return Obx(() {
       final isDark = themeController.themeMode.value == ThemeMode.dark;
       return Scaffold(
         endDrawer: showEndDrawer ?? false ? _endDrawerWidget(context) : null,
-        appBar: appBar ?? _appBar(context, isDark, themeController),
-        body: _body(context),
+        appBar:
+            appBar ?? _appBar(context, isDark, themeController, canPop: canPop),
+        body: SafeArea(child: _body(context)),
         bottomNavigationBar: bottomNavigationBar,
         resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       );
@@ -69,7 +67,7 @@ class CustomScaffold extends StatelessWidget {
         const Divider(),
         AppSpacing.mediumVerticalSpacer,
         InkWell(
-          onTap: () => Get.offAllNamed(TaxiRouteNames.loginPage.path),
+          onTap: () => Get.offAllNamed(TaxiRouteNames.phoneInput.path),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -133,23 +131,26 @@ class CustomScaffold extends StatelessWidget {
   AppBar _appBar(
     BuildContext context,
     bool isDark,
-    ThemeController themeController,
-  ) => AppBar(
+    ThemeController themeController, {
+    required bool canPop,
+  }) => AppBar(
     backgroundColor: Theme.of(context).colorScheme.surface,
     automaticallyImplyLeading: false,
-    leading: onBackTap != null
-        ? IconButton(
-            onPressed: onBackTap!,
-            icon: const Icon(Icons.arrow_back, color: Colors.white),
-          )
-        : null,
+    actionsPadding: AppSpacing.largePadding,
     actions: [
-      if (appBarTitle != null) ...[appBarTitle!, const Spacer()],
-      IconButton(
-        tooltip: 'Toggle Theme',
-        icon: Icon(isDark ? Icons.dark_mode : Icons.light_mode),
-        onPressed: () => themeController.toggleTheme(),
-      ),
+      _logo(context),
+      const Spacer(),
+      if (canPop)
+        IconButton(
+          icon: Icon(Icons.arrow_forward_ios_rounded),
+          onPressed: () => Get.back(),
+        )
+      else
+        IconButton(
+          tooltip: 'Toggle Theme',
+          icon: Icon(isDark ? Icons.dark_mode : Icons.light_mode),
+          onPressed: () => themeController.toggleTheme(),
+        ),
       if (showEndDrawer ?? false) _endDrawerBuilder(),
     ],
     title: title != null ? Text(title!) : null,
@@ -187,5 +188,17 @@ class CustomScaffold extends StatelessWidget {
         ),
       ),
     ),
+  );
+
+  Widget _logo(BuildContext context) => Row(
+    children: [
+      Container(
+        width: 25,
+        height: 25,
+        decoration: BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
+      ),
+      AppSpacing.mediumHorizontalSpacer,
+      Text('تاکسی 4030', style: Theme.of(context).textTheme.titleLarge),
+    ],
   );
 }
