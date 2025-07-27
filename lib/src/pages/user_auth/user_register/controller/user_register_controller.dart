@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../infrastructures/routes/route_names.dart';
 import '../../../../infrastructures/utils/validators.dart';
 
-class RegisterController extends GetxController {
+class UserRegisterController extends GetxController {
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final nationalCodeController = TextEditingController();
@@ -26,7 +27,7 @@ class RegisterController extends GetxController {
     final lastNameValid =
         Validators.validateLastName(lastNameController.text) == null;
     final nationalCodeValid =
-        Validators.validateNationalCode(nationalCodeController.text) == null;
+        Validators.nationalCodeValidator(nationalCodeController.text) == null;
 
     isFormFilled.value = firstNameValid && lastNameValid && nationalCodeValid;
   }
@@ -42,7 +43,7 @@ class RegisterController extends GetxController {
         backgroundColor: Colors.green.shade600,
         colorText: Colors.white,
       );
-      Get.back(result: true);
+      Get.toNamed(TaxiRouteNames.driverRegister.uri);
     } finally {
       isLoading.value = false;
     }

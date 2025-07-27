@@ -5,7 +5,7 @@ import 'typography.dart';
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
-    primaryColor: AppColors.primaryColor,
+    primaryColor: AppColors.primaryColor.shade600,
     scaffoldBackgroundColor: AppColors.backgroundColor,
     textTheme: TextTheme(
       titleLarge: AppTypography.headline,
@@ -14,7 +14,8 @@ class AppTheme {
       bodySmall: AppTypography.caption,
     ),
     colorScheme: ColorScheme.light(
-      primary: AppColors.primaryColor,
+      primary: AppColors.primaryColor.shade600,
+      surfaceContainer: AppColors.primaryColor.shade100,
       secondary: AppColors.secondaryColor.shade300,
       onSecondary: AppColors.secondaryColor.shade500,
       onPrimary: AppColors.textColor,

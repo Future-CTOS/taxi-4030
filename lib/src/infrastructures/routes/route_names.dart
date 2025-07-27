@@ -32,9 +32,28 @@ class TaxiRouteNames extends Routes {
     RoutePaths.phoneInput,
   );
 
-  static const Routes register = Routes(
-    RoutePaths.register,
-    RoutePaths.register,
+  static const Routes userRegister = Routes(
+    RoutePaths.userRegister,
+    RoutePaths.userRegister,
   );
 
+  static const Routes driverRegister = Routes(
+    RoutePaths.driverRegister,
+    RoutePaths.driverRegister,
+  );
+
+  static const Routes vanDriverRegister = Routes(
+    RoutePaths.driverRegister + RoutePaths.vanDriverRegister,
+    RoutePaths.vanDriverRegister,
+  );
+
+  static const Routes carDriverRegister = Routes(
+    RoutePaths.driverRegister + RoutePaths.carDriverRegister,
+    RoutePaths.carDriverRegister,
+  );
+
+  static const Routes motorcycleRegister = Routes(
+    RoutePaths.driverRegister + RoutePaths.motorcycleDriverRegister,
+    RoutePaths.motorcycleDriverRegister,
+  );
 }

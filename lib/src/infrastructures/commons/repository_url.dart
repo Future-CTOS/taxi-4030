@@ -1,8 +1,8 @@
 class RepositoryUrls {
   /// Authentication
-  static const String logIn = '/auth/register-with-mobile';
+  static const String logIn = '/user_auth/driver_register-with-mobile';
   // static const String checkEmailExistence = '/account/is-email-exists';
-  // static const String logout = '/auth/logout';
+  // static const String logout = '/user_auth/logout';
   //
   // /// Profile page
   // static String getOthersProfileInfo(final String id) =>

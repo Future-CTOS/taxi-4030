@@ -15,11 +15,11 @@ class TaxiApp extends StatelessWidget {
   Widget build(BuildContext context) => Obx(
     () => GetMaterialApp(
       getPages: [...TaxiAppPages.routes],
-      initialRoute: TaxiRouteNames.loginPage.uri,
+      initialRoute: TaxiRouteNames.phoneInput.uri,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: themeController.themeMode.value,
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       locale: const Locale('fa', 'IR'),
       translationsKeys: const {'fa_IR': Locales.fa_IR},
     ),

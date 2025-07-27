@@ -5,9 +5,9 @@ import 'package:taxi_4030/src/infrastructures/utils/spacing.dart';
 
 import '../../../../../infrastructures/utils/constants.dart';
 import '../../../../../infrastructures/utils/validators.dart';
-import '../../controller/register_controller.dart';
+import '../../controller/user_register_controller.dart';
 
-class RegisterForm extends GetView<RegisterController> {
+class RegisterForm extends GetView<UserRegisterController> {
   const RegisterForm({super.key});
 
   @override
@@ -29,7 +29,7 @@ class RegisterForm extends GetView<RegisterController> {
           AppSpacing.largeVerticalSpacer,
           Text('کد ملی', style: Theme.of(context).textTheme.bodyLarge),
           AppSpacing.largeVerticalSpacer,
-          _nationalCodeInput(context),
+          _nationalCode(context),
         ],
       ),
     ),
@@ -51,6 +51,7 @@ class RegisterForm extends GetView<RegisterController> {
   Widget _lastNameInput(BuildContext context) => TextFormField(
     validator: (value) => Validators.validateLastName(value),
     controller: controller.lastNameController,
+    autovalidateMode: AutovalidateMode.onUserInteraction,
     style: Theme.of(context).textTheme.bodyMedium,
     keyboardType: TextInputType.name,
     textInputAction: TextInputAction.next,
@@ -61,15 +62,16 @@ class RegisterForm extends GetView<RegisterController> {
     ),
   );
 
-  Widget _nationalCodeInput(BuildContext context) => TextFormField(
-    validator: (value) => Validators.validateNationalCode(value),
+  Widget _nationalCode(BuildContext context) => TextFormField(
+    validator: Validators.nationalCodeValidator,
     controller: controller.nationalCodeController,
+    autovalidateMode: AutovalidateMode.onUserInteraction,
     style: Theme.of(context).textTheme.bodyMedium,
     keyboardType: TextInputType.number,
     textInputAction: TextInputAction.done,
     inputFormatters: [
       FilteringTextInputFormatter.digitsOnly,
-      LengthLimitingTextInputFormatter(10), // محدودیت طول ۱۰ رقم
+      LengthLimitingTextInputFormatter(10),
     ],
     decoration: _inputDecoration(
       context: context,
