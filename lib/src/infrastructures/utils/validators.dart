@@ -49,33 +49,50 @@ class Validators {
     return null;
   }
 
-  static String? validateNationalCode(String? value) {
+  static String? nationalCodeValidator(String? value) {
     if (value == null || value.isEmpty) {
-      return 'کد ملی نمی‌تواند خالی باشد';
+      return 'کد ملی را وارد کنید';
+    }
+    if (value.isValidIranNationalCode()) {
+      return null;
     }
 
-    if (!RegExp(r'^\d{10}$').hasMatch(value)) {
-      return 'کد ملی معتبر نیست';
+    return 'کد ملی نامعتبر است';
+  }
+
+  static String? iranMobileValidator(String? value) {
+    if (value == null || value.isEmpty) return 'شماره همراه را وارد کنید';
+    final regex = RegExp(r'^[9][0-9]{9}$');
+    if (!regex.hasMatch(value)) return 'شماره همراه معتبر نیست';
+
+    if (value.startsWith('9') && (value.length == 10)) {
+      return null;
+    }
+    return 'شماره همراه معتبر نیست';
+  }
+}
+
+extension NationalCode on String? {
+  bool isValidIranNationalCode() {
+    const int nationalCodeLength = 10;
+
+    final nationalCode = this;
+    if (nationalCode == null ||
+        nationalCode.length != nationalCodeLength ||
+        int.tryParse(nationalCode) == null) {
+      return false;
     }
 
-    if (RegExp(r'^(\d)\1{9}$').hasMatch(value)) {
-      return 'کد ملی معتبر نیست';
-    }
-
-    final List<int> digits = value.split('').map(int.parse).toList();
-    final checkDigit = digits[9];
-    int sum = 0;
-
-    for (int i = 0; i < 9; i++) {
-      sum += digits[i] * (10 - i);
+    var j = nationalCodeLength;
+    var sum = 0;
+    for (int i = 0; i < nationalCode.length - 1; i++) {
+      sum += int.parse(nationalCode[i]) * j--;
     }
 
     final remainder = sum % 11;
-    if (!((remainder < 2 && checkDigit == remainder) ||
-        (remainder >= 2 && checkDigit == (11 - remainder)))) {
-      return 'کد ملی معتبر نیست';
-    }
+    final controlNumber = int.parse(nationalCode[9]);
 
-    return null;
+    return remainder < 2 && controlNumber == remainder ||
+        remainder >= 2 && controlNumber == 11 - remainder;
   }
 }

@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import '../../../../components/scaffold.dart';
 import '../../../../infrastructures/utils/spacing.dart';
 import '../../../shared/widgets/page_bottom_button.dart';
-import '../controller/register_controller.dart';
+import '../controller/user_register_controller.dart';
 import 'widgets/register_form.dart';
 
-class RegisterPage extends GetView<RegisterController> {
-  const RegisterPage({super.key});
+class UserRegisterPage extends GetView<UserRegisterController> {
+  const UserRegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) => CustomScaffold(body: _body(context));

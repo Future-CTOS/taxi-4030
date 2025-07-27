@@ -33,7 +33,7 @@ class InputOtpVerify extends GetView<OtpVerifyPageController> {
         () => CustomOtpField(
           isExpired: controller.isExpired.value,
           onCompleted: (value) {
-            Get.offAndToNamed(TaxiRouteNames.register.path);
+            Get.offAndToNamed(TaxiRouteNames.userRegister.path);
           },
           enabled: !controller.isResendEnabled.value,
           shouldClear: controller.isResendEnabled.value,
