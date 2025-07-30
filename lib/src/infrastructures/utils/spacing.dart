@@ -16,7 +16,6 @@ class AppSpacing {
   static const SizedBox xxLargeVerticalSpacer = SizedBox(height: xxLargeSpace);
   static const SizedBox giantVerticalSpacer = SizedBox(height: giantSpace);
 
-
   static const SizedBox tinyHorizontalSpacer = SizedBox(width: tinySpace);
   static const SizedBox smallHorizontalSpacer = SizedBox(width: smallSpace);
   static const SizedBox mediumHorizontalSpacer = SizedBox(width: mediumSpace);
@@ -38,4 +37,6 @@ class AppSpacing {
   static const EdgeInsetsDirectional giantPadding = EdgeInsetsDirectional.all(
     giantSpace,
   );
+
+  static const EdgeInsetsGeometry zeroPadding = EdgeInsetsGeometry.zero;
 }

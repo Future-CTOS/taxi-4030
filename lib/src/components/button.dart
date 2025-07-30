@@ -37,7 +37,6 @@ class CustomButton extends StatelessWidget {
           ),
         ),
         onPressed: isDisable! ? null : action,
-
         child: isDisable! ? const CustomLoading() : Text(label),
       ),
     ),

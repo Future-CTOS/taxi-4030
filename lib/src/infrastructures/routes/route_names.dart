@@ -23,9 +23,13 @@ class TaxiRouteNames extends Routes {
   );
 
   /// Authentication
-  static const Routes otpVerify = Routes(
-    RoutePaths.phoneInput + RoutePaths.otpVerify,
-    RoutePaths.otpVerify,
+  static const Routes userOtpVerify = Routes(
+    RoutePaths.phoneInput + RoutePaths.userOtpVerify,
+    RoutePaths.userOtpVerify,
+  );
+  static const Routes driverOtpVerify = Routes(
+    RoutePaths.driverOtpVerify,
+    RoutePaths.driverOtpVerify,
   );
   static const Routes phoneInput = Routes(
     RoutePaths.phoneInput,
@@ -37,23 +41,38 @@ class TaxiRouteNames extends Routes {
     RoutePaths.userRegister,
   );
 
-  static const Routes driverRegister = Routes(
-    RoutePaths.driverRegister,
-    RoutePaths.driverRegister,
+  static const Routes vehicleSelection = Routes(
+    RoutePaths.vehicleSelection,
+    RoutePaths.vehicleSelection,
   );
 
   static const Routes vanDriverRegister = Routes(
-    RoutePaths.driverRegister + RoutePaths.vanDriverRegister,
+    RoutePaths.vehicleSelection + RoutePaths.vanDriverRegister,
     RoutePaths.vanDriverRegister,
   );
 
   static const Routes carDriverRegister = Routes(
-    RoutePaths.driverRegister + RoutePaths.carDriverRegister,
+    RoutePaths.vehicleSelection + RoutePaths.carDriverRegister,
     RoutePaths.carDriverRegister,
   );
 
   static const Routes motorcycleRegister = Routes(
-    RoutePaths.driverRegister + RoutePaths.motorcycleDriverRegister,
+    RoutePaths.vehicleSelection + RoutePaths.motorcycleDriverRegister,
     RoutePaths.motorcycleDriverRegister,
+  );
+
+  static const Routes driverPersonalInfo = Routes(
+    RoutePaths.driverPersonalInfo,
+    RoutePaths.driverPersonalInfo,
+  );
+
+  static const Routes driverActivityInfo = Routes(
+    RoutePaths.driverPersonalInfo + RoutePaths.driverActivityInfo,
+    RoutePaths.driverActivityInfo,
+  );
+
+  static const Routes driverLicenseUpload = Routes(
+    RoutePaths.driverPersonalInfo + RoutePaths.driverActivityInfo + RoutePaths.driverLicenseUpload,
+    RoutePaths.driverLicenseUpload,
   );
 }

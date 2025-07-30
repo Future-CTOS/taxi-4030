@@ -32,7 +32,7 @@ class MotorcycleDriverController extends GetxController {
         backgroundColor: Colors.green.shade600,
         colorText: Colors.white,
       );
-      Get.toNamed(TaxiRouteNames.otpVerify.uri);
+      Get.toNamed(TaxiRouteNames.userOtpVerify.uri);
     } finally {
       isLoading.value = false;
     }

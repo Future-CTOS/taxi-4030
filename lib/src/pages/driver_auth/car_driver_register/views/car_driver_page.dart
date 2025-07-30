@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taxi_4030/gen/assets.gen.dart';
 
 import '../../../../components/scaffold.dart';
+import '../../../../infrastructures/utils/constants.dart';
+import '../../../../infrastructures/utils/spacing.dart';
 import '../../shared/register_driver_view.dart';
 import '../controller/car_driver_controller.dart';
 
@@ -10,11 +13,12 @@ class CarDriverPage extends GetView<CarDriverController> {
 
   @override
   Widget build(BuildContext context) => CustomScaffold(
+    bodyPadding: AppSpacing.zeroPadding,
     body: Obx(
       () => RegisterDriverView(
         title: 'ثبت نام رانننده سواری',
         subtitle: 'شماره همراه و کد ملی خود را وارد کنید.',
-        imagePath: 'assets/car_2d.png',
+        imagePath: Assets.pngs.car2d.path,
         nationalCodeTextController: controller.nationalCodeController,
         phoneNumberTextController: controller.phoneNumberController,
         onSubmit: controller.submitUserInfo,

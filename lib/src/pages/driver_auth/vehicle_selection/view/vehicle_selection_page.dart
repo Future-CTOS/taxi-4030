@@ -4,23 +4,20 @@ import 'package:taxi_4030/src/infrastructures/routes/route_names.dart';
 
 import '../../../../components/scaffold.dart';
 import '../../../../infrastructures/utils/spacing.dart';
-import '../controller/driver_register_controller.dart';
+import '../controller/vehicle_selection_controller.dart';
 import 'widgets/vehicle_card.dart';
 
-class DriverRegisterPage extends GetView<DriverRegisterController> {
-  const DriverRegisterPage({super.key});
+class VehicleSelectionPage extends GetView<VehicleSelectionController> {
+  const VehicleSelectionPage({super.key});
 
   @override
   Widget build(BuildContext context) => CustomScaffold(body: _body(context));
 
-  Widget _body(BuildContext context) => Padding(
-    padding: EdgeInsetsGeometry.symmetric(horizontal: 16, vertical: 32),
-    child: Column(
-      children: [
-        Expanded(flex: 1, child: _headerContent(context)),
-        Expanded(flex: 3, child: _items()),
-      ],
-    ),
+  Widget _body(BuildContext context) => Column(
+    children: [
+      Expanded(flex: 1, child: _headerContent(context)),
+      Expanded(flex: 3, child: _items()),
+    ],
   );
 
   Widget _headerContent(BuildContext context) => Column(

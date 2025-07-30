@@ -1,8 +1,7 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taxi_4030/src/infrastructures/routes/route_names.dart';
+import 'package:taxi_4030/src/infrastructures/utils/constants.dart';
 import 'package:taxi_4030/src/infrastructures/utils/spacing.dart';
 
 import '../../generated/locales.g.dart';
@@ -20,6 +19,10 @@ class CustomScaffold extends StatelessWidget {
     this.showEndDrawer,
     this.resizeToAvoidBottomInset,
     this.appBar,
+    this.bodyPadding,
+    this.bodyTitle,
+    this.bodySubTitle,
+    this.bottomSheet,
   });
 
   final String? title;
@@ -28,8 +31,12 @@ class CustomScaffold extends StatelessWidget {
   final bool? resizeToAvoidBottomInset;
   final PreferredSizeWidget? appBar;
   final Future<void> Function()? onRefresh;
+  final EdgeInsetsGeometry? bodyPadding;
+  final String? bodyTitle;
+  final String? bodySubTitle;
 
   final Widget body;
+  final Widget? bottomSheet;
   final Widget? bottomNavigationBar;
 
   @override
@@ -39,6 +46,15 @@ class CustomScaffold extends StatelessWidget {
     return Obx(() {
       final isDark = themeController.themeMode.value == ThemeMode.dark;
       return Scaffold(
+        bottomSheet: bottomSheet != null
+            ? Padding(
+                padding: EdgeInsetsGeometry.symmetric(
+                  horizontal: Constants.horizontalPagePaddingSize,
+                  vertical: Constants.verticalPagePaddingSize,
+                ),
+                child: bottomSheet,
+              )
+            : null,
         endDrawer: showEndDrawer ?? false ? _endDrawerWidget(context) : null,
         appBar:
             appBar ?? _appBar(context, isDark, themeController, canPop: canPop),
@@ -136,7 +152,9 @@ class CustomScaffold extends StatelessWidget {
   }) => AppBar(
     backgroundColor: Theme.of(context).colorScheme.surface,
     automaticallyImplyLeading: false,
-    actionsPadding: AppSpacing.largePadding,
+    actionsPadding: EdgeInsetsGeometry.symmetric(
+      horizontal: AppSpacing.largeSpace,
+    ),
     actions: [
       _logo(context),
       const Spacer(),
@@ -180,14 +198,36 @@ class CustomScaffold extends StatelessWidget {
     child: LayoutBuilder(
       builder: (context, constraints) => Align(
         alignment: Alignment.topCenter,
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxWidth: math.min(600, constraints.maxWidth),
-          ),
-          child: body,
+        child: Padding(
+          padding:
+              bodyPadding ??
+              EdgeInsetsGeometry.symmetric(
+                horizontal: Constants.horizontalPagePaddingSize,
+                vertical: Constants.verticalPagePaddingSize,
+              ),
+          child: bodyTitle != null && bodySubTitle != null
+              ? Column(
+                  children: [
+                    Expanded(flex: 1, child: _headerContent(context)),
+                    Expanded(flex: 3, child: body),
+                  ],
+                )
+              : body,
         ),
       ),
     ),
+  );
+
+  Widget _headerContent(BuildContext context) => Column(
+    children: [
+      Text(bodyTitle!, style: Theme.of(context).textTheme.titleLarge),
+      AppSpacing.largeVerticalSpacer,
+      Text(
+        bodySubTitle!,
+        textAlign: TextAlign.center,
+        style: Theme.of(context).textTheme.bodySmall,
+      ),
+    ],
   );
 
   Widget _logo(BuildContext context) => Row(

@@ -43,7 +43,7 @@ class UserRegisterController extends GetxController {
         backgroundColor: Colors.green.shade600,
         colorText: Colors.white,
       );
-      Get.toNamed(TaxiRouteNames.driverRegister.uri);
+      Get.toNamed(TaxiRouteNames.vehicleSelection.uri);
     } finally {
       isLoading.value = false;
     }

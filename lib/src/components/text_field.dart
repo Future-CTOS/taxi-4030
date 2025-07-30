@@ -1,123 +1,90 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:taxi_4030/src/infrastructures/utils/spacing.dart';
 
-class CustomTextField extends StatefulWidget {
+import '../infrastructures/utils/constants.dart';
+import '../infrastructures/utils/validators.dart';
+
+class CustomTextField extends StatelessWidget {
+  final String label;
+  final String hint;
+  final TextEditingController textController;
+  final String? Function(String?)? validator;
+  final TextInputType keyboardType;
+  final TextInputAction textInputAction;
+  final List<TextInputFormatter>? inputFormatters;
+  final bool enabled;
+
   const CustomTextField({
     super.key,
+    required this.label,
+    required this.hint,
     required this.textController,
-    required this.isReceiveCodeActive,
-    this.title,
-    this.onChange,
-    this.isRequired = false,
-    this.isPassword = false,
-    this.isNumber = false,
-    this.readOnly = false,
-    this.hint,
-    this.suffixIcon,
-    this.formKey,
-    this.maxLines,
-    this.maxLength,
+    this.validator,
+    this.keyboardType = TextInputType.text,
+    this.textInputAction = TextInputAction.done,
+    this.inputFormatters,
+    this.enabled = true,
   });
 
-  // TODO: assertion for handle is password and icon together
-
-  final String? title;
-  final bool? isPassword;
-  final TextEditingController textController;
-  final bool isReceiveCodeActive;
-  final Function(String)? onChange;
-  final bool? isRequired;
-  final GlobalKey<FormState>? formKey;
-  final String? hint;
-  final bool? isNumber;
-  final bool? readOnly;
-  final IconData? suffixIcon;
-  final int? maxLines;
-  final int? maxLength;
-
   @override
-  State<CustomTextField> createState() => _CustomTextFieldState();
-}
-
-class _CustomTextFieldState extends State<CustomTextField> {
-  bool _obscureText = false;
-
-  @override
-  Widget build(BuildContext context) => Form(
-    key: widget.formKey,
-    child: DecoratedBox(
-      decoration: BoxDecoration(
-        border: Border.all(
-          width: 1,
-          strokeAlign: BorderSide.strokeAlignOutside,
-          color: Theme.of(context).colorScheme.secondary,
-        ),
-        color: Theme.of(context).colorScheme.surface,
-        borderRadius: const BorderRadius.all(
-          Radius.circular(AppSpacing.mediumSpace),
+  Widget build(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(label, style: Theme.of(context).textTheme.bodyMedium),
+      const SizedBox(height: 8),
+      TextFormField(
+        validator: validator ?? Validators.validateFirstName,
+        controller: textController,
+        style: Theme.of(context).textTheme.bodyMedium,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        keyboardType: TextInputType.name,
+        textInputAction: TextInputAction.next,
+        inputFormatters: [
+          FilteringTextInputFormatter.allow(RegExp(r'[آ-ی\s]')),
+        ],
+        decoration: _inputDecoration(
+          context: context,
+          hintText: hint,
         ),
       ),
-      child: TextFormField(
-        readOnly: widget.readOnly!,
-        validator: widget.isRequired!
-            ? (value) {
-                if (value == null || value.isEmpty) {
-                  return 'required';
-                }
-                return null;
-              }
-            : (value) => null,
-        maxLines: widget.maxLines ?? 1,
-        controller: widget.textController,
-        obscureText: _getVisibility(_obscureText, widget.isPassword ?? false),
-        showCursor: true,
-        onChanged: widget.onChange,
-        decoration: InputDecoration(
-          suffixIcon: widget.suffixIcon != null
-              ? Icon(widget.suffixIcon!, color: Colors.white70)
-              : widget.isPassword!
-              ? IconButton(
-                  onPressed: () => setState(() => _obscureText = !_obscureText),
-                  icon: _obscureText
-                      ? const Icon(Icons.visibility_off, color: Colors.white)
-                      : const Icon(Icons.visibility, color: Colors.white),
-                )
-              : null,
-          border: const OutlineInputBorder(borderSide: BorderSide.none),
-          hintText: widget.hint,
-          hintStyle: TextStyle(fontSize: 20),
-        ),
-        inputFormatters: widget.isNumber!
-            ? <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly]
-            : null,
-        keyboardType: widget.isNumber! ? TextInputType.number : null,
-        maxLength: widget.maxLength,
-        buildCounter:
-            (
-              context, {
-              required currentLength,
-              required isFocused,
-              required maxLength,
-            }) => null,
-        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-          color: widget.isReceiveCodeActive
-              ? Theme.of(context).colorScheme.onPrimary
-              : Theme.of(context).colorScheme.secondary,
-        ),
-      ),
-    ),
+    ],
   );
 
-  bool _getVisibility(bool isHidden, bool isPassword) {
-    if (!isPassword) {
-      return false;
-    } else {
-      if (isHidden) {
-        return false;
-      } else {
-        return true;
-      }
-    }
-  }
+  BorderRadius _borderRadius() =>
+      BorderRadius.circular(Constants.textFiledRadius);
+
+  InputDecoration _inputDecoration({
+    required BuildContext context,
+    required String hintText,
+  }) => InputDecoration(
+    hintText: hintText,
+    hintStyle: Theme.of(context).textTheme.bodyMedium,
+    focusedBorder: OutlineInputBorder(
+      borderRadius: _borderRadius(),
+      borderSide: BorderSide(color: Theme.of(context).colorScheme.onSecondary),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: _borderRadius(),
+      borderSide: BorderSide(
+        color: Theme.of(context).colorScheme.secondary,
+        width: 1,
+      ),
+    ),
+    disabledBorder: OutlineInputBorder(
+      borderRadius: _borderRadius(),
+      borderSide: BorderSide(
+        color: Theme.of(context).colorScheme.onSecondary,
+        width: 1,
+      ),
+    ),
+    errorBorder: OutlineInputBorder(borderRadius: _borderRadius()),
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: _borderRadius(),
+      borderSide: BorderSide(
+        color: Theme.of(context).colorScheme.error,
+        width: 1,
+      ),
+    ),
+    border: const OutlineInputBorder(),
+  );
 }

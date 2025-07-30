@@ -30,6 +30,6 @@ class PhoneInputPageController extends GetxController {
       );
       return;
     }
-    Get.toNamed(TaxiRouteNames.otpVerify.path);
+    Get.toNamed(TaxiRouteNames.userOtpVerify.path);
   }
 }

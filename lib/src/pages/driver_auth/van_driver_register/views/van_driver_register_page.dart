@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../gen/assets.gen.dart';
 import '../../../../components/scaffold.dart';
 import '../../shared/register_driver_view.dart';
 import '../controller/van_driver_register_controller.dart';
@@ -14,7 +15,7 @@ class VanDriverRegisterPage extends GetView<VanDriverRegisterController> {
       () => RegisterDriverView(
         title: 'ثبت نام رانننده وانت',
         subtitle: 'شماره همراه و کد ملی خود را وارد کنید.',
-        imagePath: 'assets/van_2d.png',
+        imagePath: Assets.pngs.van2d.path,
         nationalCodeTextController: controller.nationalCodeController,
         phoneNumberTextController: controller.phoneNumberController,
         onSubmit: controller.submitUserInfo,

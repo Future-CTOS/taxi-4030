@@ -14,11 +14,7 @@ class CarDriverController extends GetxController {
   void _checkFormStatus() {
     final phoneNumber =
         Validators.iranMobileValidator(phoneNumberController.text) == null;
-
-    final nationalCodeValid =
-        Validators.nationalCodeValidator(nationalCodeController.text) == null;
-
-    isFormFilled.value = phoneNumber && nationalCodeValid;
+    isFormFilled.value = phoneNumber;
   }
 
   Future<void> submitUserInfo() async {
@@ -32,7 +28,7 @@ class CarDriverController extends GetxController {
         backgroundColor: Colors.green.shade600,
         colorText: Colors.white,
       );
-      Get.toNamed(TaxiRouteNames.otpVerify.uri);
+      Get.toNamed(TaxiRouteNames.driverOtpVerify.uri);
     } finally {
       isLoading.value = false;
     }

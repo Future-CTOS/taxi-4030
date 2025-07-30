@@ -18,6 +18,7 @@ dependencies:
   readmore: ^3.0.0
   url_launcher: ^6.3.2
   octo_image: ^2.1.0
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:
@@ -30,7 +31,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/
+    - assets/pngs/
 
 fonts:
   - family: YekanBakh

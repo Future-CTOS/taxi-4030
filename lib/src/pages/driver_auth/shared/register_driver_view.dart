@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
-
-import '../../../components/text_field.dart';
+import '../../../components/phone_number_filed.dart';
 import '../../../infrastructures/utils/constants.dart';
 import '../../../infrastructures/utils/spacing.dart';
 import '../../../infrastructures/utils/validators.dart';
@@ -33,58 +31,70 @@ class RegisterDriverView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Column(
+    final sizeScreen = MediaQuery.of(context).size.height / 1.75;
+    final imageHeight = sizeScreen * 0.6;
+    final double offset = 70;
+    return Stack(
       children: [
-        Expanded(
-            flex: 1,
-            child: SizedBox()),
-        Image.asset(imagePath, height: 180, fit: BoxFit.contain),
-        AppSpacing.largeVerticalSpacer,
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(AppSpacing.largeSpace),
-          decoration: BoxDecoration(
-            // color: theme.primaryColor,
-            borderRadius: BorderRadius.circular(12),
+        Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: sizeScreen,
+          child: ColoredBox(color: theme.colorScheme.surfaceContainer),
+        ),
+        Positioned(
+          top: sizeScreen - imageHeight - offset,
+          left: 0,
+          right: 0,
+          child: Image.asset(
+            imagePath,
+            height: imageHeight,
+            fit: BoxFit.contain,
           ),
-          child: Column(
-            children: [
-              Text(title, style: theme.textTheme.titleLarge),
-              AppSpacing.largeVerticalSpacer,
-              Text(
-                subtitle,
-                style: Theme.of(context).textTheme.bodySmall,
-                textAlign: TextAlign.center,
-              ),
-              AppSpacing.xxLargeVerticalSpacer,
-              Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: Text("کد ملی", style: theme.textTheme.bodyMedium),
-              ),
-              AppSpacing.mediumVerticalSpacer,
-              _nationalCode(context),
-              AppSpacing.largeVerticalSpacer,
-              Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: Text("شماره همراه", style: theme.textTheme.bodyMedium),
-              ),
-              AppSpacing.mediumVerticalSpacer,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Expanded(flex: 8, child: _phoneNumber(context)),
-                  AppSpacing.mediumHorizontalSpacer,
-                  Expanded(flex: 1, child: _countryCode(context)),
-                ],
-              ),
-              AppSpacing.xxLargeVerticalSpacer,
-              PageBottomButton(
-                label: 'ثبت نام',
-                onTap: isActiveBottomButton ? onSubmit : () {},
-                isActive: isActiveBottomButton,
-                isLoading: isLoading,
-              ),
-            ],
+        ),
+        Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: Container(
+            width: double.infinity,
+            padding: EdgeInsetsGeometry.fromLTRB(
+              AppSpacing.largeSpace,
+              AppSpacing.largeSpace,
+              AppSpacing.largeSpace,
+              Constants.verticalPagePaddingSize,
+            ),
+            margin: EdgeInsetsGeometry.only(top: AppSpacing.smallSpace),
+            child: Column(
+              children: [
+                Text(title, style: theme.textTheme.titleLarge),
+                AppSpacing.largeVerticalSpacer,
+                Text(
+                  subtitle,
+                  style: Theme.of(context).textTheme.bodySmall,
+                  textAlign: TextAlign.center,
+                ),
+                AppSpacing.largeVerticalSpacer,
+                Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: Text("شماره همراه", style: theme.textTheme.bodyMedium),
+                ),
+                AppSpacing.mediumVerticalSpacer,
+                PhoneNumberField(
+                  validator: (value) => Validators.iranMobileValidator(value),
+                  textController: phoneNumberTextController,
+                  isHighlighted: isActiveBottomButton,
+                ),
+                AppSpacing.xxLargeVerticalSpacer,
+                PageBottomButton(
+                  label: 'ثبت نام',
+                  onTap: isActiveBottomButton ? onSubmit : () {},
+                  isActive: isActiveBottomButton,
+                  isLoading: isLoading,
+                ),
+              ],
+            ),
           ),
         ),
       ],

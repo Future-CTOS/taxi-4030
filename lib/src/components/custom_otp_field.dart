@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../infrastructures/utils/constants.dart';
 import '../infrastructures/utils/spacing.dart';
+import '../infrastructures/utils/validators.dart';
 
 class CustomOtpField extends StatefulWidget {
   final int length;
@@ -139,6 +140,7 @@ class _CustomOtpFieldState extends State<CustomOtpField>
                     controller: _controllers[i],
                     focusNode: _focusNodes[i],
                     enabled: widget.enabled,
+                    validator: (value) => Validators.otpValidator(value),
                     keyboardType: TextInputType.number,
                     textAlign: TextAlign.center,
                     textDirection: TextDirection.ltr,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taxi_4030/src/components/phone_number_filed.dart';
 
 import '../../../../components/scaffold.dart';
 import '../../../../components/text_field.dart';
@@ -11,24 +12,24 @@ class PhoneInputPageView extends GetView<PhoneInputPageController> {
   const PhoneInputPageView({super.key});
 
   @override
-  Widget build(BuildContext context) =>
-      CustomScaffold(appBarTitle: _logo(context), body: _body(context));
+  Widget build(BuildContext context) => CustomScaffold(
+    appBarTitle: _logo(context),
 
-  Widget _body(BuildContext context) => Padding(
-    padding: EdgeInsetsGeometry.symmetric(horizontal: 16, vertical: 32),
-    child: Column(
-      children: [
-        Expanded(flex: 1, child: _welcomeContent(context)),
-        Expanded(flex: 2, child: _inputMobileNumber(context)),
-        Obx(
-          () => PageBottomButton(
-            label: 'دریافت کد',
-            onTap: () => controller.onSubmitPhoneNumberTap(context),
-            isActive: controller.isReceiveCodeActive.value,
-          ),
-        ),
-      ],
+    bottomSheet: Obx(
+      () => PageBottomButton(
+        label: 'دریافت کد',
+        onTap: () => controller.onSubmitPhoneNumberTap(context),
+        isActive: controller.isReceiveCodeActive.value,
+      ),
     ),
+    body: _body(context),
+  );
+
+  Widget _body(BuildContext context) => Column(
+    children: [
+      Expanded(flex: 1, child: _welcomeContent(context)),
+      Expanded(flex: 2, child: _inputMobileNumber(context)),
+    ],
   );
 
   Widget _welcomeContent(BuildContext context) => Column(
@@ -57,25 +58,12 @@ class PhoneInputPageView extends GetView<PhoneInputPageController> {
       AppSpacing.largeVerticalSpacer,
       Text('شماره همراه', style: Theme.of(context).textTheme.bodySmall),
       AppSpacing.mediumVerticalSpacer,
-      Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Expanded(
-            flex: 8,
-            child: Obx(
-              () => CustomTextField(
-                textController: controller.phoneNumberTextController,
-                isReceiveCodeActive: controller.isReceiveCodeActive.value,
-                isNumber: true,
-                isRequired: true,
-                maxLength: 10,
-                onChange: controller.onChangeTextField,
-              ),
-            ),
-          ),
-          AppSpacing.smallHorizontalSpacer,
-          Expanded(flex: 1, child: Obx(() => _countryCode(context))),
-        ],
+      Obx(
+        () => PhoneNumberField(
+          textController: controller.phoneNumberTextController,
+          isHighlighted: controller.isReceiveCodeActive.value,
+          onChange: controller.onChangeTextField,
+        ),
       ),
     ],
   );

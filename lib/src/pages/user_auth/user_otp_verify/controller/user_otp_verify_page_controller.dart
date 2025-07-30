@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 
-class OtpVerifyPageController extends GetxController {
+import '../../../../infrastructures/routes/route_names.dart';
+
+class UserOtpVerifyPageController extends GetxController {
   RxInt totalSeconds = 10.obs;
   RxBool expired = false.obs;
   RxBool isExpired = false.obs;
@@ -14,6 +16,10 @@ class OtpVerifyPageController extends GetxController {
   void onInit() {
     super.onInit();
     _startTimer();
+  }
+
+  void onCompletedFiled() {
+    Get.offAndToNamed(TaxiRouteNames.userRegister.path);
   }
 
   void _startTimer() {
@@ -33,7 +39,7 @@ class OtpVerifyPageController extends GetxController {
     });
   }
 
-  void resendOtp() {
+  Future<void> resendOtp() async {
     if (!isResendEnabled.value) return;
 
     /// todo: call otp api
