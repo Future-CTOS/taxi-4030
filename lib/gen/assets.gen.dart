@@ -18,9 +18,17 @@ class $AssetsPngsGen {
   AssetGenImage get backDrivingLicenses =>
       const AssetGenImage('assets/pngs/back_driving_licenses.png');
 
-  /// File path: assets/pngs/back_driving_licenses_fill.png
-  AssetGenImage get backDrivingLicensesFill =>
-      const AssetGenImage('assets/pngs/back_driving_licenses_fill.png');
+  /// File path: assets/pngs/back_driving_licenses_filled.png
+  AssetGenImage get backDrivingLicensesFilled =>
+      const AssetGenImage('assets/pngs/back_driving_licenses_filled.png');
+
+  /// File path: assets/pngs/back_van_card_upload.png
+  AssetGenImage get backVanCardUpload =>
+      const AssetGenImage('assets/pngs/back_van_card_upload.png');
+
+  /// File path: assets/pngs/back_van_card_upload_filled.png
+  AssetGenImage get backVanCardUploadFilled =>
+      const AssetGenImage('assets/pngs/back_van_card_upload_filled.png');
 
   /// File path: assets/pngs/car.png
   AssetGenImage get car => const AssetGenImage('assets/pngs/car.png');
@@ -32,9 +40,17 @@ class $AssetsPngsGen {
   AssetGenImage get frontDrivingLicenses =>
       const AssetGenImage('assets/pngs/front_driving_licenses.png');
 
-  /// File path: assets/pngs/front_driving_licenses_fill.png
-  AssetGenImage get frontDrivingLicensesFill =>
-      const AssetGenImage('assets/pngs/front_driving_licenses_fill.png');
+  /// File path: assets/pngs/front_driving_licenses_filled.png
+  AssetGenImage get frontDrivingLicensesFilled =>
+      const AssetGenImage('assets/pngs/front_driving_licenses_filled.png');
+
+  /// File path: assets/pngs/front_van_card_upload.png
+  AssetGenImage get frontVanCardUpload =>
+      const AssetGenImage('assets/pngs/front_van_card_upload.png');
+
+  /// File path: assets/pngs/front_van_card_upload_filled.png
+  AssetGenImage get frontVanCardUploadFilled =>
+      const AssetGenImage('assets/pngs/front_van_card_upload_filled.png');
 
   /// File path: assets/pngs/motorcycle.png
   AssetGenImage get motorcycle =>
@@ -53,11 +69,15 @@ class $AssetsPngsGen {
   /// List of all assets
   List<AssetGenImage> get values => [
     backDrivingLicenses,
-    backDrivingLicensesFill,
+    backDrivingLicensesFilled,
+    backVanCardUpload,
+    backVanCardUploadFilled,
     car,
     car2d,
     frontDrivingLicenses,
-    frontDrivingLicensesFill,
+    frontDrivingLicensesFilled,
+    frontVanCardUpload,
+    frontVanCardUploadFilled,
     motorcycle,
     motorcycle2d,
     van,
@@ -68,7 +88,11 @@ class $AssetsPngsGen {
 class Assets {
   const Assets._();
 
+  static const AssetGenImage appLogo = AssetGenImage('assets/app_logo.png');
   static const $AssetsPngsGen pngs = $AssetsPngsGen();
+
+  /// List of all assets
+  static List<AssetGenImage> get values => [appLogo];
 }
 
 class AssetGenImage {

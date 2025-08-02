@@ -19,6 +19,7 @@ dependencies:
   url_launcher: ^6.3.2
   octo_image: ^2.1.0
   image_picker: ^1.1.2
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
   flutter_test:
@@ -31,6 +32,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/
     - assets/pngs/
 
 fonts:
@@ -60,3 +62,8 @@ fonts:
         weight: 100
 
 scripts: derry.yaml
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/app_logo.png"
