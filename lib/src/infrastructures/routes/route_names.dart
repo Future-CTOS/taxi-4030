@@ -72,7 +72,17 @@ class TaxiRouteNames extends Routes {
   );
 
   static const Routes driverLicenseUpload = Routes(
-    RoutePaths.driverPersonalInfo + RoutePaths.driverActivityInfo + RoutePaths.driverLicenseUpload,
+    RoutePaths.driverPersonalInfo +
+        RoutePaths.driverActivityInfo +
+        RoutePaths.driverLicenseUpload,
     RoutePaths.driverLicenseUpload,
+  );
+
+  static const Routes vanCardUpload = Routes(
+    RoutePaths.driverPersonalInfo +
+        RoutePaths.driverActivityInfo +
+        RoutePaths.driverLicenseUpload +
+        RoutePaths.vanCardUpload,
+    RoutePaths.vanCardUpload,
   );
 }

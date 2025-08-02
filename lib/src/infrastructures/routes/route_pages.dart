@@ -12,6 +12,8 @@ import '../../pages/driver_auth/driver_personal_info/common/driver_personal_info
 import '../../pages/driver_auth/driver_personal_info/views/driver_personal_info_page.dart';
 import '../../pages/driver_auth/motorcycle_driver_register/common/motorcycle_driver_binding.dart';
 import '../../pages/driver_auth/motorcycle_driver_register/views/motorcycle_driver_page.dart';
+import '../../pages/driver_auth/van_card_upload/common/van_card_upload_binding.dart';
+import '../../pages/driver_auth/van_card_upload/views/van_card_upload_page.dart';
 import '../../pages/driver_auth/van_driver_register/common/van_driver_register_binding.dart';
 import '../../pages/driver_auth/van_driver_register/views/van_driver_register_page.dart';
 import '../../pages/driver_auth/vehicle_selection/common/vehicle_selection_binding.dart';
@@ -128,5 +130,12 @@ class TaxiAppPages {
     name: TaxiRouteNames.driverLicenseUpload.path,
     page: DriverLicenseUploadPage.new,
     binding: DriverLicenseUploadBinding(),
+    children: [_vanCardUpload],
+  );
+
+  static GetPage<dynamic> get _vanCardUpload => GetPage(
+    name: TaxiRouteNames.vanCardUpload.path,
+    page: VanCardUploadPage.new,
+    binding: VanCardUploadBinding(),
   );
 }
