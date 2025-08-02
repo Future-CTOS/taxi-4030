@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../../../gen/assets.gen.dart';
 import '../../../../components/scaffold.dart';
 import '../../../../infrastructures/utils/constants.dart';
-import '../../shared/upload_document/upload_document_view.dart';
+import '../../shared/upload_document_view/upload_document_view.dart';
 import '../controller/van_card_upload_controller.dart';
 
 class VanCardUploadPage extends GetView<VanCardUploadController> {

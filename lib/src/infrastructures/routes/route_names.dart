@@ -85,4 +85,23 @@ class TaxiRouteNames extends Routes {
         RoutePaths.vanCardUpload,
     RoutePaths.vanCardUpload,
   );
+
+  static const Routes vanInformationInput = Routes(
+    RoutePaths.driverPersonalInfo +
+        RoutePaths.driverActivityInfo +
+        RoutePaths.driverLicenseUpload +
+        RoutePaths.vanCardUpload +
+        RoutePaths.vanInformationInput,
+    RoutePaths.vanInformationInput,
+  );
+
+  static const Routes carOwnerDetails = Routes(
+    RoutePaths.driverPersonalInfo +
+        RoutePaths.driverActivityInfo +
+        RoutePaths.driverLicenseUpload +
+        RoutePaths.vanCardUpload +
+        RoutePaths.vanInformationInput +
+        RoutePaths.carOwnerDetails,
+    RoutePaths.carOwnerDetails,
+  );
 }

@@ -12,11 +12,13 @@ class CustomDropDown<T> extends StatefulWidget {
     required this.getTitle,
     required this.value,
     this.onSelectItem,
+    this.hint,
     this.onClear,
   });
 
   final String? title;
   final List<T> items;
+  final String? hint;
   final ItemAsString<T> getTitle;
   final OnChanged<T>? onSelectItem;
   final T? value;
@@ -34,13 +36,7 @@ class _CustomDropDownState<T> extends State<CustomDropDown<T>> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (widget.title != null) ...[
-          Text(
-            widget.title!,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: AppSpacing.largeSpace,
-            ),
-          ),
+          Text(widget.title!, style: Theme.of(context).textTheme.bodyMedium),
           AppSpacing.mediumVerticalSpacer,
         ],
         SizedBox(width: double.infinity, height: 44, child: _decoration()),
@@ -64,6 +60,13 @@ class _CustomDropDownState<T> extends State<CustomDropDown<T>> {
 
   Widget _dropdown() => DropdownButtonHideUnderline(
     child: DropdownButton<T>(
+      hint: widget.hint != null
+          ? Text(
+              '${widget.hint}',
+              style: Theme.of(context).textTheme.bodyMedium,
+            )
+          : null,
+      padding: EdgeInsetsGeometry.symmetric(horizontal: AppSpacing.largeSpace),
       iconEnabledColor: Colors.white,
       icon: widget.value != null
           ? InkWell(
@@ -80,7 +83,7 @@ class _CustomDropDownState<T> extends State<CustomDropDown<T>> {
               color: Theme.of(context).colorScheme.secondary,
             ),
       menuMaxHeight: 200,
-      dropdownColor: Theme.of(context).colorScheme.secondary,
+      dropdownColor: Colors.white,
       value: widget.value,
       onChanged: (T? value) {
         if (widget.onSelectItem != null) {

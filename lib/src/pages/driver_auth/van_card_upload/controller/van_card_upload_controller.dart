@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../infrastructures/routes/route_names.dart';
 import '../model/van_card_upload_model.dart';
 
 class VanCardUploadController extends GetxController {
@@ -50,7 +51,7 @@ class VanCardUploadController extends GetxController {
         backgroundColor: Colors.green.shade600,
         colorText: Colors.white,
       );
-      // Get.toNamed(TaxiRouteNames..uri);
+      Get.toNamed(TaxiRouteNames.vanInformationInput.uri);
     } finally {
       isSubmitLoading.value = false;
     }

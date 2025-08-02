@@ -20,4 +20,6 @@ class RoutePaths {
   static const String driverActivityInfo = '/driver-activity-info';
   static const String driverLicenseUpload = '/driver-license-upload';
   static const String vanCardUpload = '/van-card-upload';
+  static const String vanInformationInput = '/van-information-input';
+  static const String carOwnerDetails = '/car-owner-details';
 }
