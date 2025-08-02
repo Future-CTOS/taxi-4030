@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../gen/assets.gen.dart';
-import '../../../../components/loading.dart';
 import '../../../../components/scaffold.dart';
 import '../../../../infrastructures/utils/constants.dart';
-import '../../../../infrastructures/utils/spacing.dart';
-import '../../../shared/widgets/page_bottom_button.dart';
+import '../../shared/upload_document/upload_document_view.dart';
 import '../controller/driver_license_upload_controller.dart';
 
 class DriverLicenseUploadPage extends GetView<DriverLicenseUploadController> {
@@ -16,88 +14,29 @@ class DriverLicenseUploadPage extends GetView<DriverLicenseUploadController> {
   Widget build(BuildContext context) => CustomScaffold(
     bodyTitle: 'تصویر گواهینامه',
     bodySubTitle: 'عکس پشت و روی کارت گواهینامه را بارگذاری کنید.',
-    bottomSheet: Obx(
-      () => PageBottomButton(
-        label: 'ادامه',
-        onTap: () {},
-        isActive: controller.isCompletedInfo.value,
-        isLoading: controller.isLoading.value,
-      ),
+    bodyPadding: EdgeInsets.only(
+      right: Constants.horizontalPagePaddingSize,
+      left: Constants.horizontalPagePaddingSize,
+      bottom: Constants.verticalPagePaddingSize,
     ),
     body: Obx(
-      () => Column(
-        children: [
-          _top(context),
-          AppSpacing.largeVerticalSpacer,
-          bottom(context),
-        ],
+      () => UploadDocumentPage(
+        frontEmptyImage: Assets.pngs.frontDrivingLicenses.path,
+        frontFilledImage: Assets.pngs.frontDrivingLicensesFilled.path,
+        backEmptyImage: Assets.pngs.backDrivingLicenses.path,
+        backFilledImage: Assets.pngs.backDrivingLicensesFilled.path,
+        frontLabel: 'تصویر روی گواهینامه',
+        backLabel: 'تصویر پشت گواهینامه',
+        isFrontLoading: controller.frontImageModel.value.isLoading,
+        isBackLoading: controller.backImageModel.value.isLoading,
+        isSubmitLoading: controller.isSubmitLoading.value,
+        isSubmitEnabled: controller.isCompletedInfo.value,
+        hasFrontFile: controller.frontImageModel.value.file != null,
+        hasBackFile: controller.backImageModel.value.file != null,
+        onFrontTap: () => controller.pickImage(isFrontImage: true),
+        onBackTap: () => controller.pickImage(isFrontImage: false),
+        onSubmit: controller.submitUserInfo,
       ),
-    ),
-  );
-
-  Widget _top(BuildContext context) => Column(
-    children: [
-      Image.asset(Assets.pngs.frontDrivingLicenses.path, fit: BoxFit.contain),
-      AppSpacing.largeVerticalSpacer,
-      _submit(
-        context,
-        onTap: controller.openCamera,
-        label: 'تصویر روی گواهینامه',
-        isLoading: controller.isLoading.value,
-      ),
-    ],
-  );
-
-  Widget bottom(BuildContext context) => Column(
-    children: [
-      Image.asset(
-        Assets.pngs.backDrivingLicensesFill.path,
-        fit: BoxFit.contain,
-      ),
-      AppSpacing.largeVerticalSpacer,
-      _submit(
-        context,
-        onTap: controller.openCamera,
-        label: 'تصویر پشت گواهینامه',
-        isLoading: controller.isLoading.value,
-      ),
-    ],
-  );
-
-  Widget _submit(
-    BuildContext context, {
-    required String label,
-    required VoidCallback onTap,
-    bool isLoading = false,
-  }) => ElevatedButton(
-    style: ElevatedButton.styleFrom(
-      backgroundColor: Theme.of(context).primaryColor,
-      foregroundColor: Colors.white,
-      padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 14),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(Constants.shapeRadius),
-      ),
-    ),
-    onPressed: onTap,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          label,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: Theme.of(context).colorScheme.onPrimary,
-          ),
-        ),
-        if (isLoading) ...[
-          AppSpacing.smallHorizontalSpacer,
-          SizedBox(
-            width: 20,
-            height: 20,
-            child: isLoading ? const CustomLoading() : const SizedBox.shrink(),
-          ),
-        ],
-      ],
     ),
   );
 }
