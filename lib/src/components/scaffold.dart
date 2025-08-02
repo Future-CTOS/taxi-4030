@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taxi_4030/gen/assets.gen.dart';
 import 'package:taxi_4030/src/infrastructures/routes/route_names.dart';
 import 'package:taxi_4030/src/infrastructures/utils/constants.dart';
 import 'package:taxi_4030/src/infrastructures/utils/spacing.dart';
@@ -233,9 +234,12 @@ class CustomScaffold extends StatelessWidget {
   Widget _logo(BuildContext context) => Row(
     children: [
       Container(
-        width: 25,
-        height: 25,
-        decoration: BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
+        width: 32,
+        height: 32,
+        decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage(Assets.appLogo.path)),
+          shape: BoxShape.circle,
+        ),
       ),
       AppSpacing.mediumHorizontalSpacer,
       Text('تاکسی 4030', style: Theme.of(context).textTheme.titleLarge),
