@@ -14,11 +14,13 @@ class CustomDropDown<T> extends StatefulWidget {
     this.onSelectItem,
     this.hint,
     this.onClear,
+    this.defaultIcon = false,
   });
 
   final String? title;
   final List<T> items;
   final String? hint;
+  final bool defaultIcon;
   final ItemAsString<T> getTitle;
   final OnChanged<T>? onSelectItem;
   final T? value;
@@ -49,7 +51,7 @@ class _CustomDropDownState<T> extends State<CustomDropDown<T>> {
       border: Border.all(
         width: 1,
         strokeAlign: BorderSide.strokeAlignOutside,
-        color: Theme.of(context).colorScheme.secondary,
+        color: Theme.of(context).colorScheme.onSecondary,
       ),
       borderRadius: const BorderRadius.all(
         Radius.circular(AppSpacing.mediumSpace),
@@ -60,6 +62,7 @@ class _CustomDropDownState<T> extends State<CustomDropDown<T>> {
 
   Widget _dropdown() => DropdownButtonHideUnderline(
     child: DropdownButton<T>(
+      elevation: 1,
       hint: widget.hint != null
           ? Text(
               '${widget.hint}',
@@ -67,8 +70,8 @@ class _CustomDropDownState<T> extends State<CustomDropDown<T>> {
             )
           : null,
       padding: EdgeInsetsGeometry.symmetric(horizontal: AppSpacing.largeSpace),
-      iconEnabledColor: Colors.white,
-      icon: widget.value != null
+      iconEnabledColor: Colors.black,
+      icon: widget.value != null && !widget.defaultIcon
           ? InkWell(
               onTap: widget.onClear,
               child: Icon(
@@ -80,11 +83,12 @@ class _CustomDropDownState<T> extends State<CustomDropDown<T>> {
           : Icon(
               Icons.keyboard_arrow_down,
               size: AppSpacing.xLargeSpace,
-              color: Theme.of(context).colorScheme.secondary,
+              color: Theme.of(context).colorScheme.onSecondary,
             ),
       menuMaxHeight: 200,
       dropdownColor: Colors.white,
       value: widget.value,
+      style: Theme.of(context).textTheme.bodyMedium,
       onChanged: (T? value) {
         if (widget.onSelectItem != null) {
           widget.onSelectItem!(value);
@@ -98,9 +102,7 @@ class _CustomDropDownState<T> extends State<CustomDropDown<T>> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   widget.getTitle(value),
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
-                  ),
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ),
             ),

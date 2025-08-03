@@ -21,5 +21,14 @@ class RoutePaths {
   static const String driverLicenseUpload = '/driver-license-upload';
   static const String vanCardUpload = '/van-card-upload';
   static const String vanInformationInput = '/van-information-input';
-  static const String carOwnerDetails = '/car-owner-details';
+  static const String vanOwnerDetails = '/van-owner-details';
+  static const String vanUploadInsurance = '/van-upload-insurance';
+  static const String vanSelfieAuth = '/van-selfie-auth';
+
+  // ----------
+
+  static const String authGuideStep1 = '/auth-guide-step1';
+  static const String authGuideStep2 = '/auth-guide-step2';
+  static const String authGuideStep3 = '/auth-guide-step3';
+  static const String authGuideStep4 = '/auth-guide-step4';
 }

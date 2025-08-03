@@ -14,6 +14,22 @@ import 'package:flutter/widgets.dart';
 class $AssetsPngsGen {
   const $AssetsPngsGen();
 
+  /// File path: assets/pngs/auth_guide_step1.png
+  AssetGenImage get authGuideStep1 =>
+      const AssetGenImage('assets/pngs/auth_guide_step1.png');
+
+  /// File path: assets/pngs/auth_guide_step2.png
+  AssetGenImage get authGuideStep2 =>
+      const AssetGenImage('assets/pngs/auth_guide_step2.png');
+
+  /// File path: assets/pngs/auth_guide_step3.png
+  AssetGenImage get authGuideStep3 =>
+      const AssetGenImage('assets/pngs/auth_guide_step3.png');
+
+  /// File path: assets/pngs/auth_guide_step4.png
+  AssetGenImage get authGuideStep4 =>
+      const AssetGenImage('assets/pngs/auth_guide_step4.png');
+
   /// File path: assets/pngs/back_driving_licenses.png
   AssetGenImage get backDrivingLicenses =>
       const AssetGenImage('assets/pngs/back_driving_licenses.png');
@@ -52,6 +68,10 @@ class $AssetsPngsGen {
   AssetGenImage get frontVanCardUploadFilled =>
       const AssetGenImage('assets/pngs/front_van_card_upload_filled.png');
 
+  /// File path: assets/pngs/iranian_flag.png
+  AssetGenImage get iranianFlag =>
+      const AssetGenImage('assets/pngs/iranian_flag.png');
+
   /// File path: assets/pngs/motorcycle.png
   AssetGenImage get motorcycle =>
       const AssetGenImage('assets/pngs/motorcycle.png');
@@ -59,6 +79,13 @@ class $AssetsPngsGen {
   /// File path: assets/pngs/motorcycle_2d.png
   AssetGenImage get motorcycle2d =>
       const AssetGenImage('assets/pngs/motorcycle_2d.png');
+
+  /// File path: assets/pngs/profile.png
+  AssetGenImage get profile => const AssetGenImage('assets/pngs/profile.png');
+
+  /// File path: assets/pngs/upload_image.png
+  AssetGenImage get uploadImage =>
+      const AssetGenImage('assets/pngs/upload_image.png');
 
   /// File path: assets/pngs/van.png
   AssetGenImage get van => const AssetGenImage('assets/pngs/van.png');
@@ -68,6 +95,10 @@ class $AssetsPngsGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+    authGuideStep1,
+    authGuideStep2,
+    authGuideStep3,
+    authGuideStep4,
     backDrivingLicenses,
     backDrivingLicensesFilled,
     backVanCardUpload,
@@ -78,8 +109,11 @@ class $AssetsPngsGen {
     frontDrivingLicensesFilled,
     frontVanCardUpload,
     frontVanCardUploadFilled,
+    iranianFlag,
     motorcycle,
     motorcycle2d,
+    profile,
+    uploadImage,
     van,
     van2d,
   ];

@@ -15,7 +15,7 @@ class PhoneInputPageView extends GetView<PhoneInputPageController> {
   Widget build(BuildContext context) => CustomScaffold(
     appBarTitle: _logo(context),
 
-    bottomSheet: Obx(
+    bottomNavigationBar: Obx(
       () => PageBottomButton(
         label: 'دریافت کد',
         onTap: () => controller.onSubmitPhoneNumberTap(context),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../shared/widgets/page_bottom_button.dart';
+import '../../shared/widgets/page_bottom_button.dart';
 import 'widgets/upload_image_button.dart';
 
-class UploadDocumentPage extends StatelessWidget {
+class UploadDocumentView extends StatelessWidget {
   final String frontEmptyImage;
   final String frontFilledImage;
   final String backEmptyImage;
@@ -19,7 +19,7 @@ class UploadDocumentPage extends StatelessWidget {
   final VoidCallback onBackTap;
   final VoidCallback onSubmit;
 
-  const UploadDocumentPage({
+  const UploadDocumentView({
     super.key,
     required this.frontEmptyImage,
     required this.frontFilledImage,

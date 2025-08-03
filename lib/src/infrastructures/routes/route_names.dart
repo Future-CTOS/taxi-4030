@@ -95,13 +95,94 @@ class TaxiRouteNames extends Routes {
     RoutePaths.vanInformationInput,
   );
 
-  static const Routes carOwnerDetails = Routes(
+  static const Routes vanOwnerDetails = Routes(
     RoutePaths.driverPersonalInfo +
         RoutePaths.driverActivityInfo +
         RoutePaths.driverLicenseUpload +
         RoutePaths.vanCardUpload +
         RoutePaths.vanInformationInput +
-        RoutePaths.carOwnerDetails,
-    RoutePaths.carOwnerDetails,
+        RoutePaths.vanOwnerDetails,
+    RoutePaths.vanOwnerDetails,
+  );
+
+  static const Routes vanUploadInsurance = Routes(
+    RoutePaths.driverPersonalInfo +
+        RoutePaths.driverActivityInfo +
+        RoutePaths.driverLicenseUpload +
+        RoutePaths.vanCardUpload +
+        RoutePaths.vanInformationInput +
+        RoutePaths.vanOwnerDetails +
+        RoutePaths.vanUploadInsurance,
+    RoutePaths.vanUploadInsurance,
+  );
+
+  static const Routes vanSelfieAuth = Routes(
+    RoutePaths.driverPersonalInfo +
+        RoutePaths.driverActivityInfo +
+        RoutePaths.driverLicenseUpload +
+        RoutePaths.vanCardUpload +
+        RoutePaths.vanInformationInput +
+        RoutePaths.vanOwnerDetails +
+        RoutePaths.vanUploadInsurance +
+        RoutePaths.vanSelfieAuth,
+    RoutePaths.vanSelfieAuth,
+  );
+
+  static const Routes authGuideStep1 = Routes(
+    RoutePaths.driverPersonalInfo +
+        RoutePaths.driverActivityInfo +
+        RoutePaths.driverLicenseUpload +
+        RoutePaths.vanCardUpload +
+        RoutePaths.vanInformationInput +
+        RoutePaths.vanOwnerDetails +
+        RoutePaths.vanUploadInsurance +
+        RoutePaths.vanSelfieAuth +
+        RoutePaths.authGuideStep1,
+    RoutePaths.authGuideStep1,
+  );
+
+  static const Routes authGuideStep2 = Routes(
+    RoutePaths.driverPersonalInfo +
+        RoutePaths.driverActivityInfo +
+        RoutePaths.driverLicenseUpload +
+        RoutePaths.vanCardUpload +
+        RoutePaths.vanInformationInput +
+        RoutePaths.vanOwnerDetails +
+        RoutePaths.vanUploadInsurance +
+        RoutePaths.vanSelfieAuth +
+        RoutePaths.authGuideStep1 +
+        RoutePaths.authGuideStep2,
+    RoutePaths.authGuideStep2,
+  );
+
+  static const Routes authGuideStep3 = Routes(
+    RoutePaths.driverPersonalInfo +
+        RoutePaths.driverActivityInfo +
+        RoutePaths.driverLicenseUpload +
+        RoutePaths.vanCardUpload +
+        RoutePaths.vanInformationInput +
+        RoutePaths.vanOwnerDetails +
+        RoutePaths.vanUploadInsurance +
+        RoutePaths.vanSelfieAuth +
+        RoutePaths.authGuideStep1 +
+        RoutePaths.authGuideStep2 +
+        RoutePaths.authGuideStep3,
+    RoutePaths.authGuideStep3,
+  );
+
+  static const Routes authGuideStep4 = Routes(
+    RoutePaths.driverPersonalInfo +
+        RoutePaths.driverActivityInfo +
+        RoutePaths.driverLicenseUpload +
+        RoutePaths.vanCardUpload +
+        RoutePaths.vanInformationInput +
+        RoutePaths.vanOwnerDetails +
+        RoutePaths.vanUploadInsurance +
+        RoutePaths.vanSelfieAuth +
+        RoutePaths.authGuideStep1 +
+        RoutePaths.authGuideStep2 +
+        RoutePaths.authGuideStep3 +
+        RoutePaths.authGuideStep4,
+    RoutePaths.authGuideStep4,
   );
 }

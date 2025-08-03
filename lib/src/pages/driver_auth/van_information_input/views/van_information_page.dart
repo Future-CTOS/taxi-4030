@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:taxi_4030/src/components/scaffold.dart';
+import '../../../../components/scaffold.dart';
+import '../../../../infrastructures/utils/constants.dart';
+import '../../shared/van_information_input_view.dart';
+import '../controller/van_information_controller.dart';
 
-import '../../../../infrastructures/routes/route_names.dart';
-import '../../shared/van_information_input/van_information_input_view.dart';
-
-class VanInformationPage extends StatelessWidget {
+class VanInformationPage extends GetView<VanInformationController> {
   const VanInformationPage({super.key});
 
   @override
@@ -13,13 +13,18 @@ class VanInformationPage extends StatelessWidget {
     bodyTitle: 'مشخصات وانت',
     bodySubTitle:
         'هر کدام از اطلاعات زیر با کارت وانت مغایرت دارد را اصلاح کنید.',
-    body: SingleChildScrollView(
-      child: Obx(
-        () => VanInformationInputView(
-          onTap: () {
-            Get.toNamed(TaxiRouteNames.carOwnerDetails.uri);
-          },
-        ),
+    bodyPadding: EdgeInsets.symmetric(
+      horizontal: Constants.horizontalPagePaddingSize,
+    ),
+    body: Obx(
+      () => VanInformationInputView(
+        iranLicenseLetters: controller.iranAllLicensePlateLetters,
+        onContinueTap: controller.submitVanInfo,
+        onCompletedIranianPlate: (final value) =>
+            controller.onCompletedIranianPlate(value),
+        selectedLetter: controller.selectedLetter.value,
+        isLoading: controller.isLoading.value,
+        isActiveContinueBottom: controller.isFormFilled.value,
       ),
     ),
   );

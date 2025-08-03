@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../../components/loading.dart';
-import '../../../../../infrastructures/utils/constants.dart';
-import '../../../../../infrastructures/utils/spacing.dart';
+
+import '../../../../components/loading.dart';
+import '../../../../infrastructures/utils/constants.dart';
+import '../../../../infrastructures/utils/spacing.dart';
 
 class UploadImageButton extends StatelessWidget {
   final String label;

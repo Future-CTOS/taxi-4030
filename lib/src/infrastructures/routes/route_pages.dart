@@ -1,9 +1,11 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:taxi_4030/src/pages/driver_auth/car_owner_details/views/car_owner_details_page.dart';
+import 'package:taxi_4030/src/pages/driver_auth/auth_guide_step1/views/auth_guide_step1_page.dart';
 
+import '../../pages/driver_auth/auth_guide_step2/views/auth_guide_step2_page.dart';
+import '../../pages/driver_auth/auth_guide_step3/views/auth_guide_step3_page.dart';
+import '../../pages/driver_auth/auth_guide_step4/views/auth_guide_step4_page.dart';
 import '../../pages/driver_auth/car_driver_register/common/car_driver_binding.dart';
 import '../../pages/driver_auth/car_driver_register/views/car_driver_page.dart';
-import '../../pages/driver_auth/car_owner_details/common/car_owner_binding.dart';
 import '../../pages/driver_auth/driver_activity_info/common/driver_activity_info_binding.dart';
 import '../../pages/driver_auth/driver_activity_info/views/driver_activity_info_page.dart';
 import '../../pages/driver_auth/driver_license_upload/common/driver_license_upload_binding.dart';
@@ -20,6 +22,12 @@ import '../../pages/driver_auth/van_driver_register/common/van_driver_register_b
 import '../../pages/driver_auth/van_driver_register/views/van_driver_register_page.dart';
 import '../../pages/driver_auth/van_information_input/common/van_information_binding.dart';
 import '../../pages/driver_auth/van_information_input/views/van_information_page.dart';
+import '../../pages/driver_auth/van_owner_details/common/van_owner_details_binding.dart';
+import '../../pages/driver_auth/van_owner_details/views/van_owner_details_page.dart';
+import '../../pages/driver_auth/van_selfie_auth/common/van_selfie_auth_binding.dart';
+import '../../pages/driver_auth/van_selfie_auth/views/van_selfie_auth_page.dart';
+import '../../pages/driver_auth/van_upload_insurance_information/common/van_upload_insurance_information_binding.dart';
+import '../../pages/driver_auth/van_upload_insurance_information/views/van_upload_insurance_information_page.dart';
 import '../../pages/driver_auth/vehicle_selection/common/vehicle_selection_binding.dart';
 import '../../pages/driver_auth/vehicle_selection/view/vehicle_selection_page.dart';
 
@@ -148,12 +156,50 @@ class TaxiAppPages {
     name: TaxiRouteNames.vanInformationInput.path,
     page: VanInformationPage.new,
     binding: VanInformationBinding(),
-    children: [_carOwnerDetails],
+    children: [_vanOwnerDetails],
   );
 
-  static GetPage<dynamic> get _carOwnerDetails => GetPage(
-    name: TaxiRouteNames.vanInformationInput.path,
-    page: CarOwnerDetailsPage.new,
-    binding: CarOwnerBinding(),
+  static GetPage<dynamic> get _vanOwnerDetails => GetPage(
+    name: TaxiRouteNames.vanOwnerDetails.path,
+    page: VanOwnerDetailsPage.new,
+    binding: VanOwnerDetailsBinding(),
+    children: [_vanUploadInsurance],
+  );
+
+  static GetPage<dynamic> get _vanUploadInsurance => GetPage(
+    name: TaxiRouteNames.vanUploadInsurance.path,
+    page: VanUploadInsuranceInformationPage.new,
+    binding: VanUploadInsuranceInformationBinding(),
+    children: [_vanSelfieAuth],
+  );
+
+  static GetPage<dynamic> get _vanSelfieAuth => GetPage(
+    name: TaxiRouteNames.vanSelfieAuth.path,
+    page: VanSelfieAuthPage.new,
+    binding: VanSelfieAuthBinding(),
+    children: [_authGuideStep1],
+  );
+
+  static GetPage<dynamic> get _authGuideStep1 => GetPage(
+    name: TaxiRouteNames.authGuideStep1.path,
+    page: AuthGuideStep1Page.new,
+    children: [_authGuideStep2],
+  );
+
+  static GetPage<dynamic> get _authGuideStep2 => GetPage(
+    name: TaxiRouteNames.authGuideStep2.path,
+    page: AuthGuideStep2Page.new,
+    children: [_authGuideStep3],
+  );
+
+  static GetPage<dynamic> get _authGuideStep3 => GetPage(
+    name: TaxiRouteNames.authGuideStep3.path,
+    page: AuthGuideStep3Page.new,
+    children: [_authGuideStep4],
+  );
+
+  static GetPage<dynamic> get _authGuideStep4 => GetPage(
+    name: TaxiRouteNames.authGuideStep4.path,
+    page: AuthGuideStep4Page.new,
   );
 }

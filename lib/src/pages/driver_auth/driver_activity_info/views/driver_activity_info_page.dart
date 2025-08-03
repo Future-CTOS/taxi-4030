@@ -16,8 +16,8 @@ class DriverActivityInfoPage extends GetView<DriverActivityInfoController> {
   Widget build(BuildContext context) => CustomScaffold(
     bodyTitle: 'ثبت نام',
     bodySubTitle: 'اطلاعات خواسته شده را به فارسی وارد کنید',
-   bottomSheet: Obx(
-          () => PageBottomButton(
+    bottomNavigationBar: Obx(
+      () => PageBottomButton(
         label: 'ادامه',
         onTap: controller.isFormFilled.value
             ? controller.submitUserInfo
