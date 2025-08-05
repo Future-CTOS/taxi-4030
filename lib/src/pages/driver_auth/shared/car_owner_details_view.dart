@@ -19,9 +19,6 @@ class CarOwnerDetailsView extends StatefulWidget {
     required this.title,
     required this.formKey,
     required this.showFormOnIndex,
-    required this.onContinueTap,
-    required this.isLoading,
-    required this.isActiveContinueBottom,
   });
 
   final List<String> items;
@@ -33,9 +30,6 @@ class CarOwnerDetailsView extends StatefulWidget {
   final TextEditingController fatherName;
   final TextEditingController nationalIdController;
   final int showFormOnIndex;
-  final bool isLoading;
-  final void Function() onContinueTap;
-  final bool isActiveContinueBottom;
 
   @override
   State<CarOwnerDetailsView> createState() => _CarOwnerDetailsViewState();
@@ -109,14 +103,6 @@ class _CarOwnerDetailsViewState extends State<CarOwnerDetailsView> {
           hint: 'نام پدر خود را وارد کنید',
           textController: widget.fatherName,
         ),
-        AppSpacing.giantVerticalSpacer,
-        PageBottomButton(
-          label: 'ادامه',
-          onTap: widget.onContinueTap,
-          isActive: widget.isActiveContinueBottom,
-          isLoading: widget.isLoading,
-        ),
-        AppSpacing.giantVerticalSpacer,
       ],
     ),
   );

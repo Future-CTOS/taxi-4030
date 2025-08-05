@@ -16,7 +16,7 @@ class AuthGuideStep4Page extends StatelessWidget {
         'در محیطی با نور کافی قرار بگیرید. مطمئن شوید چهره شما کاملاً مشخص و تصویر دوربین واضح باشد.',
     bottomSheet: PageBottomButton(
       label: 'ادامه',
-      onTap: /*() => Get.toNamed(TaxiRouteNames.authGuideStep2.uri)*/ () {},
+      onTap: () => Get.toNamed(TaxiRouteNames.vanVideoAuth.uri),
       isActive: true,
       isLoading: false,
     ),

@@ -1,17 +1,26 @@
+import 'package:either_dart/either.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import '../../../../infrastructures/routes/route_names.dart';
 import '../../../../infrastructures/utils/utils.dart';
 import '../../../shared/model/enum/status_enum.dart';
+import '../models/user_register_dto.dart';
+import '../repository/phone_input_repository.dart';
 
 class PhoneInputPageController extends GetxController {
+  final _repository = PhoneInputRepository();
+
   final RxString countryCode = '+98'.obs;
 
   final TextEditingController phoneNumberTextController =
       TextEditingController();
 
   RxBool isReceiveCodeActive = false.obs;
+  RxBool isLoading = false.obs;
+
+  int? otpCode;
+  final formKey = GlobalKey<FormState>();
 
   void onChangeTextField(String? text) {
     if (!Utils.isMobileValid(text?.trim() ?? '')) {
@@ -22,14 +31,37 @@ class PhoneInputPageController extends GetxController {
   }
 
   void onSubmitPhoneNumberTap(BuildContext context) {
-    if (!Utils.isMobileValid(phoneNumberTextController.text.trim())) {
-      Utils.showSnackBar(
+    if (formKey.currentState?.validate() ?? false) {
+      _requestOtp(context);
+    }
+  }
+
+  Future<void> _requestOtp(BuildContext context) async {
+    isLoading.value = true;
+    final UserRegisterDto registerDto = UserRegisterDto(
+      phone: phoneNumberTextController.text.trim(),
+    );
+    final Either<String, Map<String, dynamic>> resultOrException =
+        await _repository.requestOtp(dto: registerDto);
+    isLoading.value = false;
+    resultOrException.fold(
+      (final error) {
+        print(error);
+        Utils.showSnackBar(
         context,
-        text: 'شماره اشتباه است',
+        text: 'خطایی رخ داد',
         status: StatusEnum.danger,
       );
-      return;
-    }
-    Get.toNamed(TaxiRouteNames.userOtpVerify.path);
+      },
+      (final response) {
+        Get.toNamed(
+          TaxiRouteNames.userOtpVerify.uri,
+          parameters: {
+            "phone": phoneNumberTextController.text,
+            'otp': '$response',
+          },
+        );
+      },
+    );
   }
 }

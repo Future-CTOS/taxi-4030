@@ -5,6 +5,7 @@ import 'package:taxi_4030/src/components/phone_number_filed.dart';
 import '../../../../components/scaffold.dart';
 import '../../../../components/text_field.dart';
 import '../../../../infrastructures/utils/spacing.dart';
+import '../../../../infrastructures/utils/validators.dart';
 import '../../../shared/widgets/page_bottom_button.dart';
 import '../controller/phone_input_page_controller.dart';
 
@@ -14,12 +15,12 @@ class PhoneInputPageView extends GetView<PhoneInputPageController> {
   @override
   Widget build(BuildContext context) => CustomScaffold(
     appBarTitle: _logo(context),
-
     bottomNavigationBar: Obx(
       () => PageBottomButton(
         label: 'دریافت کد',
         onTap: () => controller.onSubmitPhoneNumberTap(context),
         isActive: controller.isReceiveCodeActive.value,
+        isLoading: controller.isLoading.value,
       ),
     ),
     body: _body(context),
@@ -40,7 +41,7 @@ class PhoneInputPageView extends GetView<PhoneInputPageController> {
       ),
       AppSpacing.mediumVerticalSpacer,
       Text(
-        'با تاکسی 4030 سفرت امنه و مطمئنه.\nهمین حالا وارد شو',
+        'ی اپ و هزار راه.\nهمین حالا وارد شو',
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.bodySmall,
       ),
@@ -59,10 +60,14 @@ class PhoneInputPageView extends GetView<PhoneInputPageController> {
       Text('شماره همراه', style: Theme.of(context).textTheme.bodySmall),
       AppSpacing.mediumVerticalSpacer,
       Obx(
-        () => PhoneNumberField(
-          textController: controller.phoneNumberTextController,
-          isHighlighted: controller.isReceiveCodeActive.value,
-          onChange: controller.onChangeTextField,
+        () => Form(
+          key: controller.formKey,
+          child: PhoneNumberField(
+            textController: controller.phoneNumberTextController,
+            isHighlighted: controller.isReceiveCodeActive.value,
+            validator: Validators.validateMobile,
+            onChange: controller.onChangeTextField,
+          ),
         ),
       ),
     ],

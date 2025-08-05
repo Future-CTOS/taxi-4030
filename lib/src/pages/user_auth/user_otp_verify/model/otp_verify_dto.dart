@@ -1,7 +1,8 @@
 class OtpVerifyDto {
-  final String mobile;
+  final String phone;
+  final String otp;
 
-  OtpVerifyDto({required this.mobile});
+  OtpVerifyDto({required this.phone, required this.otp});
 
-  Map<String, dynamic> toJson() => {"mobile": mobile};
+  Map<String, dynamic> toJson() => {"phone": phone, "otp": otp};
 }

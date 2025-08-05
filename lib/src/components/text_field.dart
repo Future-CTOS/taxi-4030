@@ -39,13 +39,10 @@ class CustomTextField extends StatelessWidget {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         keyboardType: TextInputType.name,
         textInputAction: TextInputAction.next,
-        inputFormatters: [
-          FilteringTextInputFormatter.allow(RegExp(r'[آ-ی\s]')),
-        ],
-        decoration: _inputDecoration(
-          context: context,
-          hintText: hint,
-        ),
+        inputFormatters:
+            inputFormatters ??
+            [FilteringTextInputFormatter.allow(RegExp(r'[آ-ی\s]'))],
+        decoration: _inputDecoration(context: context, hintText: hint),
       ),
     ],
   );

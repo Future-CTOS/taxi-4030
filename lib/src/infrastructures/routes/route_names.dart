@@ -185,4 +185,39 @@ class TaxiRouteNames extends Routes {
         RoutePaths.authGuideStep4,
     RoutePaths.authGuideStep4,
   );
+
+  static const Routes vanVideoAuth = Routes(
+    RoutePaths.driverPersonalInfo +
+        RoutePaths.driverActivityInfo +
+        RoutePaths.driverLicenseUpload +
+        RoutePaths.vanCardUpload +
+        RoutePaths.vanInformationInput +
+        RoutePaths.vanOwnerDetails +
+        RoutePaths.vanUploadInsurance +
+        RoutePaths.vanSelfieAuth +
+        RoutePaths.authGuideStep1 +
+        RoutePaths.authGuideStep2 +
+        RoutePaths.authGuideStep3 +
+        RoutePaths.authGuideStep4 +
+        RoutePaths.vanVideoAuth,
+    RoutePaths.vanVideoAuth,
+  );
+
+  static const Routes vanAuthPending = Routes(
+    RoutePaths.driverPersonalInfo +
+        RoutePaths.driverActivityInfo +
+        RoutePaths.driverLicenseUpload +
+        RoutePaths.vanCardUpload +
+        RoutePaths.vanInformationInput +
+        RoutePaths.vanOwnerDetails +
+        RoutePaths.vanUploadInsurance +
+        RoutePaths.vanSelfieAuth +
+        RoutePaths.authGuideStep1 +
+        RoutePaths.authGuideStep2 +
+        RoutePaths.authGuideStep3 +
+        RoutePaths.authGuideStep4 +
+        RoutePaths.vanVideoAuth +
+        RoutePaths.vanAuthPending,
+    RoutePaths.vanAuthPending,
+  );
 }

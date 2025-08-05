@@ -18,6 +18,16 @@ class DriverPersonalInfoPage extends GetView<DriverPersonalInfoController> {
   Widget build(BuildContext context) => CustomScaffold(
     bodyTitle: 'ثبت نام',
     bodySubTitle: 'اطلاعات خواسته شده را به فارسی وارد کنید',
+    bottomNavigationBar: Obx(
+      () => PageBottomButton(
+        label: 'ادامه',
+        onTap: controller.isFormFilled.value
+            ? controller.submitUserInfo
+            : () {},
+        isActive: controller.isFormFilled.value,
+        isLoading: controller.isLoading.value,
+      ),
+    ),
     body: Form(
       key: controller.formKey,
       child: SingleChildScrollView(
@@ -59,17 +69,6 @@ class DriverPersonalInfoPage extends GetView<DriverPersonalInfoController> {
               label: 'نام پدر',
               hint: 'نام پدر خود را وارد کنید',
               textController: controller.fatherName,
-            ),
-            AppSpacing.largeVerticalSpacer,
-            Obx(
-              () => PageBottomButton(
-                label: 'ادامه',
-                onTap: controller.isFormFilled.value
-                    ? controller.submitUserInfo
-                    : () {},
-                isActive: controller.isFormFilled.value,
-                isLoading: controller.isLoading.value,
-              ),
             ),
           ],
         ),

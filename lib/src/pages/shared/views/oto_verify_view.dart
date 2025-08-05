@@ -18,7 +18,7 @@ class OtoVerifyView extends StatelessWidget {
   final bool isExpired;
   final Future<void> Function() resendOtp;
   final String formattedTime;
-  final VoidCallback onCompleted;
+  final void Function(String) onCompleted;
 
   @override
   Widget build(BuildContext context) => _body(context);
@@ -74,7 +74,7 @@ class OtoVerifyView extends StatelessWidget {
       AppSpacing.mediumVerticalSpacer,
       CustomOtpField(
         isExpired: isExpired,
-        onCompleted: (value) => onCompleted(),
+        onCompleted: onCompleted,
         enabled: !isResendEnabled,
         shouldClear: isResendEnabled,
       ),

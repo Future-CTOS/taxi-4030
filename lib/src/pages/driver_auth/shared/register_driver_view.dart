@@ -92,6 +92,7 @@ class RegisterDriverView extends StatelessWidget {
                   onTap: isActiveBottomButton ? onSubmit : () {},
                   isActive: isActiveBottomButton,
                   isLoading: isLoading,
+                  transparentBackground: true,
                 ),
               ],
             ),

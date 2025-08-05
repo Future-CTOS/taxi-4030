@@ -45,7 +45,7 @@ class VanUploadInsuranceInformationController extends GetxController {
 
   Future<void> onUploadButtonTap() async {
     final result = await Get.to(
-      TelegramStyleCamera(
+      () => TelegramStyleCamera(
         cameraController: cameraController,
         cameras: cameras,
         pickFromGallery: pickFromGallery,
@@ -56,8 +56,8 @@ class VanUploadInsuranceInformationController extends GetxController {
   }
 
   @override
-  void onInit() {
-    _initCamera();
+  void onInit() async {
+    await _initCamera();
     super.onInit();
   }
 

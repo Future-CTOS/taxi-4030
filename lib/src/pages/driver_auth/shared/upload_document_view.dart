@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../shared/widgets/page_bottom_button.dart';
+import 'package:taxi_4030/src/infrastructures/utils/spacing.dart';
 import 'widgets/upload_image_button.dart';
 
 class UploadDocumentView extends StatelessWidget {
@@ -11,13 +11,10 @@ class UploadDocumentView extends StatelessWidget {
   final String backLabel;
   final bool isFrontLoading;
   final bool isBackLoading;
-  final bool isSubmitLoading;
-  final bool isSubmitEnabled;
   final bool hasFrontFile;
   final bool hasBackFile;
   final VoidCallback onFrontTap;
   final VoidCallback onBackTap;
-  final VoidCallback onSubmit;
 
   const UploadDocumentView({
     super.key,
@@ -29,29 +26,20 @@ class UploadDocumentView extends StatelessWidget {
     required this.backLabel,
     required this.isFrontLoading,
     required this.isBackLoading,
-    required this.isSubmitLoading,
-    required this.isSubmitEnabled,
     required this.hasFrontFile,
     required this.hasBackFile,
     required this.onFrontTap,
     required this.onBackTap,
-    required this.onSubmit,
   });
 
   @override
   Widget build(BuildContext context) => Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
+      AppSpacing.giantVerticalSpacer,
       _topSection(),
-      const Spacer(),
+      AppSpacing.giantVerticalSpacer,
       _bottomSection(),
-      const Spacer(),
-      PageBottomButton(
-        label: 'ادامه',
-        onTap: onSubmit,
-        isActive: isSubmitEnabled,
-        isLoading: isSubmitLoading,
-      ),
     ],
   );
 

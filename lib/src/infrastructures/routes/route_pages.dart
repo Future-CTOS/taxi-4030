@@ -16,6 +16,8 @@ import '../../pages/driver_auth/driver_personal_info/common/driver_personal_info
 import '../../pages/driver_auth/driver_personal_info/views/driver_personal_info_page.dart';
 import '../../pages/driver_auth/motorcycle_driver_register/common/motorcycle_driver_binding.dart';
 import '../../pages/driver_auth/motorcycle_driver_register/views/motorcycle_driver_page.dart';
+import '../../pages/driver_auth/van_auth_pending/common/van_auth_pending_binding.dart';
+import '../../pages/driver_auth/van_auth_pending/views/van_auth_pending_page.dart';
 import '../../pages/driver_auth/van_card_upload/common/van_card_upload_binding.dart';
 import '../../pages/driver_auth/van_card_upload/views/van_card_upload_page.dart';
 import '../../pages/driver_auth/van_driver_register/common/van_driver_register_binding.dart';
@@ -28,6 +30,8 @@ import '../../pages/driver_auth/van_selfie_auth/common/van_selfie_auth_binding.d
 import '../../pages/driver_auth/van_selfie_auth/views/van_selfie_auth_page.dart';
 import '../../pages/driver_auth/van_upload_insurance_information/common/van_upload_insurance_information_binding.dart';
 import '../../pages/driver_auth/van_upload_insurance_information/views/van_upload_insurance_information_page.dart';
+import '../../pages/driver_auth/van_video_auth/common/van_video_auth_binding.dart';
+import '../../pages/driver_auth/van_video_auth/views/van_video_auth_page.dart';
 import '../../pages/driver_auth/vehicle_selection/common/vehicle_selection_binding.dart';
 import '../../pages/driver_auth/vehicle_selection/view/vehicle_selection_page.dart';
 
@@ -201,5 +205,19 @@ class TaxiAppPages {
   static GetPage<dynamic> get _authGuideStep4 => GetPage(
     name: TaxiRouteNames.authGuideStep4.path,
     page: AuthGuideStep4Page.new,
+    children: [_vanVideoAuth],
+  );
+
+  static GetPage<dynamic> get _vanVideoAuth => GetPage(
+    name: TaxiRouteNames.vanVideoAuth.path,
+    page: VanVideoAuthPage.new,
+    binding: VanVideoAuthBinding(),
+    children: [_vanAuthPending],
+  );
+
+  static GetPage<dynamic> get _vanAuthPending => GetPage(
+    name: TaxiRouteNames.vanAuthPending.path,
+    page: VanAuthPendingPage.new,
+    binding: VanAuthPendingBinding(),
   );
 }

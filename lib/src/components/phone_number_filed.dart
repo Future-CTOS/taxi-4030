@@ -41,7 +41,7 @@ class PhoneNumberField extends StatelessWidget {
             textInputAction: TextInputAction.done,
             inputFormatters: [
               FilteringTextInputFormatter.digitsOnly,
-              LengthLimitingTextInputFormatter(10),
+              LengthLimitingTextInputFormatter(11),
             ],
             decoration: _inputDecoration(
               context: context,

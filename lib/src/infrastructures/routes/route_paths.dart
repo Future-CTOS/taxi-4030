@@ -31,4 +31,9 @@ class RoutePaths {
   static const String authGuideStep2 = '/auth-guide-step2';
   static const String authGuideStep3 = '/auth-guide-step3';
   static const String authGuideStep4 = '/auth-guide-step4';
+
+  // ----------
+
+  static const String vanVideoAuth = '/van-video-auth';
+  static const String vanAuthPending = '/van-auth-pending';
 }

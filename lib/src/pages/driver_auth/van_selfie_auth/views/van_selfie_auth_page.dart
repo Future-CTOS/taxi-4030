@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:taxi_4030/src/components/scaffold.dart';
 
 import '../../../../infrastructures/utils/constants.dart';
+import '../../../shared/widgets/page_bottom_button.dart';
 import '../../shared/selfie_auth_view.dart';
 import '../controller/van_selfie_auth_controller.dart';
 
@@ -16,13 +17,20 @@ class VanSelfieAuthPage extends GetView<VanSelfieAuthController> {
     bodyPadding: EdgeInsets.symmetric(
       horizontal: Constants.horizontalPagePaddingSize,
     ),
+    bottomNavigationBar: Obx(
+      () => PageBottomButton(
+        label: 'ادامه',
+        onTap: controller.isActiveContinue.value
+            ? controller.uploadInsuranceImage
+            : () {},
+        isActive: controller.isActiveContinue.value,
+        isLoading: controller.isUploadLoading.value,
+      ),
+    ),
     body: Obx(
       () => SelfieAuthView(
         isLoading: controller.isLoading.value,
         onUploadButtonTap: controller.pickImage,
-        isActiveContinue: controller.isActiveContinue.value,
-        isUploadLoading: controller.isUploadLoading.value,
-        onContinueTap: controller.uploadInsuranceImage,
       ),
     ),
   );

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../../../gen/assets.gen.dart';
 import '../../../../components/scaffold.dart';
 import '../../../../infrastructures/utils/constants.dart';
+import '../../../shared/widgets/page_bottom_button.dart';
 import '../../shared/upload_document_view.dart';
 import '../controller/van_card_upload_controller.dart';
 
@@ -19,6 +20,14 @@ class VanCardUploadPage extends GetView<VanCardUploadController> {
       left: Constants.horizontalPagePaddingSize,
       bottom: Constants.verticalPagePaddingSize,
     ),
+    bottomNavigationBar: Obx(
+      () => PageBottomButton(
+        label: 'ادامه',
+        onTap: controller.submitUserInfo,
+        isActive: controller.isCompletedInfo.value,
+        isLoading: controller.isSubmitLoading.value,
+      ),
+    ),
     body: Obx(
       () => UploadDocumentView(
         frontEmptyImage: Assets.pngs.frontVanCardUpload.path,
@@ -29,13 +38,10 @@ class VanCardUploadPage extends GetView<VanCardUploadController> {
         backLabel: 'تصویر پشت کارت وانت',
         isFrontLoading: controller.frontImageModel.value.isLoading,
         isBackLoading: controller.backImageModel.value.isLoading,
-        isSubmitLoading: controller.isSubmitLoading.value,
-        isSubmitEnabled: controller.isCompletedInfo.value,
         hasFrontFile: controller.frontImageModel.value.file != null,
         hasBackFile: controller.backImageModel.value.file != null,
         onFrontTap: () => controller.pickImage(isFrontImage: true),
         onBackTap: () => controller.pickImage(isFrontImage: false),
-        onSubmit: controller.submitUserInfo,
       ),
     ),
   );

@@ -30,6 +30,10 @@ class $AssetsPngsGen {
   AssetGenImage get authGuideStep4 =>
       const AssetGenImage('assets/pngs/auth_guide_step4.png');
 
+  /// File path: assets/pngs/auth_pending_image.png
+  AssetGenImage get authPendingImage =>
+      const AssetGenImage('assets/pngs/auth_pending_image.png');
+
   /// File path: assets/pngs/back_driving_licenses.png
   AssetGenImage get backDrivingLicenses =>
       const AssetGenImage('assets/pngs/back_driving_licenses.png');
@@ -93,12 +97,17 @@ class $AssetsPngsGen {
   /// File path: assets/pngs/van_2d.png
   AssetGenImage get van2d => const AssetGenImage('assets/pngs/van_2d.png');
 
+  /// File path: assets/pngs/video_upload_image.png
+  AssetGenImage get videoUploadImage =>
+      const AssetGenImage('assets/pngs/video_upload_image.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     authGuideStep1,
     authGuideStep2,
     authGuideStep3,
     authGuideStep4,
+    authPendingImage,
     backDrivingLicenses,
     backDrivingLicensesFilled,
     backVanCardUpload,
@@ -116,6 +125,7 @@ class $AssetsPngsGen {
     uploadImage,
     van,
     van2d,
+    videoUploadImage,
   ];
 }
 

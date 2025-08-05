@@ -4,6 +4,7 @@ import 'package:taxi_4030/src/components/text_field.dart';
 import 'package:taxi_4030/src/infrastructures/utils/spacing.dart';
 
 import '../../../../../components/national_code_field.dart';
+import '../../../../shared/widgets/page_bottom_button.dart';
 import '../../controller/user_register_controller.dart';
 
 class RegisterForm extends GetView<UserRegisterController> {

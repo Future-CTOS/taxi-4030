@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:taxi_4030/gen/assets.gen.dart';
 
 import '../../../../components/scaffold.dart';
-import '../../../../infrastructures/utils/constants.dart';
 import '../../../../infrastructures/utils/spacing.dart';
 import '../../shared/register_driver_view.dart';
 import '../controller/car_driver_controller.dart';

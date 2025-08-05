@@ -5,8 +5,8 @@ class Validators {
     }
     final name = value.trim();
 
-    if (name.length < 3) {
-      return 'نام باید حداقل ۳ کاراکتر باشد';
+    if (name.length < 2) {
+      return 'نام باید حداقل 2 کاراکتر باشد';
     }
     if (name.length > 50) {
       return 'نام نمیتواند بیشتر از 50 کارکتر باشد';
@@ -29,8 +29,8 @@ class Validators {
     }
     final lastName = value.trim();
 
-    if (lastName.length < 3) {
-      return 'نام خانوادگی باید حداقل ۳ کاراکتر باشد';
+    if (lastName.length < 2) {
+      return 'نام خانوادگی باید حداقل 2 کاراکتر باشد';
     }
 
     final regex = RegExp(r'^[آابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی\s]+$');
@@ -137,6 +137,18 @@ class Validators {
       return 'کد معرف باید عددی و ۵ یا ۶ رقمی باشد';
     }
     return null;
+  }
+
+  static String? validateMobile(String? mobile) {
+    final RegExp mobileNumberRegex = RegExp(r'^(?:[ +0]9)?[0-9]{10,12}$');
+    if (mobile == null || mobile.isEmpty) return 'شماره موبایل را وارد کنید';
+    if (!mobileNumberRegex.hasMatch(mobile)) return 'شماره موبایل معتبر نیست';
+    if ((mobile.startsWith('0') || mobile.startsWith('9')) &&
+            mobile.length == 10 ||
+        mobile.length == 11) {
+      return null;
+    }
+    return 'شماره موبایل معتبر نیست';
   }
 
   /// this is for one by one of them

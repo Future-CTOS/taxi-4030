@@ -1,14 +1,33 @@
 import 'dart:async';
 
+import 'package:either_dart/either.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
+import 'package:taxi_4030/src/pages/shared/model/enum/status_enum.dart';
 
 import '../../../../infrastructures/routes/route_names.dart';
+import '../../../../infrastructures/utils/utils.dart';
+import '../model/otp_verify_dto.dart';
+import '../model/user_register_dto.dart';
+import '../repository/otp_verify_page_repository.dart';
 
 class UserOtpVerifyPageController extends GetxController {
-  RxInt totalSeconds = 10.obs;
+  final _repository = OtpVerifyPageRepository();
+
+  UserOtpVerifyPageController({
+    required this.receivedOtp,
+    required this.phoneNumber,
+  });
+
+  String? receivedOtp;
+  String? phoneNumber;
+
+  RxInt totalSeconds = 30.obs;
   RxBool expired = false.obs;
   RxBool isExpired = false.obs;
   RxBool isResendEnabled = false.obs;
+  RxBool isLoading = false.obs;
 
   Timer? _timer;
 
@@ -18,13 +37,38 @@ class UserOtpVerifyPageController extends GetxController {
     _startTimer();
   }
 
-  void onCompletedFiled() {
-    Get.offAndToNamed(TaxiRouteNames.userRegister.path);
+  Future<void> verifyOtp({
+    required BuildContext context,
+    required String value,
+  }) async {
+    isLoading.value = true;
+    final OtpVerifyDto registerDto = OtpVerifyDto(
+      phone: phoneNumber ?? '',
+      otp: receivedOtp ?? '',
+    );
+    final Either<String, Map<String, dynamic>> resultOrException =
+        await _repository.verifyOtp(dto: registerDto);
+    isLoading.value = false;
+    resultOrException.fold(
+      (final _) => Utils.showSnackBar(
+        context,
+        text: 'خطایی رخ داد',
+        status: StatusEnum.danger,
+      ),
+      (final response) {
+        Get.offAndToNamed(TaxiRouteNames.userRegister.uri);
+        Utils.showSnackBar(
+          Get.context!,
+          text: 'خوش آمدید',
+          status: StatusEnum.success,
+        );
+      },
+    );
   }
 
   void _startTimer() {
     _timer?.cancel();
-    totalSeconds.value = 10;
+    totalSeconds.value = 30;
     isExpired.value = false;
     isResendEnabled.value = false;
 
@@ -39,10 +83,30 @@ class UserOtpVerifyPageController extends GetxController {
     });
   }
 
-  Future<void> resendOtp() async {
+  Future<void> _requestOtp(BuildContext context) async {
+    isLoading.value = true;
+    final UserRegisterDto registerDto = UserRegisterDto(
+      phone: phoneNumber ?? '',
+    );
+    final Either<String, Map<String, dynamic>> resultOrException =
+        await _repository.requestOtp(dto: registerDto);
+    isLoading.value = false;
+    resultOrException.fold(
+      (final _) => Utils.showSnackBar(
+        context,
+        text: 'خطایی رخ داد',
+        status: StatusEnum.danger,
+      ),
+      (final response) {
+        print('respone in resend otp: $response');
+      },
+    );
+  }
+
+  Future<void> resendOtp(BuildContext context) async {
     if (!isResendEnabled.value) return;
 
-    /// todo: call otp api
+    _requestOtp(context);
 
     _startTimer();
   }

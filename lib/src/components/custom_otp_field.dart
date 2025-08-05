@@ -142,6 +142,10 @@ class _CustomOtpFieldState extends State<CustomOtpField>
                     enabled: widget.enabled,
                     validator: (value) => Validators.otpValidator(value),
                     keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      LengthLimitingTextInputFormatter(1),
+                    ],
                     textAlign: TextAlign.center,
                     textDirection: TextDirection.ltr,
                     maxLength: 1,

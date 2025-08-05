@@ -1,6 +1,12 @@
 class RepositoryUrls {
+  RepositoryUrls._();
+
+  static const String _baseUrl = 'https://4030.liara.run';
+
   /// Authentication
-  static const String logIn = '/user_auth/driver_register-with-mobile';
+  static Uri requestOtp = Uri.parse('$_baseUrl/auth/request-otp');
+  static Uri verifyOtp = Uri.parse('$_baseUrl/auth/verify-otp');
+
   // static const String checkEmailExistence = '/account/is-email-exists';
   // static const String logout = '/user_auth/logout';
   //
@@ -53,10 +59,7 @@ class RepositoryUrls {
   // static const String getLevels = '/common/find-all-level';
   // static const String getPositions = '/common/find-all-positions';
   //
-  static String getImage({
-    required String folder,
-    required String image,
-  }) =>
+  static String getImage({required String folder, required String image}) =>
       '`/account/uploaded-image/$folder/$image';
   //
   // /// comments

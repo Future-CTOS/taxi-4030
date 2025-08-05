@@ -8,7 +8,11 @@ class Utils {
   ).hasMatch(email);
 
   static bool isMobileValid(String mobile) =>
-      (mobile.startsWith('9') && mobile.length == 10) ? true : false;
+      ((mobile.startsWith('0') || mobile.startsWith('9')) &&
+              mobile.length == 10 ||
+          mobile.length == 11)
+      ? true
+      : false;
 
   static void showSnackBar(
     BuildContext context, {
@@ -34,4 +38,8 @@ class Utils {
           duration: Duration(seconds: 2),
         ),
       );
+
+  static const Map<String, String> headers = {
+    'Content-Type': 'application/json; charset=utf-8',
+  };
 }

@@ -7,6 +7,9 @@ class AppTheme {
     brightness: Brightness.light,
     primaryColor: AppColors.primaryColor.shade600,
     scaffoldBackgroundColor: AppColors.backgroundColor,
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: Colors.white,
+    ),
     textTheme: TextTheme(
       titleLarge: AppTypography.headline,
       bodyLarge: AppTypography.bodyLarge,
@@ -20,6 +23,7 @@ class AppTheme {
       onSecondary: AppColors.secondaryColor.shade500,
       onPrimary: AppColors.textColor,
       error: AppColors.errorColor,
+      surface: Colors.white,
     ),
   );
 

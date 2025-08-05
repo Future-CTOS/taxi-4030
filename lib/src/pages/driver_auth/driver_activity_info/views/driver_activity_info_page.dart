@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../../components/number_text_field.dart';
@@ -46,6 +47,9 @@ class DriverActivityInfoPage extends GetView<DriverActivityInfoController> {
               hint: 'آدرس خود را وارد کنید',
               textController: controller.address,
               validator: Validators.validateAddress,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'[آ-ی\s]')),
+              ],
             ),
             AppSpacing.largeVerticalSpacer,
             NumberTextField(

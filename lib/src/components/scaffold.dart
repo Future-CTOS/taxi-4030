@@ -38,7 +38,6 @@ class CustomScaffold extends StatelessWidget {
 
   final Widget body;
   final Widget? bottomSheet;
-  final Widget? bottomNavigationBar;
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +59,15 @@ class CustomScaffold extends StatelessWidget {
         appBar:
             appBar ?? _appBar(context, isDark, themeController, canPop: canPop),
         body: SafeArea(child: _body(context)),
-        bottomNavigationBar: bottomNavigationBar,
-        resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+        bottomNavigationBar: bottomNavigationBar != null
+            ? SafeArea(child: bottomNavigationBar!)
+            : null,
+        resizeToAvoidBottomInset: true,
       );
     });
   }
+
+  final Widget? bottomNavigationBar;
 
   Widget _endDrawerWidget(BuildContext context) => Drawer(
     backgroundColor: Theme.of(context).colorScheme.surface,
@@ -207,11 +210,14 @@ class CustomScaffold extends StatelessWidget {
                 vertical: Constants.verticalPagePaddingSize,
               ),
           child: bodyTitle != null && bodySubTitle != null
-              ? Column(
-                  children: [
-                    Expanded(flex: 1, child: _headerContent(context)),
-                    Expanded(flex: 3, child: body),
-                  ],
+              ? SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      _headerContent(context),
+                      AppSpacing.largeVerticalSpacer,
+                      body,
+                    ],
+                  ),
                 )
               : body,
         ),

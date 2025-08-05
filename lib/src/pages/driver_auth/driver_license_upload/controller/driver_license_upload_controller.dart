@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../infrastructures/routes/route_names.dart';
+import '../../../../infrastructures/utils/utils.dart';
+import '../../../shared/model/enum/status_enum.dart';
 import '../model/driver_license_upload_image_model.dart';
 
 class DriverLicenseUploadController extends GetxController {
@@ -45,11 +47,10 @@ class DriverLicenseUploadController extends GetxController {
     isSubmitLoading.value = true;
     try {
       await Future.delayed(const Duration(seconds: 2));
-      Get.snackbar(
-        "موفقیت",
-        "اطلاعات ثبت شد",
-        backgroundColor: Colors.green.shade600,
-        colorText: Colors.white,
+      Utils.showSnackBar(
+        Get.context!,
+        text: 'اطلاعات با موفقیت ثبت شد',
+        status: StatusEnum.success,
       );
       Get.toNamed(TaxiRouteNames.vanCardUpload.uri);
     } finally {

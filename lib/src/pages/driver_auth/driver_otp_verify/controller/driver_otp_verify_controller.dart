@@ -6,7 +6,7 @@ import '../../../../infrastructures/routes/route_names.dart';
 
 class DriverOtpVerifyController extends GetxController {
 
-  RxInt totalSeconds = 10.obs;
+  RxInt totalSeconds = 30.obs;
   RxBool expired = false.obs;
   RxBool isExpired = false.obs;
   RxBool isResendEnabled = false.obs;
@@ -19,13 +19,13 @@ class DriverOtpVerifyController extends GetxController {
     _startTimer();
   }
 
-  void onCompletedFiled() {
+  void onCompletedFiled(String value) {
     Get.offAndToNamed(TaxiRouteNames.driverPersonalInfo.uri);
   }
 
   void _startTimer() {
     _timer?.cancel();
-    totalSeconds.value = 10;
+    totalSeconds.value = 30;
     isExpired.value = false;
     isResendEnabled.value = false;
 

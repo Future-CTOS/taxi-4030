@@ -10,16 +10,10 @@ class SelfieAuthView extends StatelessWidget {
     super.key,
     required this.isLoading,
     required this.onUploadButtonTap,
-    required this.isActiveContinue,
-    required this.isUploadLoading,
-    required this.onContinueTap,
   });
 
   final bool isLoading;
   final void Function() onUploadButtonTap;
-  final void Function() onContinueTap;
-  final bool isActiveContinue;
-  final bool isUploadLoading;
 
   @override
   Widget build(BuildContext context) => Column(
@@ -53,14 +47,6 @@ class SelfieAuthView extends StatelessWidget {
         'بدون هرگونه زیورآلات مانند زنجیر،گوشواره،کلاه یا عینک دودی باشد.',
         style: Theme.of(context).textTheme.bodyMedium,
       ),
-      const Spacer(),
-      PageBottomButton(
-        label: 'ادامه',
-        onTap: isActiveContinue ? onContinueTap : () {},
-        isActive: isActiveContinue,
-        isLoading: isUploadLoading,
-      ),
-      AppSpacing.largeVerticalSpacer,
     ],
   );
 }

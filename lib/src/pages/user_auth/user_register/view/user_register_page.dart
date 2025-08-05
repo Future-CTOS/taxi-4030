@@ -26,7 +26,7 @@ class UserRegisterPage extends GetView<UserRegisterController> {
   );
 
   Widget _body(BuildContext context) =>
-      Column(children: [Expanded(flex: 2, child: _inputMobileNumber(context))]);
+      Column(children: [_inputMobileNumber(context)]);
 
   Widget _inputMobileNumber(BuildContext context) => RegisterForm();
 }

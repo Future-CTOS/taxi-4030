@@ -27,12 +27,7 @@ class VanDriverRegisterController extends GetxController {
     isLoading.value = true;
     try {
       await Future.delayed(const Duration(seconds: 2));
-      Get.snackbar(
-        "موفقیت",
-        "اطلاعات ثبت شد",
-        backgroundColor: Colors.green.shade600,
-        colorText: Colors.white,
-      );
+
       Get.toNamed(TaxiRouteNames.userOtpVerify.uri);
     } finally {
       isLoading.value = false;

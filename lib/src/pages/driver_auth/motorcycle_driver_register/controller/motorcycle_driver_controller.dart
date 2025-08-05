@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../infrastructures/routes/route_names.dart';
+import '../../../../infrastructures/utils/utils.dart';
 import '../../../../infrastructures/utils/validators.dart';
+import '../../../shared/model/enum/status_enum.dart';
 
 class MotorcycleDriverController extends GetxController {
   final nationalCodeController = TextEditingController();
@@ -26,11 +28,10 @@ class MotorcycleDriverController extends GetxController {
     isLoading.value = true;
     try {
       await Future.delayed(const Duration(seconds: 2));
-      Get.snackbar(
-        "موفقیت",
-        "اطلاعات ثبت شد",
-        backgroundColor: Colors.green.shade600,
-        colorText: Colors.white,
+      Utils.showSnackBar(
+        Get.context!,
+        text: 'اطلاعات با موفقیت ثبت شد',
+        status: StatusEnum.success,
       );
       Get.toNamed(TaxiRouteNames.userOtpVerify.uri);
     } finally {
