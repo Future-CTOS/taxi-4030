@@ -31,7 +31,7 @@ class CustomImageBuilder extends StatelessWidget {
         height: height,
         fit: fit ?? BoxFit.fill,
         image: NetworkImage(
-          AppController().fullBaseUrl +
+          AppController.instance.fullBaseUrl +
               RepositoryUrls.getImage(
                 folder: folder,
                 image: image,
@@ -48,7 +48,7 @@ class CustomImageBuilder extends StatelessWidget {
         height: height,
         fit: fit ?? BoxFit.fill,
         image: NetworkImage(
-          AppController().fullBaseUrl +
+          AppController.instance.fullBaseUrl +
               RepositoryUrls.getImage(
                 folder: folder,
                 image: image,

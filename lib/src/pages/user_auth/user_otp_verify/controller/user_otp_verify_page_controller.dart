@@ -106,7 +106,7 @@ class UserOtpVerifyPageController extends GetxController {
   Future<void> resendOtp(BuildContext context) async {
     if (!isResendEnabled.value) return;
 
-    _requestOtp(context);
+    //await _requestOtp(context);
 
     _startTimer();
   }

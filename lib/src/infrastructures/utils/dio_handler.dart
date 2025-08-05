@@ -8,22 +8,20 @@ class DioHandler {
   // TODO: make this better for handle logs and try catches
   final Dio _dio;
   final Logger _logger = Logger();
-  final String _baseUrl = AppController().fullBaseUrl;
+  final String _baseUrl = AppController.instance.fullBaseUrl;
 
   DioHandler({
     final Map<String, dynamic>? headers,
     final bool isLoggedIn = true,
   }) : _dio = Dio(
-          BaseOptions(
-            baseUrl: AppController().fullBaseUrl,
-            headers: headers == null && isLoggedIn
-                ? {
-                    'Authorization': 'Bearer ${AppController().userToken}',
-                  }
-                : headers,
-            connectTimeout: const Duration(seconds: 10),
-          ),
-        );
+         BaseOptions(
+           baseUrl: AppController.instance.fullBaseUrl,
+           headers: headers == null && isLoggedIn
+               ? {'Authorization': 'Bearer ${AppController.instance.userToken}'}
+               : headers,
+           connectTimeout: const Duration(seconds: 10),
+         ),
+       );
 
   Future<Either<String, T>> post<T>(
     final String url, {
@@ -165,9 +163,7 @@ class DioHandler {
 
       final response = await _dio.request<T>(
         path,
-        options: Options(
-          method: 'OPTIONS',
-        ),
+        options: Options(method: 'OPTIONS'),
       );
 
       _logger.d(response.statusCode);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:taxi_4030/src/infrastructures/routes/route_names.dart';
+import 'package:taxi_4030/src/infrastructures/app_controller/app_controller.dart';
 
 import '../../../../components/scaffold.dart';
 import '../../../../infrastructures/utils/spacing.dart';
@@ -43,7 +43,11 @@ class VehicleSelectionPage extends GetView<VehicleSelectionController> {
       return VehicleCard(
         title: item.title,
         imagePath: item.imagePath,
-        onTap: () => Get.toNamed(item.uriRoute),
+        onTap: () {
+          AppController.instance.currentVehicle = item.vehicleType;
+          print(AppController.instance.currentVehicle);
+          Get.toNamed(item.uriRoute);
+        },
       );
     },
   );

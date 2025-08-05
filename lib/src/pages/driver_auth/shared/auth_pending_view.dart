@@ -21,17 +21,17 @@ class AuthPendingView extends StatelessWidget {
           ),
         ),
       ),
-      AppSpacing.largeVerticalSpacer,
+      AppSpacing.mediumVerticalSpacer,
       Text(
         'در حال حاضر تیم پشتیبانی در حال بررسی و اعتبارسنجی اطلاعات شماست.',
         style: Theme.of(context).textTheme.bodyMedium,
       ),
-      AppSpacing.largeVerticalSpacer,
+      AppSpacing.mediumVerticalSpacer,
       Text(
         'این فرآیند معمولاً چند دقیقه زمان می‌برد.',
         style: Theme.of(context).textTheme.bodyMedium,
       ),
-      AppSpacing.largeVerticalSpacer,
+      AppSpacing.mediumVerticalSpacer,
       Text(
         'به‌محض تأیید، از طریق پیامک یا نوتیفیکیشن به شما اطلاع داده خواهد شد.',
         style: Theme.of(context).textTheme.bodyMedium,

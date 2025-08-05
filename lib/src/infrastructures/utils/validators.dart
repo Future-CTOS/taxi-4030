@@ -76,17 +76,6 @@ class Validators {
     return null;
   }
 
-  static String? iranMobileValidator(String? value) {
-    if (value == null || value.isEmpty) return 'شماره همراه را وارد کنید';
-    final regex = RegExp(r'^[9][0-9]{9}$');
-    if (!regex.hasMatch(value)) return 'شماره همراه معتبر نیست';
-
-    if (value.startsWith('9') && (value.length == 10)) {
-      return null;
-    }
-    return 'شماره همراه معتبر نیست';
-  }
-
   static String? nationalIdValidator(String? value) {
     if (value == null || value.isEmpty) {
       return 'شماره شناسنامه نمی‌تواند خالی باشد';

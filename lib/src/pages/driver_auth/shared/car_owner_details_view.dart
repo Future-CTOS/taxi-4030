@@ -19,6 +19,9 @@ class CarOwnerDetailsView extends StatefulWidget {
     required this.title,
     required this.formKey,
     required this.showFormOnIndex,
+    required this.isLoading,
+    required this.isFormFilled,
+    required this.onSubmit,
   });
 
   final List<String> items;
@@ -30,6 +33,9 @@ class CarOwnerDetailsView extends StatefulWidget {
   final TextEditingController fatherName;
   final TextEditingController nationalIdController;
   final int showFormOnIndex;
+  final bool isLoading;
+  final bool isFormFilled;
+  final void Function() onSubmit;
 
   @override
   State<CarOwnerDetailsView> createState() => _CarOwnerDetailsViewState();
@@ -69,6 +75,16 @@ class _CarOwnerDetailsViewState extends State<CarOwnerDetailsView> {
           duration: const Duration(milliseconds: 300),
           child: _shouldShowForm(selectedValue) ? _form() : SizedBox.shrink(),
         ),
+        if (!_shouldShowForm(selectedValue)) ...[
+          SizedBox(height: MediaQuery.of(context).size.height / 2),
+          PageBottomButton(
+            label: 'ادامه',
+            onTap: widget.onSubmit,
+            isActive: true,
+            isLoading: widget.isLoading,
+            transparentBackground: true,
+          ),
+        ],
       ],
     ),
   );
@@ -103,6 +119,15 @@ class _CarOwnerDetailsViewState extends State<CarOwnerDetailsView> {
           hint: 'نام پدر خود را وارد کنید',
           textController: widget.fatherName,
         ),
+        AppSpacing.largeVerticalSpacer,
+        PageBottomButton(
+          label: 'ادامه',
+          onTap: widget.isFormFilled ? widget.onSubmit : () {},
+          isActive: widget.isFormFilled,
+          isLoading: widget.isLoading,
+          transparentBackground: true,
+        ),
+        AppSpacing.largeVerticalSpacer,
       ],
     ),
   );

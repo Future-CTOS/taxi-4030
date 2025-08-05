@@ -7,7 +7,6 @@ import '../../../../infrastructures/utils/validators.dart';
 import '../../../shared/model/enum/status_enum.dart';
 
 class CarDriverController extends GetxController {
-  final nationalCodeController = TextEditingController();
   final phoneNumberController = TextEditingController();
 
   final RxBool isFormFilled = false.obs;
@@ -15,7 +14,7 @@ class CarDriverController extends GetxController {
 
   void _checkFormStatus() {
     final phoneNumber =
-        Validators.iranMobileValidator(phoneNumberController.text) == null;
+        Validators.validateMobile(phoneNumberController.text) == null;
     isFormFilled.value = phoneNumber;
   }
 
@@ -38,13 +37,11 @@ class CarDriverController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    nationalCodeController.addListener(_checkFormStatus);
     phoneNumberController.addListener(_checkFormStatus);
   }
 
   @override
   void dispose() {
-    nationalCodeController.dispose();
     phoneNumberController.dispose();
     super.dispose();
   }

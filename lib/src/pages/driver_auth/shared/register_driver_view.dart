@@ -13,7 +13,6 @@ class RegisterDriverView extends StatelessWidget {
     required this.subtitle,
     required this.imagePath,
     required this.onSubmit,
-    required this.nationalCodeTextController,
     required this.phoneNumberTextController,
     required this.isLoading,
     required this.isActiveBottomButton,
@@ -25,15 +24,14 @@ class RegisterDriverView extends StatelessWidget {
   final VoidCallback onSubmit;
   final bool isLoading;
   final bool isActiveBottomButton;
-  final TextEditingController nationalCodeTextController;
   final TextEditingController phoneNumberTextController;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final sizeScreen = MediaQuery.of(context).size.height / 1.75;
-    final imageHeight = sizeScreen * 0.6;
-    final double offset = 70;
+    final imageHeight = sizeScreen * 0.4;
+    final double offset = 90;
     return Stack(
       children: [
         Positioned(
@@ -82,7 +80,7 @@ class RegisterDriverView extends StatelessWidget {
                 ),
                 AppSpacing.mediumVerticalSpacer,
                 PhoneNumberField(
-                  validator: (value) => Validators.iranMobileValidator(value),
+                  validator: (value) => Validators.validateMobile(value),
                   textController: phoneNumberTextController,
                   isHighlighted: isActiveBottomButton,
                 ),

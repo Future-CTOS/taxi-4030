@@ -32,7 +32,8 @@ class PhoneInputPageController extends GetxController {
 
   void onSubmitPhoneNumberTap(BuildContext context) {
     if (formKey.currentState?.validate() ?? false) {
-      _requestOtp(context);
+      // _requestOtp(context);
+      Get.toNamed(TaxiRouteNames.userOtpVerify.uri);
     }
   }
 
@@ -48,10 +49,10 @@ class PhoneInputPageController extends GetxController {
       (final error) {
         print(error);
         Utils.showSnackBar(
-        context,
-        text: 'خطایی رخ داد',
-        status: StatusEnum.danger,
-      );
+          context,
+          text: 'خطایی رخ داد',
+          status: StatusEnum.danger,
+        );
       },
       (final response) {
         Get.toNamed(

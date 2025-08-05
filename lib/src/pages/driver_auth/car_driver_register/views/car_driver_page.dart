@@ -18,7 +18,6 @@ class CarDriverPage extends GetView<CarDriverController> {
         title: 'ثبت نام رانننده سواری',
         subtitle: 'شماره همراه و کد ملی خود را وارد کنید.',
         imagePath: Assets.pngs.car2d.path,
-        nationalCodeTextController: controller.nationalCodeController,
         phoneNumberTextController: controller.phoneNumberController,
         onSubmit: controller.submitUserInfo,
         isLoading: controller.isLoading.value,

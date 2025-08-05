@@ -7,7 +7,6 @@ import '../../../../infrastructures/utils/validators.dart';
 import '../../../shared/model/enum/status_enum.dart';
 
 class MotorcycleDriverController extends GetxController {
-  final nationalCodeController = TextEditingController();
   final phoneNumberController = TextEditingController();
 
   final RxBool isFormFilled = false.obs;
@@ -15,12 +14,8 @@ class MotorcycleDriverController extends GetxController {
 
   void _checkFormStatus() {
     final phoneNumber =
-        Validators.iranMobileValidator(phoneNumberController.text) == null;
-
-    final nationalCodeValid =
-        Validators.nationalCodeValidator(nationalCodeController.text) == null;
-
-    isFormFilled.value = phoneNumber && nationalCodeValid;
+        Validators.validateMobile(phoneNumberController.text) == null;
+    isFormFilled.value = phoneNumber;
   }
 
   Future<void> submitUserInfo() async {
@@ -33,7 +28,7 @@ class MotorcycleDriverController extends GetxController {
         text: 'اطلاعات با موفقیت ثبت شد',
         status: StatusEnum.success,
       );
-      Get.toNamed(TaxiRouteNames.userOtpVerify.uri);
+      Get.toNamed(TaxiRouteNames.driverOtpVerify.uri);
     } finally {
       isLoading.value = false;
     }
@@ -42,13 +37,11 @@ class MotorcycleDriverController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    nationalCodeController.addListener(_checkFormStatus);
     phoneNumberController.addListener(_checkFormStatus);
   }
 
   @override
   void dispose() {
-    nationalCodeController.dispose();
     phoneNumberController.dispose();
     super.dispose();
   }

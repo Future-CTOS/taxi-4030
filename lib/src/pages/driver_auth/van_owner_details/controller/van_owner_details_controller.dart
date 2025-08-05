@@ -6,7 +6,7 @@ import '../../../../infrastructures/utils/validators.dart';
 
 class VanOwnerDetailsController extends GetxController {
   final List<String> items = ['خودم هستم', 'شخص دیگر'];
-
+  final int showFormOnIndexForAnotherOwner = 1;
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final nationalIdController = TextEditingController();

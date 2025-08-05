@@ -6,6 +6,7 @@ import '../../../../components/birth_data_field.dart';
 import '../../../../components/number_text_field.dart';
 import '../../../../components/national_code_field.dart';
 import '../../../../components/text_field.dart';
+import '../../../../infrastructures/utils/constants.dart';
 import '../../../../infrastructures/utils/spacing.dart';
 import '../../../../infrastructures/utils/validators.dart';
 import '../../../shared/widgets/page_bottom_button.dart';
@@ -18,15 +19,8 @@ class DriverPersonalInfoPage extends GetView<DriverPersonalInfoController> {
   Widget build(BuildContext context) => CustomScaffold(
     bodyTitle: 'ثبت نام',
     bodySubTitle: 'اطلاعات خواسته شده را به فارسی وارد کنید',
-    bottomNavigationBar: Obx(
-      () => PageBottomButton(
-        label: 'ادامه',
-        onTap: controller.isFormFilled.value
-            ? controller.submitUserInfo
-            : () {},
-        isActive: controller.isFormFilled.value,
-        isLoading: controller.isLoading.value,
-      ),
+    bodyPadding: EdgeInsetsGeometry.symmetric(
+      horizontal: Constants.horizontalPagePaddingSize,
     ),
     body: Form(
       key: controller.formKey,
@@ -69,6 +63,18 @@ class DriverPersonalInfoPage extends GetView<DriverPersonalInfoController> {
               label: 'نام پدر',
               hint: 'نام پدر خود را وارد کنید',
               textController: controller.fatherName,
+            ),
+            AppSpacing.xxLargeVerticalSpacer,
+            Obx(
+              () => PageBottomButton(
+                label: 'ادامه',
+                onTap: controller.isFormFilled.value
+                    ? controller.submitUserInfo
+                    : () {},
+                isActive: controller.isFormFilled.value,
+                isLoading: controller.isLoading.value,
+                transparentBackground: true,
+              ),
             ),
           ],
         ),

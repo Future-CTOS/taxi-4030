@@ -10,6 +10,7 @@ class DriverOtpVerifyController extends GetxController {
   RxBool expired = false.obs;
   RxBool isExpired = false.obs;
   RxBool isResendEnabled = false.obs;
+  RxBool isLoading = false.obs;
 
   Timer? _timer;
 

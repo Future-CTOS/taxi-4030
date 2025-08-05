@@ -16,24 +16,29 @@ class VanOwnerDetailsPage extends GetView<VanOwnerDetailsController> {
     bodyPadding: EdgeInsets.symmetric(
       horizontal: Constants.horizontalPagePaddingSize,
     ),
-    bottomNavigationBar: Obx(
-      () => PageBottomButton(
-        label: 'ادامه',
-        onTap: controller.submitVanOwnerInfo,
-        isActive: controller.isFormFilled.value,
+    // bottomNavigationBar: Obx(
+    //   () => PageBottomButton(
+    //     label: 'ادامه',
+    //     onTap: controller.submitVanOwnerInfo,
+    //     isActive: controller.isFormFilled.value,
+    //     isLoading: controller.isLoading.value,
+    //   ),
+    // ),
+    body: Obx(
+      () => CarOwnerDetailsView(
+        title: 'مالک وانت',
+        items: controller.items,
+        initialValue: controller.items.first,
+        firstNameController: controller.firstNameController,
+        fatherName: controller.fatherName,
+        formKey: controller.formKey,
+        lastNameController: controller.lastNameController,
+        nationalIdController: controller.nationalIdController,
         isLoading: controller.isLoading.value,
+        onSubmit: controller.submitVanOwnerInfo,
+        isFormFilled: controller.isFormFilled.value,
+        showFormOnIndex: 1,
       ),
-    ),
-    body: CarOwnerDetailsView(
-      title: 'مالک وانت',
-      items: controller.items,
-      initialValue: controller.items.first,
-      firstNameController: controller.firstNameController,
-      fatherName: controller.fatherName,
-      formKey: controller.formKey,
-      lastNameController: controller.lastNameController,
-      nationalIdController: controller.nationalIdController,
-      showFormOnIndex: 1,
     ),
   );
 }

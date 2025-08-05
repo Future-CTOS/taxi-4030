@@ -6,7 +6,6 @@ import '../../../../infrastructures/routes/route_names.dart';
 import '../../../../infrastructures/utils/validators.dart';
 
 class VanDriverRegisterController extends GetxController {
-  final nationalCodeController = TextEditingController();
   final phoneNumberController = TextEditingController();
 
   final RxBool isFormFilled = false.obs;
@@ -14,12 +13,8 @@ class VanDriverRegisterController extends GetxController {
 
   void _checkFormStatus() {
     final phoneNumber =
-        Validators.iranMobileValidator(phoneNumberController.text) == null;
-
-    final nationalCodeValid =
-        Validators.nationalCodeValidator(nationalCodeController.text) == null;
-
-    isFormFilled.value = phoneNumber && nationalCodeValid;
+        Validators.validateMobile(phoneNumberController.text) == null;
+    isFormFilled.value = phoneNumber;
   }
 
   Future<void> submitUserInfo() async {
@@ -28,7 +23,7 @@ class VanDriverRegisterController extends GetxController {
     try {
       await Future.delayed(const Duration(seconds: 2));
 
-      Get.toNamed(TaxiRouteNames.userOtpVerify.uri);
+      Get.toNamed(TaxiRouteNames.driverPersonalInfo.uri);
     } finally {
       isLoading.value = false;
     }
@@ -37,13 +32,11 @@ class VanDriverRegisterController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    nationalCodeController.addListener(_checkFormStatus);
     phoneNumberController.addListener(_checkFormStatus);
   }
 
   @override
   void dispose() {
-    nationalCodeController.dispose();
     phoneNumberController.dispose();
     super.dispose();
   }

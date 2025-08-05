@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:taxi_4030/src/infrastructures/app_controller/app_controller.dart';
+import 'package:taxi_4030/src/infrastructures/commons/current_vehicle.dart';
 
 import '../../../../infrastructures/routes/route_names.dart';
 import '../../../../infrastructures/utils/utils.dart';
@@ -52,7 +54,19 @@ class DriverLicenseUploadController extends GetxController {
         text: 'اطلاعات با موفقیت ثبت شد',
         status: StatusEnum.success,
       );
-      Get.toNamed(TaxiRouteNames.vanCardUpload.uri);
+      print(AppController.instance.currentVehicle);
+
+      if (AppController.instance.currentVehicle == VehicleType.car) {
+        Get.toNamed(TaxiRouteNames.carCardUpload.uri);
+        return;
+      } else if (AppController.instance.currentVehicle ==
+          VehicleType.motoCycle) {
+        Get.toNamed(TaxiRouteNames.motorCycleCardUpload.uri);
+        return;
+      } else if (AppController.instance.currentVehicle == VehicleType.van) {
+        Get.toNamed(TaxiRouteNames.vanCardUpload.uri);
+        return;
+      }
     } finally {
       isSubmitLoading.value = false;
     }

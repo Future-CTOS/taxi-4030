@@ -12,6 +12,7 @@ class OtoVerifyView extends StatelessWidget {
     required this.formattedTime,
     required this.resendOtp,
     required this.onCompleted,
+    required this.isLoading,
   });
 
   final bool isResendEnabled;
@@ -19,6 +20,7 @@ class OtoVerifyView extends StatelessWidget {
   final Future<void> Function() resendOtp;
   final String formattedTime;
   final void Function(String) onCompleted;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) => _body(context);
@@ -27,6 +29,7 @@ class OtoVerifyView extends StatelessWidget {
     children: [
       Expanded(flex: 1, child: _headerContent(context)),
       Expanded(flex: 2, child: _inputOtpVerifyNumbers(context)),
+      if (isLoading) CircularProgressIndicator(),
       if (isResendEnabled)
         PageBottomButton(
           label: 'دریافت مجدد کد',
