@@ -31,7 +31,7 @@ class VideoAuthView extends StatelessWidget {
           child: UploadImageButton(
             isLoading: isLoading,
             onTap: onUploadButtonTap,
-            label: 'ثبت عکس',
+            label: 'ثبت ویدیو',
             emptyImagePath: '',
             filledImagePath: Assets.pngs.videoUploadImage.path,
             hasFile: true,

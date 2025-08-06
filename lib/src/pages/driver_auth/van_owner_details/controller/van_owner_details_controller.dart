@@ -39,7 +39,6 @@ class VanOwnerDetailsController extends GetxController {
   }
 
   Future<void> submitVanOwnerInfo() async {
-    if (!isFormFilled.value) return;
     isLoading.value = true;
     try {
       await Future.delayed(const Duration(seconds: 2));

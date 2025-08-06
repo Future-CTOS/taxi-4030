@@ -14,7 +14,7 @@ class AuthGuideStep1Page extends StatelessWidget {
     bodyTitle: 'احراز هویت امنیتی',
     bodySubTitle:
         'برای تکمیل ثبت نام در تاکسی 4030 و تضمین امنیت \nشما, نیاز است یک ویدیو کوتاه ظبط کنید تا هویت شما تایید شود.',
-    bottomSheet: PageBottomButton(
+    bottomNavigationBar: PageBottomButton(
       label: 'ادامه',
       onTap: () => Get.toNamed(TaxiRouteNames.authGuideStep2.uri),
       isActive: true,

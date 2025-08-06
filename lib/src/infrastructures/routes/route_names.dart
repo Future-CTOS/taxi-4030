@@ -115,7 +115,7 @@ class TaxiRouteNames extends Routes {
     RoutePaths.driverPersonalInfo +
         RoutePaths.driverActivityInfo +
         RoutePaths.driverLicenseUpload +
-        RoutePaths.vanCardUpload +
+        RoutePaths.motorCycleCardUpload +
         RoutePaths.motorcycleInformationInput,
     RoutePaths.motorcycleInformationInput,
   );
@@ -139,6 +139,37 @@ class TaxiRouteNames extends Routes {
     RoutePaths.vanOwnerDetails,
   );
 
+  static const Routes carOwnerDetails = Routes(
+    RoutePaths.driverPersonalInfo +
+        RoutePaths.driverActivityInfo +
+        RoutePaths.driverLicenseUpload +
+        RoutePaths.carCardUpload +
+        RoutePaths.carInformationInput +
+        RoutePaths.carOwnerDetails,
+    RoutePaths.carOwnerDetails,
+  );
+
+  static const Routes motorcycleOwnerDetails = Routes(
+    RoutePaths.driverPersonalInfo +
+        RoutePaths.driverActivityInfo +
+        RoutePaths.driverLicenseUpload +
+        RoutePaths.motorCycleCardUpload +
+        RoutePaths.motorcycleInformationInput +
+        RoutePaths.motorcycleOwnerDetails,
+    RoutePaths.motorcycleOwnerDetails,
+  );
+
+  static const Routes carUploadInsurance = Routes(
+    RoutePaths.driverPersonalInfo +
+        RoutePaths.driverActivityInfo +
+        RoutePaths.driverLicenseUpload +
+        RoutePaths.carCardUpload +
+        RoutePaths.carInformationInput +
+        RoutePaths.carOwnerDetails +
+        RoutePaths.carUploadInsurance,
+    RoutePaths.carUploadInsurance,
+  );
+
   static const Routes vanUploadInsurance = Routes(
     RoutePaths.driverPersonalInfo +
         RoutePaths.driverActivityInfo +
@@ -160,6 +191,18 @@ class TaxiRouteNames extends Routes {
         RoutePaths.vanUploadInsurance +
         RoutePaths.vanSelfieAuth,
     RoutePaths.vanSelfieAuth,
+  );
+
+  static const Routes carSelfieAuth = Routes(
+    RoutePaths.driverPersonalInfo +
+        RoutePaths.driverActivityInfo +
+        RoutePaths.driverLicenseUpload +
+        RoutePaths.carCardUpload +
+        RoutePaths.carInformationInput +
+        RoutePaths.carOwnerDetails +
+        RoutePaths.carUploadInsurance +
+        RoutePaths.carSelfieAuth,
+    RoutePaths.carSelfieAuth,
   );
 
   static const Routes authGuideStep1 = Routes(
@@ -220,7 +263,7 @@ class TaxiRouteNames extends Routes {
     RoutePaths.authGuideStep4,
   );
 
-  static const Routes vanVideoAuth = Routes(
+  static const Routes videoAuth = Routes(
     RoutePaths.driverPersonalInfo +
         RoutePaths.driverActivityInfo +
         RoutePaths.driverLicenseUpload +
@@ -233,11 +276,11 @@ class TaxiRouteNames extends Routes {
         RoutePaths.authGuideStep2 +
         RoutePaths.authGuideStep3 +
         RoutePaths.authGuideStep4 +
-        RoutePaths.vanVideoAuth,
-    RoutePaths.vanVideoAuth,
+        RoutePaths.videoAuth,
+    RoutePaths.videoAuth,
   );
 
-  static const Routes vanAuthPending = Routes(
+  static const Routes authPending = Routes(
     RoutePaths.driverPersonalInfo +
         RoutePaths.driverActivityInfo +
         RoutePaths.driverLicenseUpload +
@@ -250,8 +293,8 @@ class TaxiRouteNames extends Routes {
         RoutePaths.authGuideStep2 +
         RoutePaths.authGuideStep3 +
         RoutePaths.authGuideStep4 +
-        RoutePaths.vanVideoAuth +
-        RoutePaths.vanAuthPending,
-    RoutePaths.vanAuthPending,
+        RoutePaths.videoAuth +
+        RoutePaths.authPending,
+    RoutePaths.authPending,
   );
 }

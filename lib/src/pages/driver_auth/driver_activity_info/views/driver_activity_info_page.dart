@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../../components/number_text_field.dart';
 import '../../../../components/scaffold.dart';
 import '../../../../components/text_field.dart';
+import '../../../../infrastructures/utils/constants.dart';
 import '../../../../infrastructures/utils/spacing.dart';
 import '../../../../infrastructures/utils/validators.dart';
 import '../../../shared/widgets/page_bottom_button.dart';
@@ -17,6 +18,9 @@ class DriverActivityInfoPage extends GetView<DriverActivityInfoController> {
   Widget build(BuildContext context) => CustomScaffold(
     bodyTitle: 'ثبت نام',
     bodySubTitle: 'اطلاعات خواسته شده را به فارسی وارد کنید',
+    bodyPadding: EdgeInsets.symmetric(
+      horizontal: Constants.horizontalPagePaddingSize,
+    ),
     bottomNavigationBar: Obx(
       () => PageBottomButton(
         label: 'ادامه',
@@ -25,6 +29,7 @@ class DriverActivityInfoPage extends GetView<DriverActivityInfoController> {
             : () {},
         isActive: controller.isFormFilled.value,
         isLoading: controller.isLoading.value,
+        transparentBackground: true,
       ),
     ),
     body: Form(
@@ -48,7 +53,9 @@ class DriverActivityInfoPage extends GetView<DriverActivityInfoController> {
               textController: controller.address,
               validator: Validators.validateAddress,
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'[آ-ی\s]')),
+                FilteringTextInputFormatter.allow(
+                  RegExp(r'[آ-یءيک۱۲۳۴۵۶۷۸۹0-9\s\.,\-_/()]'),
+                ),
               ],
             ),
             AppSpacing.largeVerticalSpacer,

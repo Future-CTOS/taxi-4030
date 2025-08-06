@@ -15,7 +15,7 @@ class TaxiApp extends StatelessWidget {
   Widget build(BuildContext context) => Obx(
     () => GetMaterialApp(
       getPages: [...TaxiAppPages.routes],
-      initialRoute: TaxiRouteNames.vehicleSelection.uri,
+      initialRoute: TaxiRouteNames.phoneInput.uri,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: themeController.themeMode.value,

@@ -7,8 +7,8 @@ import '../../../infrastructures/utils/spacing.dart';
 import '../../../infrastructures/utils/validators.dart';
 import '../../shared/widgets/page_bottom_button.dart';
 
-class CarOwnerDetailsView extends StatefulWidget {
-  const CarOwnerDetailsView({
+class VehicleOwnerDetailsView extends StatefulWidget {
+  const VehicleOwnerDetailsView({
     super.key,
     required this.items,
     required this.initialValue,
@@ -38,10 +38,11 @@ class CarOwnerDetailsView extends StatefulWidget {
   final void Function() onSubmit;
 
   @override
-  State<CarOwnerDetailsView> createState() => _CarOwnerDetailsViewState();
+  State<VehicleOwnerDetailsView> createState() =>
+      _VehicleOwnerDetailsViewState();
 }
 
-class _CarOwnerDetailsViewState extends State<CarOwnerDetailsView> {
+class _VehicleOwnerDetailsViewState extends State<VehicleOwnerDetailsView> {
   late String selectedValue;
 
   @override
@@ -76,7 +77,7 @@ class _CarOwnerDetailsViewState extends State<CarOwnerDetailsView> {
           child: _shouldShowForm(selectedValue) ? _form() : SizedBox.shrink(),
         ),
         if (!_shouldShowForm(selectedValue)) ...[
-          SizedBox(height: MediaQuery.of(context).size.height / 2),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.4),
           PageBottomButton(
             label: 'ادامه',
             onTap: widget.onSubmit,

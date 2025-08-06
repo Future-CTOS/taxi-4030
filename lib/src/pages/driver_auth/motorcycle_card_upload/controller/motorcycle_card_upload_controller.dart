@@ -44,7 +44,7 @@ class MotorcycleCardUploadController extends GetxController {
     isSubmitLoading.value = true;
     try {
       await Future.delayed(const Duration(seconds: 2));
-      // Get.toNamed(TaxiRouteNames.motorcycleInformationInput.uri);
+      Get.toNamed(TaxiRouteNames.motorcycleInformationInput.uri);
     } finally {
       isSubmitLoading.value = false;
     }

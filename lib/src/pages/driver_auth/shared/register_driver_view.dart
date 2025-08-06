@@ -39,7 +39,15 @@ class RegisterDriverView extends StatelessWidget {
           left: 0,
           right: 0,
           height: sizeScreen,
-          child: ColoredBox(color: theme.colorScheme.surfaceContainer),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(22),
+                topRight: Radius.circular(22),
+              ),
+              color: theme.colorScheme.surfaceContainer,
+            ),
+          ),
         ),
         Positioned(
           top: sizeScreen - imageHeight - offset,
@@ -66,11 +74,22 @@ class RegisterDriverView extends StatelessWidget {
             margin: EdgeInsetsGeometry.only(top: AppSpacing.smallSpace),
             child: Column(
               children: [
-                Text(title, style: theme.textTheme.titleLarge),
+                Text(
+                  title,
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    color: theme.brightness == Brightness.dark
+                        ? theme.colorScheme.onSecondary
+                        : null,
+                  ),
+                ),
                 AppSpacing.largeVerticalSpacer,
                 Text(
                   subtitle,
-                  style: Theme.of(context).textTheme.bodySmall,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: theme.brightness == Brightness.dark
+                        ? theme.colorScheme.secondary
+                        : null,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 AppSpacing.largeVerticalSpacer,

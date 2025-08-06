@@ -1,14 +1,12 @@
 import 'package:camera/camera.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:taxi_4030/src/pages/shared/model/enum/status_enum.dart';
 import '../../../../components/telegram_style_camera.dart';
 import '../../../../infrastructures/routes/route_names.dart';
 import '../../../../infrastructures/utils/utils.dart';
-import '../../../shared/model/enum/status_enum.dart';
 
-class VanVideoAuthController extends GetxController {
-  final RxBool isUploadLoading = false.obs;
+class CarUploadInsuranceInformationController extends GetxController {
   final RxBool isActiveContinue = false.obs;
   final RxBool isLoading = false.obs;
   late final CameraController? cameraController;
@@ -32,16 +30,16 @@ class VanVideoAuthController extends GetxController {
 
   Future<void> uploadInsuranceImage() async {
     if (!isActiveContinue.value) return;
-    isUploadLoading.value = true;
+    isLoading.value = true;
     try {
       Utils.showSnackBar(
         Get.context!,
         text: 'اطلاعات بیمه با موفقیت ثبت شد',
         status: StatusEnum.success,
       );
-      Get.toNamed(TaxiRouteNames.vanAuthPending.uri);
+      Get.toNamed(TaxiRouteNames.carSelfieAuth.uri);
     } finally {
-      isUploadLoading.value = false;
+      isLoading.value = false;
     }
   }
 
@@ -58,8 +56,8 @@ class VanVideoAuthController extends GetxController {
   }
 
   @override
-  void onInit() {
-    _initCamera();
+  void onInit() async {
+    await _initCamera();
     super.onInit();
   }
 

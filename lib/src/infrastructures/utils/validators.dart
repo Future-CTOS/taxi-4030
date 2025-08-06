@@ -111,9 +111,21 @@ class Validators {
     if (value == null || value.trim().isEmpty) {
       return 'لطفاً آدرس را وارد کنید';
     }
-    if (value.trim().length < 10) {
+
+    String trimmed = value.trim();
+
+    if (trimmed.length < 10) {
       return 'آدرس باید حداقل ۱۰ کاراکتر باشد';
     }
+    if (trimmed.length > 200) {
+      return 'آدرس نمی‌تواند بیشتر از ۲۰۰ کاراکتر باشد';
+    }
+
+    final regex = RegExp(r'^[آ-یءيک۰-۹0-9\s\.,\-_/()]+$');
+    if (!regex.hasMatch(trimmed)) {
+      return 'آدرس فقط می‌تواند شامل حروف فارسی، اعداد و علائم متداول باشد';
+    }
+
     return null;
   }
 

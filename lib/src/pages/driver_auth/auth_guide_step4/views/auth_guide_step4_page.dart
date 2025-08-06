@@ -14,9 +14,9 @@ class AuthGuideStep4Page extends StatelessWidget {
     bodyTitle: 'احراز هویت امنیتی',
     bodySubTitle:
         'در محیطی با نور کافی قرار بگیرید. مطمئن شوید چهره شما کاملاً مشخص و تصویر دوربین واضح باشد.',
-    bottomSheet: PageBottomButton(
+    bottomNavigationBar: PageBottomButton(
       label: 'ادامه',
-      onTap: () => Get.toNamed(TaxiRouteNames.vanVideoAuth.uri),
+      onTap: () => Get.toNamed(TaxiRouteNames.videoAuth.uri),
       isActive: true,
       isLoading: false,
     ),

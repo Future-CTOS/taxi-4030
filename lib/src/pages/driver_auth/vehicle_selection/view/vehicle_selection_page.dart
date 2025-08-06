@@ -45,7 +45,6 @@ class VehicleSelectionPage extends GetView<VehicleSelectionController> {
         imagePath: item.imagePath,
         onTap: () {
           AppController.instance.currentVehicle = item.vehicleType;
-          print(AppController.instance.currentVehicle);
           Get.toNamed(item.uriRoute);
         },
       );

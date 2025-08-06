@@ -18,7 +18,7 @@ class CarInformationController extends GetxController {
     try {
       await Future.delayed(const Duration(seconds: 2));
 
-      Get.toNamed(TaxiRouteNames.vanOwnerDetails.uri);
+      Get.toNamed(TaxiRouteNames.carOwnerDetails.uri);
     } finally {
       isLoading.value = false;
     }

@@ -16,12 +16,21 @@ class CarInformationPage extends GetView<CarInformationController> {
   Widget build(BuildContext context) => CustomScaffold(
     bodyTitle: 'مشخصات خودرو سواری',
     bodySubTitle:
-        'هر کدام از اطلاعات زیر با کارت وانت مغایرت دارد را اصلاح کنید.',
+        'هر کدام از اطلاعات زیر با کارت خودرو مغایرت دارد را اصلاح کنید.',
     bodyPadding: EdgeInsets.symmetric(
       horizontal: Constants.horizontalPagePaddingSize,
     ),
+    bottomNavigationBar: Obx(
+      () => PageBottomButton(
+        label: 'ادامه',
+        onTap: controller.submitVanInfo,
+        isActive: controller.isFormFilled.value,
+        isLoading: controller.isLoading.value,
+      ),
+    ),
     body: Obx(
       () => Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IranianPlate(
             letters: controller.iranAllLicensePlateLetters,
@@ -29,40 +38,27 @@ class CarInformationPage extends GetView<CarInformationController> {
             onCompleted: controller.onCompletedIranianPlate,
           ),
           CustomDropDown(
-            title: 'سیستم و تیپ وانت',
+            title: 'سیستم و تیپ خودرو',
             items: [],
             getTitle: (item) => 'ites',
-            hint: 'سیستم و تیپ وانت',
+            hint: 'سیستم و تیپ خودرو',
             value: null,
           ),
           CustomDropDown(
-            title: 'مدل (سال تولید وانت)',
+            title: 'مدل (سال تولید خودرو)',
             items: [],
             getTitle: (item) => 'ites',
-            hint: 'مدل (سال تولید وانت)',
+            hint: 'مدل (سال تولید خودرو)',
             value: null,
           ),
           CustomDropDown(
-            title: 'رنگ وانت',
+            title: 'رنگ خودرو',
             items: [],
             getTitle: (item) => 'ites',
-            hint: 'رنگ وانت',
+            hint: 'رنگ خودرو',
             value: null,
           ),
-          CustomDropDown(
-            title: 'حداکثر ظرفیت بار',
-            items: [],
-            getTitle: (item) => 'ites',
-            hint: 'حداکثر ظرفیت بار',
-            value: null,
-          ),
-          AppSpacing.giantVerticalSpacer,
-          PageBottomButton(
-            label: 'ادامه',
-            onTap: controller.submitVanInfo,
-            isActive: controller.isFormFilled.value,
-            isLoading: controller.isLoading.value,
-          ),
+          // AppSpacing.giantVerticalSpacer,
           AppSpacing.giantVerticalSpacer,
         ],
       ),

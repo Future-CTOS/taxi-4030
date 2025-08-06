@@ -70,7 +70,7 @@ class CustomScaffold extends StatelessWidget {
   final Widget? bottomNavigationBar;
 
   Widget _endDrawerWidget(BuildContext context) => Drawer(
-    backgroundColor: Theme.of(context).colorScheme.surface,
+    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
     child: Column(
       children: [
         _header(),
@@ -154,7 +154,7 @@ class CustomScaffold extends StatelessWidget {
     ThemeController themeController, {
     required bool canPop,
   }) => AppBar(
-    backgroundColor: Theme.of(context).colorScheme.surface,
+    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
     automaticallyImplyLeading: false,
     actionsPadding: EdgeInsetsGeometry.symmetric(
       horizontal: AppSpacing.largeSpace,
@@ -198,7 +198,7 @@ class CustomScaffold extends StatelessWidget {
         );
 
   Widget _mainBody(BuildContext context) => DecoratedBox(
-    decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface),
+    decoration: BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor),
     child: LayoutBuilder(
       builder: (context, constraints) => Align(
         alignment: Alignment.topCenter,

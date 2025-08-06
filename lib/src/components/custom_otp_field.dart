@@ -125,6 +125,7 @@ class _CustomOtpFieldState extends State<CustomOtpField>
         textDirection: TextDirection.ltr,
         child: DecoratedBox(
           decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surface,
             borderRadius: BorderRadius.circular(Constants.textFiledRadius),
             border: Border.all(color: borderColor),
           ),
@@ -149,7 +150,11 @@ class _CustomOtpFieldState extends State<CustomOtpField>
                     textAlign: TextAlign.center,
                     textDirection: TextDirection.ltr,
                     maxLength: 1,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Theme.of(context).colorScheme.onSecondary
+                          : null,
+                    ),
                     cursorColor: Theme.of(context).colorScheme.secondary,
                     onChanged: (val) => _onChanged(val, i),
                     onTap: () async {

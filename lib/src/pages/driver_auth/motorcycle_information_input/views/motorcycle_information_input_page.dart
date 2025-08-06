@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import '../../../../components/drop_down.dart';
 import '../../../../components/scaffold.dart';
 import '../../../../infrastructures/utils/constants.dart';
-import '../../../../infrastructures/utils/spacing.dart';
 import '../../../shared/widgets/page_bottom_button.dart';
-import '../../shared/van_information_input_view.dart';
 import '../../shared/widgets/iranian_plate.dart';
 import '../controller/motorcycle_information_input_controller.dart';
 
@@ -21,6 +18,14 @@ class MotorcycleInformationInputPage
         'هر کدام از اطلاعات زیر با کارت موتور مغایرت دارد را اصلاح کنید.',
     bodyPadding: EdgeInsets.symmetric(
       horizontal: Constants.horizontalPagePaddingSize,
+    ),
+    bottomNavigationBar: Obx(
+      () => PageBottomButton(
+        label: 'ادامه',
+        onTap: controller.submitMotorcycleInfo,
+        isActive: controller.isFormFilled.value,
+        isLoading: controller.isLoading.value,
+      ),
     ),
     body: SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
@@ -52,14 +57,6 @@ class MotorcycleInformationInputPage
             hint: 'کلاه ایمنی و تجهیزات ایمنی',
             value: null,
           ),
-          AppSpacing.giantVerticalSpacer,
-          PageBottomButton(
-            label: 'ادامه',
-            onTap: controller.submitMotorcycleInfo,
-            isActive: controller.isFormFilled.value,
-            isLoading: controller.isLoading.value,
-          ),
-          AppSpacing.giantVerticalSpacer,
         ],
       ),
     ),

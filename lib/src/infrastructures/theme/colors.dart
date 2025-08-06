@@ -27,10 +27,11 @@ class AppColors {
   static const Color errorColor = Color(0xffF64C4C);
 
   /// light
-  static const Color backgroundColor = Color(0xffF2FDFF);
+  static const Color backgroundColor = Colors.white;
   static const Color textColor = Color(0xff191919);
 
   /// dark
-  static const Color darkBackgroundColor = Color(0xff191919);
+  static const Color darkBackgroundColor = Color(0xff202B37);
   static const Color darkTextColor = Color(0xffF2FDFF);
+  static const Color secondaryDarkTextColor = Color(0xffCED2DA);
 }

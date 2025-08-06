@@ -24,8 +24,12 @@ class RoutePaths {
   static const String motorCycleCardUpload = '/motorcycle-card-upload';
   static const String vanInformationInput = '/van-information-input';
   static const String vanOwnerDetails = '/van-owner-details';
+  static const String carOwnerDetails = '/car-owner-details';
+  static const String motorcycleOwnerDetails = '/motorcycle-owner-details';
   static const String vanUploadInsurance = '/van-upload-insurance';
+  static const String carUploadInsurance = '/car-upload-insurance';
   static const String vanSelfieAuth = '/van-selfie-auth';
+  static const String carSelfieAuth = '/car-selfie-auth';
 
   // ----------
 
@@ -36,8 +40,8 @@ class RoutePaths {
 
   // ----------
 
-  static const String vanVideoAuth = '/van-video-auth';
-  static const String vanAuthPending = '/van-auth-pending';
+  static const String videoAuth = '/video-auth';
+  static const String authPending = '/auth-pending';
 
   // ----------
   static const String carInformationInput = '/car-information-input';

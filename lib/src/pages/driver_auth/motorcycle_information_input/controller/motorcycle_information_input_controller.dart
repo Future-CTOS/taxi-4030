@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../infrastructures/routes/route_names.dart';
@@ -10,7 +9,6 @@ class MotorcycleInformationInputController extends GetxController {
 
   void onCompletedIranianPlate(String? value) {
     isFormFilled.value = true;
-    print(value);
   }
 
   Future<void> submitMotorcycleInfo() async {
@@ -19,7 +17,7 @@ class MotorcycleInformationInputController extends GetxController {
     try {
       await Future.delayed(const Duration(seconds: 2));
 
-      Get.toNamed(TaxiRouteNames.vanOwnerDetails.uri);
+      Get.toNamed(TaxiRouteNames.motorcycleOwnerDetails.uri);
     } finally {
       isLoading.value = false;
     }

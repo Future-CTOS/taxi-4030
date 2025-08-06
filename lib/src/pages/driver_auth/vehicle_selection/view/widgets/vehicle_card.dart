@@ -33,11 +33,18 @@ class VehicleCard extends StatelessWidget {
                 child: Icon(Icons.add, color: Colors.white, size: 18),
               ),
               AppSpacing.mediumHorizontalSpacer,
-              Text(title, style: Theme.of(context).textTheme.bodyMedium),
+              Text(
+                title,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Theme.of(context).colorScheme.onSecondary
+                      : null,
+                ),
+              ),
             ],
           ),
           AppSpacing.mediumHorizontalSpacer,
-          Image.asset(imagePath, fit: BoxFit.contain),
+          Image.asset(imagePath, height: 80, width: 100, fit: BoxFit.contain),
         ],
       ),
     ),

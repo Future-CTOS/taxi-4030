@@ -14,7 +14,7 @@ class AuthGuideStep2Page extends StatelessWidget {
     bodyTitle: 'احراز هویت امنیتی',
     bodySubTitle:
         'صورتتان را با فاصله مناسب از دوربین سلفی قرار دهید به‌گونه‌ای که در مرکز کادر مشخص‌شده قرار بگیرد.',
-    bottomSheet: PageBottomButton(
+    bottomNavigationBar: PageBottomButton(
       label: 'ادامه',
       onTap: () => Get.toNamed(TaxiRouteNames.authGuideStep3.uri),
       isActive: true,

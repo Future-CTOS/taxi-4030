@@ -14,7 +14,7 @@ class AuthGuideStep3Page extends StatelessWidget {
     bodyTitle: 'احراز هویت امنیتی',
     bodySubTitle:
         'گوشی باید به‌صورت کاملاً عمودی و بدون چرخش در دست نگه داشته شود تا چهره به‌درستی تشخیص داده شود.',
-    bottomSheet: PageBottomButton(
+    bottomNavigationBar: PageBottomButton(
       label: 'ادامه',
       onTap: () => Get.toNamed(TaxiRouteNames.authGuideStep4.uri),
       isActive: true,

@@ -1,7 +1,6 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:taxi_4030/src/pages/driver_auth/auth_guide_step1/views/auth_guide_step1_page.dart';
-import 'package:taxi_4030/src/pages/driver_auth/motorcycle_information_input/common/motorcycle_information_input_binding.dart';
 
+import '../../pages/driver_auth/auth_guide_step1/views/auth_guide_step1_page.dart';
 import '../../pages/driver_auth/auth_guide_step2/views/auth_guide_step2_page.dart';
 import '../../pages/driver_auth/auth_guide_step3/views/auth_guide_step3_page.dart';
 import '../../pages/driver_auth/auth_guide_step4/views/auth_guide_step4_page.dart';
@@ -11,6 +10,12 @@ import '../../pages/driver_auth/car_driver_register/common/car_driver_binding.da
 import '../../pages/driver_auth/car_driver_register/views/car_driver_page.dart';
 import '../../pages/driver_auth/car_information_input/common/car_information_binding.dart';
 import '../../pages/driver_auth/car_information_input/views/car_information_page.dart';
+import '../../pages/driver_auth/car_owner_details/common/car_owner_details_binding.dart';
+import '../../pages/driver_auth/car_owner_details/views/car_owner_details_page.dart';
+import '../../pages/driver_auth/car_selfie_auth/common/car_selfie_auth_binding.dart';
+import '../../pages/driver_auth/car_selfie_auth/views/car_selfie_auth_page.dart';
+import '../../pages/driver_auth/car_upload_insurance_information/common/car_upload_insurance_information_binding.dart';
+import '../../pages/driver_auth/car_upload_insurance_information/views/car_upload_insurance_information_page.dart';
 import '../../pages/driver_auth/driver_activity_info/common/driver_activity_info_binding.dart';
 import '../../pages/driver_auth/driver_activity_info/views/driver_activity_info_page.dart';
 import '../../pages/driver_auth/driver_license_upload/common/driver_license_upload_binding.dart';
@@ -20,11 +25,13 @@ import '../../pages/driver_auth/driver_otp_verify/views/driver_otp_verify_page.d
 import '../../pages/driver_auth/driver_personal_info/common/driver_personal_info_binding.dart';
 import '../../pages/driver_auth/driver_personal_info/views/driver_personal_info_page.dart';
 import '../../pages/driver_auth/motorcycle_card_upload/common/motorcycle_card_upload_binding.dart';
-import '../../pages/driver_auth/motorcycle_card_upload/controller/motorcycle_card_upload_controller.dart';
 import '../../pages/driver_auth/motorcycle_card_upload/views/motorcycle_card_upload_page.dart';
 import '../../pages/driver_auth/motorcycle_driver_register/common/motorcycle_driver_binding.dart';
 import '../../pages/driver_auth/motorcycle_driver_register/views/motorcycle_driver_page.dart';
+import '../../pages/driver_auth/motorcycle_information_input/common/motorcycle_information_input_binding.dart';
 import '../../pages/driver_auth/motorcycle_information_input/views/motorcycle_information_input_page.dart';
+import '../../pages/driver_auth/motorcycle_owner_details/common/motorcycle_owner_details_binding.dart';
+import '../../pages/driver_auth/motorcycle_owner_details/views/motorcycle_owner_details_page.dart';
 import '../../pages/driver_auth/van_auth_pending/common/van_auth_pending_binding.dart';
 import '../../pages/driver_auth/van_auth_pending/views/van_auth_pending_page.dart';
 import '../../pages/driver_auth/van_card_upload/common/van_card_upload_binding.dart';
@@ -39,17 +46,14 @@ import '../../pages/driver_auth/van_selfie_auth/common/van_selfie_auth_binding.d
 import '../../pages/driver_auth/van_selfie_auth/views/van_selfie_auth_page.dart';
 import '../../pages/driver_auth/van_upload_insurance_information/common/van_upload_insurance_information_binding.dart';
 import '../../pages/driver_auth/van_upload_insurance_information/views/van_upload_insurance_information_page.dart';
-import '../../pages/driver_auth/van_video_auth/common/van_video_auth_binding.dart';
-import '../../pages/driver_auth/van_video_auth/views/van_video_auth_page.dart';
 import '../../pages/driver_auth/vehicle_selection/common/vehicle_selection_binding.dart';
 import '../../pages/driver_auth/vehicle_selection/view/vehicle_selection_page.dart';
-
+import '../../pages/driver_auth/video_auth/common/video_auth_binding.dart';
+import '../../pages/driver_auth/video_auth/views/video_auth_page.dart';
 import '../../pages/user_auth/phone_input/common/phone_input_page_binding.dart';
 import '../../pages/user_auth/phone_input/view/phone_input_page_view.dart';
 import '../../pages/home_page/commons/home_page_binding.dart';
 import '../../pages/home_page/view/home_page_view.dart';
-import '../../pages/trip_page/common/trip_page_binding.dart';
-import '../../pages/trip_page/view/trip_page_view.dart';
 import '../../pages/user_auth/user_otp_verify/common/user_otp_verify_page_binding.dart';
 import '../../pages/user_auth/user_otp_verify/view/user_otp_verify_page_view.dart';
 import '../../pages/user_auth/user_register/common/user_register_binding.dart';
@@ -90,13 +94,7 @@ class TaxiAppPages {
     name: TaxiRouteNames.homePage.path,
     page: HomePage.new,
     binding: HomePageBinding(),
-    children: [_tripPage],
-  );
-
-  static GetPage<dynamic> get _tripPage => GetPage(
-    name: TaxiRouteNames.tripPage.path,
-    page: TripPageView.new,
-    binding: TripPageBinding(),
+    children: [],
   );
 
   static GetPage<dynamic> get _userRegister => GetPage(
@@ -190,14 +188,14 @@ class TaxiAppPages {
     name: TaxiRouteNames.motorcycleInformationInput.path,
     page: MotorcycleInformationInputPage.new,
     binding: MotorcycleInformationInputBinding(),
-    children: [],
+    children: [_motorCycleOwnerDetails],
   );
 
   static GetPage<dynamic> get _carInformationInput => GetPage(
     name: TaxiRouteNames.carInformationInput.path,
     page: CarInformationPage.new,
     binding: CarInformationBinding(),
-    children: [],
+    children: [_carOwnerDetails],
   );
 
   static GetPage<dynamic> get _vanOwnerDetails => GetPage(
@@ -205,6 +203,26 @@ class TaxiAppPages {
     page: VanOwnerDetailsPage.new,
     binding: VanOwnerDetailsBinding(),
     children: [_vanUploadInsurance],
+  );
+
+  static GetPage<dynamic> get _carOwnerDetails => GetPage(
+    name: TaxiRouteNames.carOwnerDetails.path,
+    page: CarOwnerDetailsPage.new,
+    binding: CarOwnerDetailsBinding(),
+    children: [_carUploadInsurance],
+  );
+  static GetPage<dynamic> get _motorCycleOwnerDetails => GetPage(
+    name: TaxiRouteNames.motorcycleOwnerDetails.path,
+    page: MotorcycleOwnerDetailsPage.new,
+    binding: MotorcycleOwnerDetailsBinding(),
+    children: [_carUploadInsurance],
+  );
+
+  static GetPage<dynamic> get _carUploadInsurance => GetPage(
+    name: TaxiRouteNames.carUploadInsurance.path,
+    page: CarUploadInsuranceInformationPage.new,
+    binding: CarUploadInsuranceInformationBinding(),
+    children: [_carSelfieAuth],
   );
 
   static GetPage<dynamic> get _vanUploadInsurance => GetPage(
@@ -218,6 +236,13 @@ class TaxiAppPages {
     name: TaxiRouteNames.vanSelfieAuth.path,
     page: VanSelfieAuthPage.new,
     binding: VanSelfieAuthBinding(),
+    children: [_authGuideStep1],
+  );
+
+  static GetPage<dynamic> get _carSelfieAuth => GetPage(
+    name: TaxiRouteNames.carSelfieAuth.path,
+    page: CarSelfieAuthPage.new,
+    binding: CarSelfieAuthBinding(),
     children: [_authGuideStep1],
   );
 
@@ -242,18 +267,18 @@ class TaxiAppPages {
   static GetPage<dynamic> get _authGuideStep4 => GetPage(
     name: TaxiRouteNames.authGuideStep4.path,
     page: AuthGuideStep4Page.new,
-    children: [_vanVideoAuth],
+    children: [_videoAuth],
   );
 
-  static GetPage<dynamic> get _vanVideoAuth => GetPage(
-    name: TaxiRouteNames.vanVideoAuth.path,
-    page: VanVideoAuthPage.new,
-    binding: VanVideoAuthBinding(),
-    children: [_vanAuthPending],
+  static GetPage<dynamic> get _videoAuth => GetPage(
+    name: TaxiRouteNames.videoAuth.path,
+    page: VideoAuthPage.new,
+    binding: VideoAuthBinding(),
+    children: [_authPending],
   );
 
-  static GetPage<dynamic> get _vanAuthPending => GetPage(
-    name: TaxiRouteNames.vanAuthPending.path,
+  static GetPage<dynamic> get _authPending => GetPage(
+    name: TaxiRouteNames.authPending.path,
     page: VanAuthPendingPage.new,
     binding: VanAuthPendingBinding(),
   );

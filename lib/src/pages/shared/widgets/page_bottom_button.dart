@@ -10,7 +10,7 @@ class PageBottomButton extends StatelessWidget {
     required this.label,
     required this.onTap,
     required this.isActive,
-    this.transparentBackground = false,
+    this.transparentBackground = true,
     this.isLoading = false,
   });
 

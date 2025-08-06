@@ -86,7 +86,7 @@ class _CustomDropDownState<T> extends State<CustomDropDown<T>> {
               color: Theme.of(context).colorScheme.onSecondary,
             ),
       menuMaxHeight: 200,
-      dropdownColor: Colors.white,
+      dropdownColor: Theme.of(context).colorScheme.onSecondary,
       value: widget.value,
       style: Theme.of(context).textTheme.bodyMedium,
       onChanged: (T? value) {

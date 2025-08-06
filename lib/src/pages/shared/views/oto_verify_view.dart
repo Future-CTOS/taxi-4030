@@ -35,6 +35,7 @@ class OtoVerifyView extends StatelessWidget {
           label: 'دریافت مجدد کد',
           isActive: true,
           onTap: resendOtp,
+          transparentBackground: true,
         )
       else
         SizedBox.shrink(),
@@ -90,7 +91,7 @@ class OtoVerifyView extends StatelessWidget {
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: isExpired
                   ? Theme.of(context).colorScheme.error
-                  : Theme.of(context).colorScheme.onPrimary,
+                  : Theme.of(context).textTheme.bodySmall?.color,
             ),
           ),
           Text(
@@ -98,7 +99,7 @@ class OtoVerifyView extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: isExpired
                   ? Theme.of(context).colorScheme.error
-                  : Theme.of(context).colorScheme.onPrimary,
+                  : Theme.of(context).textTheme.bodySmall?.color,
             ),
           ),
         ],

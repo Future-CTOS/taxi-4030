@@ -15,38 +15,26 @@ class PhoneInputPageView extends GetView<PhoneInputPageController> {
   @override
   Widget build(BuildContext context) => CustomScaffold(
     appBarTitle: _logo(context),
+    bodyTitle: 'به تاکسی 4030 خوش اومدی',
+    bodySubTitle: 'ی اپ و هزار راه.\nهمین حالا وارد شو',
     bottomNavigationBar: Obx(
       () => PageBottomButton(
         label: 'دریافت کد',
         onTap: () => controller.onSubmitPhoneNumberTap(context),
         isActive: controller.isReceiveCodeActive.value,
         isLoading: controller.isLoading.value,
+        transparentBackground: true,
       ),
     ),
-    body: _body(context),
+    body: _inputMobileNumber(context),
   );
 
-  Widget _body(BuildContext context) => Column(
-    children: [
-      Expanded(flex: 1, child: _welcomeContent(context)),
-      Expanded(flex: 2, child: _inputMobileNumber(context)),
-    ],
-  );
-
-  Widget _welcomeContent(BuildContext context) => Column(
-    children: [
-      Text(
-        'به تاکسی 4030 خوش اومدی',
-        style: Theme.of(context).textTheme.titleLarge,
-      ),
-      AppSpacing.mediumVerticalSpacer,
-      Text(
-        'ی اپ و هزار راه.\nهمین حالا وارد شو',
-        textAlign: TextAlign.center,
-        style: Theme.of(context).textTheme.bodySmall,
-      ),
-    ],
-  );
+  // Widget _body(BuildContext context) => Column(
+  //   children: [
+  //     Expanded(flex: 1, child: _welcomeContent(context)),
+  //     Expanded(flex: 2, child: _inputMobileNumber(context)),
+  //   ],
+  // );
 
   Widget _inputMobileNumber(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,

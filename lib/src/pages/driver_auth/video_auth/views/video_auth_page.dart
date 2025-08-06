@@ -4,10 +4,10 @@ import 'package:taxi_4030/src/components/scaffold.dart';
 
 import '../../../../infrastructures/utils/constants.dart';
 import '../../shared/video_auth_view.dart';
-import '../controller/van_video_auth_controller.dart';
+import '../controller/video_auth_controller.dart';
 
-class VanVideoAuthPage extends GetView<VanVideoAuthController> {
-  const VanVideoAuthPage({super.key});
+class VideoAuthPage extends GetView<VideoAuthController> {
+  const VideoAuthPage({super.key});
 
   @override
   Widget build(BuildContext context) => CustomScaffold(

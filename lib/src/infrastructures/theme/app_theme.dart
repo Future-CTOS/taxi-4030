@@ -8,9 +8,6 @@ class AppTheme {
     brightness: Brightness.light,
     primaryColor: AppColors.primaryColor.shade600,
     scaffoldBackgroundColor: AppColors.backgroundColor,
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: Colors.white,
-    ),
     textTheme: TextTheme(
       titleLarge: AppTypography.headline,
       bodyLarge: AppTypography.bodyLarge,
@@ -31,19 +28,28 @@ class AppTheme {
   static ThemeData darkTheme = ThemeData(
     fontFamily: 'YekanBakh',
     brightness: Brightness.dark,
-    primaryColor: AppColors.primaryColor,
+    primaryColor: AppColors.primaryColor.shade600,
     scaffoldBackgroundColor: AppColors.darkBackgroundColor,
     textTheme: TextTheme(
       titleLarge: AppTypography.headline.copyWith(
         color: AppColors.darkTextColor,
       ),
+      bodyLarge: AppTypography.bodyLarge.copyWith(
+        color: AppColors.darkTextColor,
+      ),
       bodyMedium: AppTypography.body.copyWith(color: AppColors.darkTextColor),
-      bodySmall: AppTypography.caption.copyWith(color: AppColors.darkTextColor),
+      bodySmall: AppTypography.caption.copyWith(
+        color: AppColors.secondaryDarkTextColor,
+      ),
     ),
+
     colorScheme: ColorScheme.dark(
-      primary: AppColors.primaryColor,
-      secondary: AppColors.secondaryColor,
-      onPrimary: AppColors.darkTextColor,
+      primary: AppColors.primaryColor.shade600,
+      surfaceContainer: AppColors.primaryColor.shade100,
+      secondary: AppColors.secondaryColor.shade400,
+      onSecondary: AppColors.secondaryColor.shade600,
+      onPrimary: AppColors.secondaryColor.shade600,
+      surface: AppColors.backgroundColor,
     ),
   );
 }
