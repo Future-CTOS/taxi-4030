@@ -32,7 +32,7 @@ class SelfieAuthView extends StatelessWidget {
       ),
       AppSpacing.largeVerticalSpacer,
       Text(
-        'این تصویری است که مسافران در اپلیکیشن خود عنوان چهره شما مشاهده میکنند.',
+        'این تصویری است که مسافران در اپلیکیشن به عنوان چهره شما مشاهده میکنند.',
         style: Theme.of(context).textTheme.bodyMedium,
       ),
       Text(
@@ -44,7 +44,7 @@ class SelfieAuthView extends StatelessWidget {
         style: Theme.of(context).textTheme.bodyMedium,
       ),
       Text(
-        'بدون هرگونه زیورآلات مانند زنجیر،گوشواره،کلاه یا عینک دودی باشد.',
+        'بدون هرگونه زیورآلات مانند زنجیر،گوشواره،کلاه یا عینک آفتابی باشد.',
         style: Theme.of(context).textTheme.bodyMedium,
       ),
     ],

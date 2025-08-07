@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
+import '../../components/permission_bottom_sheet.dart';
 import '../../pages/shared/model/enum/status_enum.dart';
 
 class Utils {
@@ -42,4 +45,48 @@ class Utils {
   static const Map<String, String> headers = {
     'Content-Type': 'application/json; charset=utf-8',
   };
+
+  static void showPermissionBottomSheet({
+    required BuildContext context,
+    bool requestCamera = false,
+    bool requestMicrophone = false,
+    bool requestStorage = false,
+    bool requestClipboard = false,
+  }) => WidgetsBinding.instance.addPostFrameCallback((_) async {
+    await Future.delayed(Duration(seconds: 1));
+    showGeneralDialog(
+      context: context,
+      barrierLabel: 'PermissionSheet',
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: const Duration(milliseconds: 300),
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return const SizedBox.shrink();
+      },
+      transitionBuilder: (context, animation, secondaryAnimation, child) {
+        final curvedValue = Curves.easeInOut.transform(animation.value);
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+          child: Opacity(
+            opacity: animation.value,
+            child: Transform.translate(
+              offset: Offset(0, (1 - curvedValue) * 300),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Material(
+                  color: Colors.transparent,
+                  child: PermissionBottomSheet(
+                    requestClipboard: requestClipboard,
+                    requestCamera: requestCamera,
+                    requestMicrophone: requestMicrophone,
+                    requestStorage: requestStorage,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  });
 }

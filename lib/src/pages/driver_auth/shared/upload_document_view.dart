@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:taxi_4030/src/infrastructures/utils/spacing.dart';
+import '../../../infrastructures/utils/utils.dart';
 import 'widgets/upload_image_button.dart';
 
-class UploadDocumentView extends StatelessWidget {
+class UploadDocumentView extends StatefulWidget {
   final String frontEmptyImage;
   final String frontFilledImage;
   final String backEmptyImage;
@@ -33,6 +35,23 @@ class UploadDocumentView extends StatelessWidget {
   });
 
   @override
+  State<UploadDocumentView> createState() => _UploadDocumentViewState();
+}
+
+class _UploadDocumentViewState extends State<UploadDocumentView> {
+  @override
+  void initState() {
+    Utils.showPermissionBottomSheet(
+      context: context,
+      requestCamera: true,
+      requestStorage: true,
+      requestMicrophone: true,
+    );
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) => Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -44,20 +63,20 @@ class UploadDocumentView extends StatelessWidget {
   );
 
   Widget _topSection() => UploadImageButton(
-    label: frontLabel,
-    emptyImagePath: frontEmptyImage,
-    filledImagePath: frontFilledImage,
-    hasFile: hasFrontFile,
-    isLoading: isFrontLoading,
-    onTap: onFrontTap,
+    label: widget.frontLabel,
+    emptyImagePath: widget.frontEmptyImage,
+    filledImagePath: widget.frontFilledImage,
+    hasFile: widget.hasFrontFile,
+    isLoading: widget.isFrontLoading,
+    onTap: widget.onFrontTap,
   );
 
   Widget _bottomSection() => UploadImageButton(
-    label: backLabel,
-    emptyImagePath: backEmptyImage,
-    filledImagePath: backFilledImage,
-    hasFile: hasBackFile,
-    isLoading: isBackLoading,
-    onTap: onBackTap,
+    label: widget.backLabel,
+    emptyImagePath: widget.backEmptyImage,
+    filledImagePath: widget.backFilledImage,
+    hasFile: widget.hasBackFile,
+    isLoading: widget.isBackLoading,
+    onTap: widget.onBackTap,
   );
 }

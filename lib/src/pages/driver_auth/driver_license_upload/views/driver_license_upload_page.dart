@@ -26,7 +26,6 @@ class DriverLicenseUploadPage extends GetView<DriverLicenseUploadController> {
         onTap: controller.submitUserInfo,
         isActive: controller.isCompletedInfo.value,
         isLoading: controller.isSubmitLoading.value,
-        transparentBackground: true,
       ),
     ),
     body: Obx(

@@ -29,9 +29,11 @@ class AppColors {
   /// light
   static const Color backgroundColor = Colors.white;
   static const Color textColor = Color(0xff191919);
+  static const Color bottomSheetLightColor = Color(0xffFFF6CC);
 
   /// dark
   static const Color darkBackgroundColor = Color(0xff202B37);
   static const Color darkTextColor = Color(0xffF2FDFF);
   static const Color secondaryDarkTextColor = Color(0xffCED2DA);
+  static const Color bottomSheetDarkColor = Color(0xff414E62);
 }

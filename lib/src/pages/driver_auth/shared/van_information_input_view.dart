@@ -3,7 +3,7 @@ import 'package:taxi_4030/src/infrastructures/utils/spacing.dart';
 
 import '../../../components/drop_down.dart';
 import '../../shared/widgets/page_bottom_button.dart';
-import 'widgets/iranian_plate.dart';
+import 'widgets/iranian_car_plate.dart';
 
 class VanInformationInputView extends StatelessWidget {
   const VanInformationInputView({
@@ -28,7 +28,7 @@ class VanInformationInputView extends StatelessWidget {
     physics: const BouncingScrollPhysics(),
     child: Column(
       children: [
-        IranianPlate(
+        IranianCarPlate(
           letters: iranLicenseLetters,
           selectedLetter: selectedLetter,
           onCompleted: onCompletedIranianPlate,

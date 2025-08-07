@@ -95,7 +95,14 @@ class RegisterDriverView extends StatelessWidget {
                 AppSpacing.largeVerticalSpacer,
                 Align(
                   alignment: AlignmentDirectional.centerStart,
-                  child: Text("شماره همراه", style: theme.textTheme.bodyMedium),
+                  child: Text(
+                    "شماره همراه",
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Theme.of(context).colorScheme.onSecondary
+                          : null,
+                    ),
+                  ),
                 ),
                 AppSpacing.mediumVerticalSpacer,
                 PhoneNumberField(

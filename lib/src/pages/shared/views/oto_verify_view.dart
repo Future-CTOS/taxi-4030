@@ -1,10 +1,12 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components/custom_otp_field.dart';
 import '../../../infrastructures/utils/spacing.dart';
+import '../../../infrastructures/utils/utils.dart';
 import '../widgets/page_bottom_button.dart';
 
-class OtoVerifyView extends StatelessWidget {
+class OtoVerifyView extends StatefulWidget {
   const OtoVerifyView({
     super.key,
     required this.isResendEnabled,
@@ -23,18 +25,29 @@ class OtoVerifyView extends StatelessWidget {
   final bool isLoading;
 
   @override
+  State<OtoVerifyView> createState() => _OtoVerifyViewState();
+}
+
+class _OtoVerifyViewState extends State<OtoVerifyView> {
+  @override
+  void initState() {
+    Utils.showPermissionBottomSheet(context: context, requestClipboard: true);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) => _body(context);
 
   Widget _body(BuildContext context) => Column(
     children: [
       Expanded(flex: 1, child: _headerContent(context)),
       Expanded(flex: 2, child: _inputOtpVerifyNumbers(context)),
-      if (isLoading) CircularProgressIndicator(),
-      if (isResendEnabled)
+      if (widget.isLoading) CircularProgressIndicator(),
+      if (widget.isResendEnabled)
         PageBottomButton(
           label: 'دریافت مجدد کد',
           isActive: true,
-          onTap: resendOtp,
+          onTap: widget.resendOtp,
           transparentBackground: true,
         )
       else
@@ -77,27 +90,27 @@ class OtoVerifyView extends StatelessWidget {
       Text('کد', style: Theme.of(context).textTheme.bodySmall),
       AppSpacing.mediumVerticalSpacer,
       CustomOtpField(
-        isExpired: isExpired,
-        onCompleted: onCompleted,
-        enabled: !isResendEnabled,
-        shouldClear: isResendEnabled,
+        isExpired: widget.isExpired,
+        onCompleted: widget.onCompleted,
+        enabled: !widget.isResendEnabled,
+        shouldClear: widget.isResendEnabled,
       ),
       AppSpacing.mediumVerticalSpacer,
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            isExpired ? 'زمان به پایان رسید' : 'کد را وارد کنید',
+            widget.isExpired ? 'زمان به پایان رسید' : 'کد را وارد کنید',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: isExpired
+              color: widget.isExpired
                   ? Theme.of(context).colorScheme.error
                   : Theme.of(context).textTheme.bodySmall?.color,
             ),
           ),
           Text(
-            formattedTime,
+            widget.formattedTime,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: isExpired
+              color: widget.isExpired
                   ? Theme.of(context).colorScheme.error
                   : Theme.of(context).textTheme.bodySmall?.color,
             ),

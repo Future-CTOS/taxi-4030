@@ -4,12 +4,12 @@ import 'package:taxi_4030/src/infrastructures/utils/spacing.dart';
 import '../../../../../gen/assets.gen.dart';
 import '../../../../infrastructures/utils/constants.dart';
 
-class IranianPlate extends StatefulWidget {
+class IranianCarPlate extends StatefulWidget {
   final List<String> letters;
   final String? selectedLetter;
   final ValueChanged<String>? onCompleted;
 
-  const IranianPlate({
+  const IranianCarPlate({
     super.key,
     required this.letters,
     this.selectedLetter,
@@ -17,10 +17,10 @@ class IranianPlate extends StatefulWidget {
   });
 
   @override
-  State<IranianPlate> createState() => _IranianPlateState();
+  State<IranianCarPlate> createState() => _IranianCarPlateState();
 }
 
-class _IranianPlateState extends State<IranianPlate>
+class _IranianCarPlateState extends State<IranianCarPlate>
     with SingleTickerProviderStateMixin {
   late final List<TextEditingController> _controllers;
   late final List<FocusNode> _focusNodes;
@@ -179,6 +179,7 @@ class _IranianPlateState extends State<IranianPlate>
   Widget _letterDropdown(BuildContext context) => Expanded(
     flex: 4,
     child: DropdownButtonFormField<String>(
+      dropdownColor: Theme.of(context).scaffoldBackgroundColor,
       value: widget.selectedLetter,
       items: widget.letters
           .map(

@@ -2,8 +2,7 @@ class RoutePaths {
   /// home Page
   static const String homePage = '/home';
 
-  /// Trip Page
-  static const String tripPage = '/trip';
+  static const String splashScreen = '/splash-screen';
 
   static const String driverOtpVerify = '/driver-otp-verify';
   static const String userOtpVerify = '/user-otp-verify';

@@ -6,7 +6,7 @@ import '../../../../infrastructures/utils/constants.dart';
 import '../../../../infrastructures/utils/spacing.dart';
 import '../../../shared/widgets/page_bottom_button.dart';
 import '../../shared/van_information_input_view.dart';
-import '../../shared/widgets/iranian_plate.dart';
+import '../../shared/widgets/iranian_car_plate.dart';
 import '../controller/car_information_controller.dart';
 
 class CarInformationPage extends GetView<CarInformationController> {
@@ -32,7 +32,7 @@ class CarInformationPage extends GetView<CarInformationController> {
       () => Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          IranianPlate(
+          IranianCarPlate(
             letters: controller.iranAllLicensePlateLetters,
             selectedLetter: controller.selectedLetter.value,
             onCompleted: controller.onCompletedIranianPlate,

@@ -8,8 +8,6 @@ class TaxiRouteTitleMap {
     /// Home Page
     TaxiRouteNames.homePage.uri: LocaleKeys.taxi_4030_app_routes_home_page.tr,
 
-    /// trip page
-    TaxiRouteNames.tripPage.uri: LocaleKeys.taxi_4030_app_routes_trip_page.tr,
 
     /// Authentication
     TaxiRouteNames.userOtpVerify.uri: LocaleKeys.taxi_4030_app_routes_log_in.tr,

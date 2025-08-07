@@ -157,15 +157,6 @@ class _CustomOtpFieldState extends State<CustomOtpField>
                     ),
                     cursorColor: Theme.of(context).colorScheme.secondary,
                     onChanged: (val) => _onChanged(val, i),
-                    onTap: () async {
-                      final ClipboardData? data = await Clipboard.getData(
-                        'text/plain',
-                      );
-                      if (data?.text != null &&
-                          data!.text!.length == widget.length) {
-                        _onPaste(data.text!);
-                      }
-                    },
                     decoration: InputDecoration(
                       counterText: '',
                       focusedBorder: UnderlineInputBorder(

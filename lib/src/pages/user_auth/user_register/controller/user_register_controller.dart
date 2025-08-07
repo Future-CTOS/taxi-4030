@@ -12,9 +12,6 @@ class UserRegisterController extends GetxController {
   final nationalCodeController = TextEditingController();
   final nationalIdController = TextEditingController();
   final fatherName = TextEditingController();
-  final dayController = TextEditingController();
-  final monthController = TextEditingController();
-  final yearController = TextEditingController();
 
   final isFormFilled = false.obs;
   final isLoading = false.obs;
@@ -28,9 +25,6 @@ class UserRegisterController extends GetxController {
     nationalCodeController.addListener(_checkFormStatus);
     nationalIdController.addListener(_checkFormStatus);
     fatherName.addListener(_checkFormStatus);
-    dayController.addListener(_checkFormStatus);
-    monthController.addListener(_checkFormStatus);
-    yearController.addListener(_checkFormStatus);
   }
 
   void _checkFormStatus() {
@@ -45,20 +39,12 @@ class UserRegisterController extends GetxController {
         Validators.nationalIdValidator(nationalIdController.text) == null;
     final fatherNameValid =
         Validators.validateFirstName(fatherName.text) == null;
-    final dateControllerValid =
-        Validators.validateDate(
-          day: dayController.text,
-          month: monthController.text,
-          year: yearController.text,
-        ) ==
-            null;
     isFormFilled.value =
         firstNameValid &&
-            lastNameValid &&
-            nationalCodeValid &&
-            nationalIdValid &&
-            fatherNameValid &&
-            dateControllerValid;
+        lastNameValid &&
+        nationalCodeValid &&
+        nationalIdValid &&
+        fatherNameValid;
   }
 
   Future<void> submitUserInfo() async {
@@ -84,9 +70,6 @@ class UserRegisterController extends GetxController {
     nationalCodeController.dispose();
     nationalIdController.dispose();
     fatherName.dispose();
-    dayController.dispose();
-    monthController.dispose();
-    yearController.dispose();
     super.onClose();
   }
 }

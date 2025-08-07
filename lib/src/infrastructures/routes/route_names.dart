@@ -16,10 +16,9 @@ class TaxiRouteNames extends Routes {
     RoutePaths.homePage,
   );
 
-  /// trip Page
-  static const Routes tripPage = Routes(
-    RoutePaths.homePage + RoutePaths.tripPage,
-    RoutePaths.tripPage,
+  static const Routes splashScreen = Routes(
+    RoutePaths.splashScreen,
+    RoutePaths.splashScreen,
   );
 
   /// Authentication

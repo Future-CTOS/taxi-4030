@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:taxi_4030/src/components/phone_number_filed.dart';
 
 import '../../../../components/scaffold.dart';
-import '../../../../components/text_field.dart';
 import '../../../../infrastructures/utils/spacing.dart';
 import '../../../../infrastructures/utils/validators.dart';
 import '../../../shared/widgets/page_bottom_button.dart';
@@ -28,13 +27,6 @@ class PhoneInputPageView extends GetView<PhoneInputPageController> {
     ),
     body: _inputMobileNumber(context),
   );
-
-  // Widget _body(BuildContext context) => Column(
-  //   children: [
-  //     Expanded(flex: 1, child: _welcomeContent(context)),
-  //     Expanded(flex: 2, child: _inputMobileNumber(context)),
-  //   ],
-  // );
 
   Widget _inputMobileNumber(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,

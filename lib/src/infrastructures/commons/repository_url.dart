@@ -6,6 +6,7 @@ class RepositoryUrls {
   /// Authentication
   static Uri requestOtp = Uri.parse('$_baseUrl/auth/request-otp');
   static Uri verifyOtp = Uri.parse('$_baseUrl/auth/verify-otp');
+  static Uri checkConnection = Uri.parse(_baseUrl);
 
   // static const String checkEmailExistence = '/account/is-email-exists';
   // static const String logout = '/user_auth/logout';

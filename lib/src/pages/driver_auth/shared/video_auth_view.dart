@@ -95,11 +95,11 @@ class VideoAuthView extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           Text(
-            'تمامی اطلاعات واردشده در اپلیکیشن تاکسی 4030 متعلق به خودم',
+            'تمامی اطلاعات وارد شده در اپلیکیشن تاکسی 4030 متعلق به خودم است و',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           Text(
-            'است و مسئولیت استفاده از این حساب را می‌پذیرم.',
+            'مسئولیت استفاده از این حساب را می‌پذیرم.',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
         ],

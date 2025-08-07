@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taxi_4030/src/components/persian_date_picker.dart';
 import 'package:taxi_4030/src/components/scaffold.dart';
 
-import '../../../../components/birth_data_field.dart';
 import '../../../../components/number_text_field.dart';
 import '../../../../components/national_code_field.dart';
 import '../../../../components/text_field.dart';
@@ -53,10 +53,9 @@ class UserRegisterPage extends GetView<UserRegisterController> {
               label: 'کد ملی',
             ),
             AppSpacing.largeVerticalSpacer,
-            BirthDateField(
-              dayController: controller.dayController,
-              monthController: controller.monthController,
-              yearController: controller.yearController,
+            PersianDatePicker(
+              onDateSelected: (selectedDate) => print(selectedDate),
+              initialDate: DateTime.now(),
             ),
             AppSpacing.largeVerticalSpacer,
             CustomTextField(

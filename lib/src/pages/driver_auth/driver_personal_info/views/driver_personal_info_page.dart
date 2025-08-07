@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taxi_4030/src/components/scaffold.dart';
 
-import '../../../../components/birth_data_field.dart';
+import '../../../../components/persian_date_picker.dart';
 import '../../../../components/number_text_field.dart';
 import '../../../../components/national_code_field.dart';
 import '../../../../components/text_field.dart';
@@ -53,10 +53,10 @@ class DriverPersonalInfoPage extends GetView<DriverPersonalInfoController> {
               label: 'کد ملی',
             ),
             AppSpacing.largeVerticalSpacer,
-            BirthDateField(
-              dayController: controller.dayController,
-              monthController: controller.monthController,
-              yearController: controller.yearController,
+            PersianDatePicker(
+              onDateSelected: (selectedDate) =>
+                  controller.dateTimeSelected.value = selectedDate,
+              restrictUnder18: true,
             ),
             AppSpacing.largeVerticalSpacer,
             CustomTextField(

@@ -4,7 +4,8 @@ import '../../../../components/drop_down.dart';
 import '../../../../components/scaffold.dart';
 import '../../../../infrastructures/utils/constants.dart';
 import '../../../shared/widgets/page_bottom_button.dart';
-import '../../shared/widgets/iranian_plate.dart';
+import '../../shared/widgets/iranian_car_plate.dart';
+import '../../shared/widgets/iranian_motorcycle_plate.dart';
 import '../controller/motorcycle_information_input_controller.dart';
 
 class MotorcycleInformationInputPage
@@ -31,7 +32,7 @@ class MotorcycleInformationInputPage
       physics: const BouncingScrollPhysics(),
       child: Column(
         children: [
-          IranianPlate(
+          IranianMotorcyclePlate(
             letters: controller.iranAllLicensePlateLetters,
             selectedLetter: controller.selectedLetter.value,
             onCompleted: controller.onCompletedIranianPlate,

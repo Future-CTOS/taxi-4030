@@ -42,7 +42,6 @@ class AppTheme {
         color: AppColors.secondaryDarkTextColor,
       ),
     ),
-
     colorScheme: ColorScheme.dark(
       primary: AppColors.primaryColor.shade600,
       surfaceContainer: AppColors.primaryColor.shade100,
