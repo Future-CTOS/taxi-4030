@@ -2,6 +2,7 @@ import 'package:either_dart/either.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
+import '../../../../infrastructures/app_controller/app_controller.dart';
 import '../../../../infrastructures/routes/route_names.dart';
 import '../../../../infrastructures/utils/utils.dart';
 import '../../../shared/model/enum/status_enum.dart';
@@ -30,9 +31,9 @@ class PhoneInputPageController extends GetxController {
     isReceiveCodeActive.value = true;
   }
 
-  void onSubmitPhoneNumberTap(BuildContext context) {
+  Future<void> onSubmitPhoneNumberTap(BuildContext context) async {
     if (formKey.currentState?.validate() ?? false) {
-      // _requestOtp(context);
+      await _requestOtp(context);
       Get.toNamed(TaxiRouteNames.userOtpVerify.uri);
     }
   }
@@ -40,28 +41,20 @@ class PhoneInputPageController extends GetxController {
   Future<void> _requestOtp(BuildContext context) async {
     isLoading.value = true;
     final UserRegisterDto registerDto = UserRegisterDto(
-      phone: phoneNumberTextController.text.trim(),
+      phone: phoneNumberTextController.text,
     );
     final Either<String, Map<String, dynamic>> resultOrException =
         await _repository.requestOtp(dto: registerDto);
     isLoading.value = false;
     resultOrException.fold(
-      (final error) {
-        print(error);
-        Utils.showSnackBar(
-          context,
-          text: 'خطایی رخ داد',
-          status: StatusEnum.danger,
-        );
-      },
+      (final error) => Utils.showSnackBar(
+        context,
+        text: 'خطایی رخ داد',
+        status: StatusEnum.danger,
+      ),
       (final response) {
-        Get.toNamed(
-          TaxiRouteNames.userOtpVerify.uri,
-          parameters: {
-            "phone": phoneNumberTextController.text,
-            'otp': '$response',
-          },
-        );
+        AppController.instance.phoneNumber = phoneNumberTextController.text;
+        Get.toNamed(TaxiRouteNames.userOtpVerify.uri);
       },
     );
   }

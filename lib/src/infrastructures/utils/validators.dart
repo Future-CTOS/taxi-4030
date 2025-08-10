@@ -141,6 +141,27 @@ class Validators {
   }
 
   static String? validateMobile(String? mobile) {
+    if (mobile == null || mobile.isEmpty) {
+      return 'شماره موبایل را وارد کنید';
+    }
+
+    final RegExp digitsOnly = RegExp(r'^[0-9]+$');
+    if (!digitsOnly.hasMatch(mobile)) {
+      return 'شماره موبایل معتبر نیست';
+    }
+
+    if (mobile.startsWith('0')) {
+      if (mobile.length == 11) {
+        return null;
+      }
+    } else if (mobile.startsWith('9') && mobile.length == 10) {
+      return null;
+    }
+
+    return 'شماره موبایل معتبر نیست';
+  }
+
+  /*static String? validateMobile(String? mobile) {
     final RegExp mobileNumberRegex = RegExp(r'^(?:[ +0]9)?[0-9]{10,12}$');
     if (mobile == null || mobile.isEmpty) return 'شماره موبایل را وارد کنید';
     if (!mobileNumberRegex.hasMatch(mobile)) return 'شماره موبایل معتبر نیست';
@@ -150,7 +171,7 @@ class Validators {
       return null;
     }
     return 'شماره موبایل معتبر نیست';
-  }
+  }*/
 
   /// this is for one by one of them
   static String? otpValidator(String? value) {

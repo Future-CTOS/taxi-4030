@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:octo_image/octo_image.dart';
 
 import '../infrastructures/app_controller/app_controller.dart';
-import '../infrastructures/commons/repository_url.dart';
+import '../infrastructures/commons/repository_urls.dart';
 import 'loading.dart';
 
 class CustomImageBuilder extends StatelessWidget {

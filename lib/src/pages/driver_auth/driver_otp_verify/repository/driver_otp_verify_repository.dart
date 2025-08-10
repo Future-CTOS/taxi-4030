@@ -1,31 +1,30 @@
 import 'dart:convert';
 
 import 'package:either_dart/either.dart';
-
-import '../../../../infrastructures/commons/repository_urls.dart';
-import '../model/dtos/otp_verify_dto.dart';
 import 'package:http/http.dart' as http;
+import '../../../../infrastructures/commons/repository_urls.dart';
+import '../../../../infrastructures/utils/utils.dart';
+import '../models/dtos/driver_otp_verify_dto.dart';
+import '../models/dtos/driver_register_dto.dart';
+import '../models/view_models/driver_otp_verify_view_model.dart';
 
-import '../model/dtos/user_register_dto.dart';
-import '../model/view_models/otp_verify_view_model.dart';
-
-class OtpVerifyPageRepository {
-  Future<Either<String, OtpVerifyViewModel>> verifyOtp({
-    required OtpVerifyDto dto,
+class DriverOtpVerifyRepository {
+  Future<Either<String, DriverOtpVerifyViewModel>> verifyOtp({
+    required DriverOtpVerifyDto dto,
   }) async {
     try {
       int? statusCode;
+
       final http.Response response = await http.post(
-        RepositoryUrls.userVerifyOtp,
+        RepositoryUrls.driverVerifyOtp,
+        headers: Utils.headers,
         body: dto.toJson(),
       );
       final Map<String, dynamic> jsonData = json.decode(response.body);
-      print(jsonData);
       statusCode = response.statusCode;
       if (statusCode == 201) {
-        final OtpVerifyViewModel verifyViewModel = OtpVerifyViewModel.fromJson(
-          jsonData,
-        );
+        final DriverOtpVerifyViewModel verifyViewModel =
+            DriverOtpVerifyViewModel.fromJson(jsonData);
         return Right(verifyViewModel);
       } else {
         return const Left('کد اشتباه است');
@@ -36,12 +35,13 @@ class OtpVerifyPageRepository {
   }
 
   Future<Either<String, Map<String, dynamic>>> requestOtp({
-    required UserRegisterDto dto,
+    required DriverRegisterDto dto,
   }) async {
     try {
       int? statusCode;
       final http.Response response = await http.post(
-        RepositoryUrls.userRequestOtp,
+        RepositoryUrls.driverRequestOtp,
+        headers: Utils.headers,
         body: dto.toJson(),
       );
       final Map<String, dynamic> jsonData = json.decode(response.body);

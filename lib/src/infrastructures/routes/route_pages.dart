@@ -1,5 +1,6 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:taxi_4030/src/infrastructures/routes/route_paths.dart';
+import 'package:taxi_4030/src/pages/profile/common/profile_binding.dart';
 
 import '../../pages/driver_auth/auth_guide_step1/views/auth_guide_step1_page.dart';
 import '../../pages/driver_auth/auth_guide_step2/views/auth_guide_step2_page.dart';
@@ -51,6 +52,7 @@ import '../../pages/driver_auth/vehicle_selection/common/vehicle_selection_bindi
 import '../../pages/driver_auth/vehicle_selection/view/vehicle_selection_page.dart';
 import '../../pages/driver_auth/video_auth/common/video_auth_binding.dart';
 import '../../pages/driver_auth/video_auth/views/video_auth_page.dart';
+import '../../pages/profile/views/profile_page.dart';
 import '../../pages/splash_screen/bindings/splash_screen_page_binding.dart';
 import '../../pages/splash_screen/controllers/splash_screen_page_controller.dart';
 import '../../pages/splash_screen/views/splash_screen_page.dart';
@@ -65,6 +67,7 @@ import 'route_names.dart';
 class TaxiAppPages {
   static final List<GetPage<dynamic>> routes = [
     _splashScreen,
+    _profile,
     _phoneInput,
     _userOtpVerify,
     _userRegister,
@@ -75,8 +78,14 @@ class TaxiAppPages {
 
   static GetPage<SplashScreenPageController> get _splashScreen => GetPage(
     name: RoutePaths.splashScreen,
-    page: () => SplashScreenPage(),
+    page: SplashScreenPage.new,
     binding: SplashScreenPageBinding(),
+  );
+
+  static GetPage<SplashScreenPageController> get _profile => GetPage(
+    name: RoutePaths.profile,
+    page: ProfilePage.new,
+    binding: ProfileBinding(),
   );
 
   static GetPage<dynamic> get _phoneInput => GetPage(

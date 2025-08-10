@@ -43,7 +43,7 @@ class Utils {
       );
 
   static const Map<String, String> headers = {
-    'Content-Type': 'application/json; charset=utf-8',
+    'Content-Type': 'application/json',
   };
 
   static void showPermissionBottomSheet({

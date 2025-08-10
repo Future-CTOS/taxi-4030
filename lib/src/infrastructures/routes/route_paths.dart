@@ -1,6 +1,6 @@
 class RoutePaths {
-  /// home Page
-  static const String homePage = '/home';
+  /// profile
+  static const String profile = '/profile';
 
   static const String splashScreen = '/splash-screen';
 

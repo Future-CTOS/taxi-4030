@@ -1,15 +1,45 @@
 class RepositoryUrls {
   RepositoryUrls._();
 
-  static const String _baseUrl = 'https://4030.liara.run';
+  static const String _baseUrl = 'https://taxi-4030.ir';
+  static const String _userAuth = '/auth';
+  static const String _driverAuth = '/driver-auth';
+  static const String _driverRegister = '/driver';
 
-  /// Authentication
-  static Uri requestOtp = Uri.parse('$_baseUrl/auth/request-otp');
-  static Uri verifyOtp = Uri.parse('$_baseUrl/auth/verify-otp');
-  static Uri checkConnection = Uri.parse(_baseUrl);
+  static Uri userRequestOtp = Uri.parse('$_baseUrl$_userAuth/request-otp');
+  static Uri userVerifyOtp = Uri.parse('$_baseUrl$_userAuth/verify-otp');
+  static Uri userRegister = Uri.parse(
+    '$_baseUrl$_userAuth/complete-registration',
+  );
+
+  static Uri driverRequestOtp = Uri.parse('$_baseUrl$_driverAuth/request-otp');
+  static Uri driverVerifyOtp = Uri.parse('$_baseUrl$_driverAuth/verify-otp');
+
+  static Uri driverPersonalInfo = Uri.parse(
+    '$_baseUrl$_driverRegister/step1-basic',
+  );
+  static Uri driverActivityInfo = Uri.parse(
+    '$_baseUrl$_driverRegister/step2-location',
+  );
+  static Uri driverLicenseUploadFront = Uri.parse(
+    '$_baseUrl$_driverRegister/step3/license-front',
+  );
+
+  static Uri driverLicenseUploadBack = Uri.parse(
+    '$_baseUrl$_driverRegister/step4-license-back',
+  );
+  static Uri driverSelfieUpload = Uri.parse(
+    '$_baseUrl$_driverRegister/step5-selfie',
+  );
+  static Uri driverVideoUpload = Uri.parse(
+    '$_baseUrl$_driverRegister/step6-video',
+  );
 
   // static const String checkEmailExistence = '/account/is-email-exists';
   // static const String logout = '/user_auth/logout';
+
+  static Uri checkConnection = Uri.parse(_baseUrl);
+
   //
   // /// Profile page
   // static String getOthersProfileInfo(final String id) =>

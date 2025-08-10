@@ -19,7 +19,7 @@ class CarDriverPage extends GetView<CarDriverController> {
         subtitle: 'شماره همراه و کد ملی خود را وارد کنید.',
         imagePath: Assets.pngs.car2d.path,
         phoneNumberTextController: controller.phoneNumberController,
-        onSubmit: controller.submitUserInfo,
+        onSubmit: () => controller.requestOtp(context),
         isLoading: controller.isLoading.value,
         isActiveBottomButton: controller.isFormFilled.value,
       ),

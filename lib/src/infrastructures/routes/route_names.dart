@@ -11,9 +11,9 @@ class TaxiRouteNames extends Routes {
   TaxiRouteNames(super.uri);
 
   /// home Page
-  static const Routes homePage = Routes(
-    RoutePaths.homePage,
-    RoutePaths.homePage,
+  static const Routes profile = Routes(
+    RoutePaths.profile,
+    RoutePaths.profile,
   );
 
   static const Routes splashScreen = Routes(

@@ -4,18 +4,18 @@ import 'package:either_dart/either.dart';
 
 import '../../../../infrastructures/commons/repository_urls.dart';
 import '../../../../infrastructures/utils/utils.dart';
-import '../models/user_register_dto.dart';
+import '../models/car_register_dto.dart';
 import 'package:http/http.dart' as http;
 
-class PhoneInputRepository {
+class CarDriverRepository {
   Future<Either<String, Map<String, dynamic>>> requestOtp({
-    required UserRegisterDto dto,
+    required CarRegisterDto dto,
   }) async {
     try {
       int? statusCode;
       final String body = json.encode(dto.toJson());
       final http.Response response = await http.post(
-        RepositoryUrls.userRequestOtp,
+        RepositoryUrls.driverRequestOtp,
         headers: Utils.headers,
         body: body,
       );

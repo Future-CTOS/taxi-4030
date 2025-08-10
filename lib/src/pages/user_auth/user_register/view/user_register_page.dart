@@ -40,13 +40,13 @@ class UserRegisterPage extends GetView<UserRegisterController> {
               hint: 'نام خانوادگی خود را وارد کنید',
               textController: controller.lastNameController,
             ),
-            AppSpacing.largeVerticalSpacer,
+            /* AppSpacing.largeVerticalSpacer,
             NumberTextField(
               controller: controller.nationalIdController,
               hint: 'شماره شناسامه خود را وارد کنید',
               label: 'شماره شناسامه',
               validator: Validators.nationalIdValidator,
-            ),
+            ),*/
             AppSpacing.largeVerticalSpacer,
             NationalCodeField(
               controller: controller.nationalCodeController,
@@ -54,21 +54,37 @@ class UserRegisterPage extends GetView<UserRegisterController> {
             ),
             AppSpacing.largeVerticalSpacer,
             PersianDatePicker(
-              onDateSelected: (selectedDate) => print(selectedDate),
+              onDateSelected: (selectedDate) =>
+                  controller.selectedDateTime.value =
+                      selectedDate ?? DateTime.now(),
               initialDate: DateTime.now(),
             ),
-            AppSpacing.largeVerticalSpacer,
+            /* AppSpacing.largeVerticalSpacer,
             CustomTextField(
               label: 'نام پدر',
               hint: 'نام پدر خود را وارد کنید',
               textController: controller.fatherName,
+            ),*/
+            AppSpacing.largeVerticalSpacer,
+            NumberTextField(
+              controller: controller.referralCoe,
+              validator: Validators.validateReferralCode,
+              hint: 'کد معرف خود را وارد کنید',
+              label: 'کد معرف',
+            ),
+            AppSpacing.smallVerticalSpacer,
+            Text(
+              'اختیاری',
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(fontSize: 12),
             ),
             AppSpacing.xxLargeVerticalSpacer,
             Obx(
-                  () => PageBottomButton(
+              () => PageBottomButton(
                 label: 'ادامه',
-                onTap: controller.isFormFilled.value
-                    ? controller.submitUserInfo
+                onTap: () => controller.isFormFilled.value
+                    ? controller.submitUserInfo(context)
                     : () {},
                 isActive: controller.isFormFilled.value,
                 isLoading: controller.isLoading.value,

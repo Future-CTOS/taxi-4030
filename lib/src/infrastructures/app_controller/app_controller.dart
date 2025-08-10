@@ -14,5 +14,7 @@ class AppController {
 
   late final String fullBaseUrl;
   String? userToken;
+  String? driverToken;
   VehicleType currentVehicle = VehicleType.car;
+  String? phoneNumber;
 }

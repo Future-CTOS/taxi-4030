@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../components/scaffold.dart';
-import '../../../../infrastructures/routes/route_names.dart';
 import '../../../shared/views/oto_verify_view.dart';
 import '../controller/user_otp_verify_page_controller.dart';
 
@@ -17,8 +16,9 @@ class UserOtpVerifyPageView extends GetView<UserOtpVerifyPageController> {
         isExpired: controller.isExpired.value,
         isResendEnabled: controller.isResendEnabled.value,
         onCompleted: (value) =>
-            Get.offAndToNamed(TaxiRouteNames.userRegister.uri),
+            controller.verifyOtp(context: context, value: value),
         resendOtp: () => controller.resendOtp(context),
+        isSubmitLoading: controller.isSubmitLoading.value,
         isLoading: controller.isLoading.value,
       ),
     ),

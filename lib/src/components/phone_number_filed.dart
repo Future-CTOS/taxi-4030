@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../infrastructures/utils/input_formatters/mobile_length_formatter.dart';
+
 class PhoneNumberField extends StatelessWidget {
   final TextEditingController textController;
   final String countryCode;
@@ -41,7 +43,7 @@ class PhoneNumberField extends StatelessWidget {
             textInputAction: TextInputAction.done,
             inputFormatters: [
               FilteringTextInputFormatter.digitsOnly,
-              LengthLimitingTextInputFormatter(11),
+              MobileLengthFormatter(),
             ],
             decoration: _inputDecoration(
               context: context,

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:either_dart/either.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../infrastructures/commons/repository_url.dart';
+import '../../../infrastructures/commons/repository_urls.dart';
 
 class SplashScreenPageRepository {
   Future<Either<String, bool>> checkConnection() async {

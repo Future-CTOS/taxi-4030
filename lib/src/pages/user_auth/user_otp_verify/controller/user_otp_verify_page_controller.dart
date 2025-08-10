@@ -3,31 +3,27 @@ import 'dart:async';
 import 'package:either_dart/either.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
+import 'package:taxi_4030/src/infrastructures/app_controller/app_controller.dart';
 import 'package:taxi_4030/src/pages/shared/model/enum/status_enum.dart';
 
 import '../../../../infrastructures/routes/route_names.dart';
 import '../../../../infrastructures/utils/utils.dart';
-import '../model/otp_verify_dto.dart';
-import '../model/user_register_dto.dart';
+import '../model/dtos/otp_verify_dto.dart';
+import '../model/dtos/user_register_dto.dart';
+import '../model/view_models/otp_verify_view_model.dart';
 import '../repository/otp_verify_page_repository.dart';
 
 class UserOtpVerifyPageController extends GetxController {
   final _repository = OtpVerifyPageRepository();
 
-  UserOtpVerifyPageController({
-    required this.receivedOtp,
-    required this.phoneNumber,
-  });
-
-  String? receivedOtp;
-  String? phoneNumber;
+  UserOtpVerifyPageController();
 
   RxInt totalSeconds = 30.obs;
   RxBool expired = false.obs;
   RxBool isExpired = false.obs;
   RxBool isResendEnabled = false.obs;
   RxBool isLoading = false.obs;
+  RxBool isSubmitLoading = false.obs;
 
   Timer? _timer;
 
@@ -43,20 +39,20 @@ class UserOtpVerifyPageController extends GetxController {
   }) async {
     isLoading.value = true;
     final OtpVerifyDto registerDto = OtpVerifyDto(
-      phone: phoneNumber ?? '',
-      otp: receivedOtp ?? '',
+      phone: AppController.instance.phoneNumber!,
+      otp: value,
     );
-    final Either<String, Map<String, dynamic>> resultOrException =
+    final Either<String, OtpVerifyViewModel> resultOrException =
         await _repository.verifyOtp(dto: registerDto);
     isLoading.value = false;
     resultOrException.fold(
-      (final _) => Utils.showSnackBar(
+      (final errorMessage) => Utils.showSnackBar(
         context,
-        text: 'خطایی رخ داد',
+        text: errorMessage,
         status: StatusEnum.danger,
       ),
       (final response) {
-        Get.offAndToNamed(TaxiRouteNames.userRegister.uri);
+        _navigateToNextPage(response.isRegistered);
         Utils.showSnackBar(
           Get.context!,
           text: 'خوش آمدید',
@@ -86,7 +82,7 @@ class UserOtpVerifyPageController extends GetxController {
   Future<void> _requestOtp(BuildContext context) async {
     isLoading.value = true;
     final UserRegisterDto registerDto = UserRegisterDto(
-      phone: phoneNumber ?? '',
+      phone: AppController.instance.phoneNumber!,
     );
     final Either<String, Map<String, dynamic>> resultOrException =
         await _repository.requestOtp(dto: registerDto);
@@ -97,16 +93,13 @@ class UserOtpVerifyPageController extends GetxController {
         text: 'خطایی رخ داد',
         status: StatusEnum.danger,
       ),
-      (final response) {
-        print('respone in resend otp: $response');
-      },
+      (final _) => Left.new,
     );
   }
 
   Future<void> resendOtp(BuildContext context) async {
     if (!isResendEnabled.value) return;
-
-    //await _requestOtp(context);
+    await _requestOtp(context);
 
     _startTimer();
   }
@@ -121,6 +114,15 @@ class UserOtpVerifyPageController extends GetxController {
   void onClose() {
     _timer?.cancel();
     super.onClose();
+  }
+
+  void _navigateToNextPage(bool isRegistered) {
+    if (isRegistered) {
+      Get.offAndToNamed(TaxiRouteNames.profile.uri);
+      return;
+    }
+
+    Get.offAndToNamed(TaxiRouteNames.userRegister.uri);
   }
 
   void backToInputNumberPage() => Get.back();

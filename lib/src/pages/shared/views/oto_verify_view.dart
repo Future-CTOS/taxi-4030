@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components/custom_otp_field.dart';
@@ -15,6 +14,7 @@ class OtoVerifyView extends StatefulWidget {
     required this.resendOtp,
     required this.onCompleted,
     required this.isLoading,
+    required this.isSubmitLoading,
   });
 
   final bool isResendEnabled;
@@ -23,6 +23,7 @@ class OtoVerifyView extends StatefulWidget {
   final String formattedTime;
   final void Function(String) onCompleted;
   final bool isLoading;
+  final bool isSubmitLoading;
 
   @override
   State<OtoVerifyView> createState() => _OtoVerifyViewState();
@@ -48,6 +49,7 @@ class _OtoVerifyViewState extends State<OtoVerifyView> {
           label: 'دریافت مجدد کد',
           isActive: true,
           onTap: widget.resendOtp,
+          isLoading: widget.isSubmitLoading,
           transparentBackground: true,
         )
       else
