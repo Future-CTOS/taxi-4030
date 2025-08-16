@@ -22,7 +22,7 @@ class RepositoryUrls {
     '$_baseUrl$_driverRegister/step2-location',
   );
   static Uri driverLicenseUploadFront = Uri.parse(
-    '$_baseUrl$_driverRegister/step3/license-front',
+    '$_baseUrl$_driverRegister/step3-license-front',
   );
 
   static Uri driverLicenseUploadBack = Uri.parse(

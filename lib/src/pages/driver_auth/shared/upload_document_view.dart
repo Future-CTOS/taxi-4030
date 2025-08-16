@@ -47,7 +47,6 @@ class _UploadDocumentViewState extends State<UploadDocumentView> {
       requestStorage: true,
       requestMicrophone: true,
     );
-
     super.initState();
   }
 

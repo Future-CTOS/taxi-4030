@@ -8,22 +8,23 @@ import '../models/driver_personal_info_dto.dart';
 import '../models/driver_register_view_model.dart';
 
 class CarDriverRegisterRepository {
-  Future<Either<String, DriverRegisterViewModel>> userRegister({
+  Future<Either<String, DriverPersonalInfoViewModel>> userRegister({
     required DriverPersonalInfoDto dto,
   }) async {
     try {
       int? statusCode;
       final http.Response response = await http.post(
-        headers: TokenInfo.driverAuthHeader(),
+        headers: TokenInfo.authHeader(),
         RepositoryUrls.driverPersonalInfo,
         body: dto.toJson(),
       );
       final Map<String, dynamic> jsonData = json.decode(response.body);
+      print(jsonData);
       statusCode = response.statusCode;
       if (statusCode == 201) {
-        final DriverRegisterViewModel verifyViewModel =
-            DriverRegisterViewModel.fromJson(jsonData);
-        print('is  201 : $jsonData');
+        final DriverPersonalInfoViewModel verifyViewModel =
+            DriverPersonalInfoViewModel.fromJson(jsonData);
+        print('is 201 : $jsonData');
         return Right(verifyViewModel);
       } else {
         return const Left('حطا');

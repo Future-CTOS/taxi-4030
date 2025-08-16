@@ -2,7 +2,6 @@ import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../infrastructures/app_controller/app_controller.dart';
 import '../../../../infrastructures/routes/route_names.dart';
 import '../../../../infrastructures/utils/utils.dart';
 import '../../../../infrastructures/utils/validators.dart';
@@ -18,7 +17,7 @@ class DriverPersonalInfoController extends GetxController {
   final nationalCodeController = TextEditingController();
   final nationalIdController = TextEditingController();
   final fatherName = TextEditingController();
-  Rxn<DateTime> dateTimeSelected = Rxn<DateTime>();
+  Rx<DateTime> dateTimeSelected = Rx<DateTime>(DateTime.now());
 
   final isFormFilled = false.obs;
   final isLoading = false.obs;
@@ -57,26 +56,35 @@ class DriverPersonalInfoController extends GetxController {
 
   Future<void> _driverPersonalInfo(BuildContext context) async {
     isLoading.value = true;
+    final d = dateTimeSelected.value;
+    final birthday =
+        "${d.year.toString().padLeft(4, '0')}-"
+        "${d.month.toString().padLeft(2, '0')}-"
+        "${d.day.toString().padLeft(2, '0')} "
+        "${d.hour.toString().padLeft(2, '0')}:"
+        "${d.minute.toString().padLeft(2, '0')}:"
+        "${d.second.toString().padLeft(2, '0')}."
+        "${d.millisecond.toString().padLeft(3, '0')}";
     final DriverPersonalInfoDto registerDto = DriverPersonalInfoDto(
       name: firstNameController.text,
       lastName: lastNameController.text,
       fatherName: fatherName.text,
       shenasnameh: nationalIdController.text,
       nationalCode: nationalCodeController.text,
-      birthday: dateTimeSelected.value.toString(),
+      birthday: birthday,
     );
-    final Either<String, DriverRegisterViewModel> resultOrException =
+    final Either<String, DriverPersonalInfoViewModel> resultOrException =
         await _repository.userRegister(dto: registerDto);
     isLoading.value = false;
     resultOrException.fold(
-      (final _) => Utils.showSnackBar(
+      (final errorMessage) => Utils.showSnackBar(
         context,
-        text: 'خطایی رخ داد',
+        text: errorMessage,
         status: StatusEnum.danger,
       ),
       (final response) {
-        AppController.instance.userToken = response.accessToken;
-        Get.offAndToNamed(TaxiRouteNames.profile.uri);
+        print(response);
+        Get.offAndToNamed(TaxiRouteNames.driverActivityInfo.uri);
       },
     );
   }

@@ -1,8 +1,8 @@
-import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 class DriverLicenseUploadImageModel {
   bool isLoading;
-  File? file;
+  XFile? file;
 
   DriverLicenseUploadImageModel({this.isLoading = false, this.file});
 }

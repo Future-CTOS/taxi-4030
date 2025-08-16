@@ -34,16 +34,13 @@ class CarDriverController extends GetxController {
         await _repository.requestOtp(dto: dto);
     isLoading.value = false;
     resultOrException.fold(
-      (final error) => Utils.showSnackBar(
-        context,
-        text: 'خطایی رخ داد',
-        status: StatusEnum.danger,
-      ),
+      (final error) =>
+          Utils.showSnackBar(context, text: error, status: StatusEnum.danger),
       (final response) {
         AppController.instance.phoneNumber = phoneNumberController.text;
         Get.toNamed(TaxiRouteNames.driverOtpVerify.uri);
       },
-    );
+    );  
   }
 
   @override

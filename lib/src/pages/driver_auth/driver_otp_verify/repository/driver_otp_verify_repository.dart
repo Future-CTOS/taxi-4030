@@ -14,11 +14,11 @@ class DriverOtpVerifyRepository {
   }) async {
     try {
       int? statusCode;
-
+      final String body = json.encode(dto.toJson());
       final http.Response response = await http.post(
         RepositoryUrls.driverVerifyOtp,
         headers: Utils.headers,
-        body: dto.toJson(),
+        body: body,
       );
       final Map<String, dynamic> jsonData = json.decode(response.body);
       statusCode = response.statusCode;
@@ -39,10 +39,11 @@ class DriverOtpVerifyRepository {
   }) async {
     try {
       int? statusCode;
+      final String body = json.encode(dto.toJson());
       final http.Response response = await http.post(
         RepositoryUrls.driverRequestOtp,
         headers: Utils.headers,
-        body: dto.toJson(),
+        body: body,
       );
       final Map<String, dynamic> jsonData = json.decode(response.body);
       statusCode = response.statusCode;

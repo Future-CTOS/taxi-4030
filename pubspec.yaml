@@ -1,6 +1,6 @@
 name: taxi_4030
 description: "online taxi"
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -23,6 +23,7 @@ dependencies:
   camera: ^0.11.2
   http: ^1.4.0
   permission_handler: ^12.0.1
+  http_parser: ^4.1.2
 
 dev_dependencies:
   flutter_test:

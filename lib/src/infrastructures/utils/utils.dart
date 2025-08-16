@@ -46,6 +46,7 @@ class Utils {
     'Content-Type': 'application/json',
   };
 
+
   static void showPermissionBottomSheet({
     required BuildContext context,
     bool requestCamera = false,

@@ -10,11 +10,7 @@ class Routes {
 class TaxiRouteNames extends Routes {
   TaxiRouteNames(super.uri);
 
-  /// home Page
-  static const Routes profile = Routes(
-    RoutePaths.profile,
-    RoutePaths.profile,
-  );
+  static const Routes profile = Routes(RoutePaths.profile, RoutePaths.profile);
 
   static const Routes splashScreen = Routes(
     RoutePaths.splashScreen,
@@ -22,22 +18,9 @@ class TaxiRouteNames extends Routes {
   );
 
   /// Authentication
-  static const Routes userOtpVerify = Routes(
-    RoutePaths.phoneInput + RoutePaths.userOtpVerify,
-    RoutePaths.userOtpVerify,
-  );
   static const Routes driverOtpVerify = Routes(
     RoutePaths.driverOtpVerify,
     RoutePaths.driverOtpVerify,
-  );
-  static const Routes phoneInput = Routes(
-    RoutePaths.phoneInput,
-    RoutePaths.phoneInput,
-  );
-
-  static const Routes userRegister = Routes(
-    RoutePaths.userRegister,
-    RoutePaths.userRegister,
   );
 
   static const Routes vehicleSelection = Routes(

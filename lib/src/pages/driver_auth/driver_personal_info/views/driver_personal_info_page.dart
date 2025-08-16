@@ -55,7 +55,8 @@ class DriverPersonalInfoPage extends GetView<DriverPersonalInfoController> {
             AppSpacing.largeVerticalSpacer,
             PersianDatePicker(
               onDateSelected: (selectedDate) =>
-                  controller.dateTimeSelected.value = selectedDate,
+                  controller.dateTimeSelected.value =
+                      selectedDate ?? DateTime.now(),
               restrictUnder18: true,
             ),
             AppSpacing.largeVerticalSpacer,

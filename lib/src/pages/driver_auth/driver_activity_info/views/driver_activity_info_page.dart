@@ -24,8 +24,8 @@ class DriverActivityInfoPage extends GetView<DriverActivityInfoController> {
     bottomNavigationBar: Obx(
       () => PageBottomButton(
         label: 'ادامه',
-        onTap: controller.isFormFilled.value
-            ? controller.submitUserInfo
+        onTap: () => controller.isFormFilled.value
+            ? controller.submitUserInfo(context)
             : () {},
         isActive: controller.isFormFilled.value,
         isLoading: controller.isLoading.value,

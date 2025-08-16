@@ -17,7 +17,7 @@ class DriverPersonalInfoDto {
 
   Map<String, dynamic> toJson() => {
     "name": name,
-    "lastName": lastName,
+    "lastname": lastName,
     'shenasnameh': shenasnameh,
     "nationalCode": nationalCode,
     "birthday": birthday,

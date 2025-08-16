@@ -53,7 +53,7 @@ class DriverOtpVerifyController extends GetxController {
   }) async {
     isLoading.value = true;
     final DriverOtpVerifyDto registerDto = DriverOtpVerifyDto(
-      phone: AppController.instance.phoneNumber!,
+      phone: AppController.instance.phoneNumber ?? '987',
       otp: value,
     );
     final Either<String, DriverOtpVerifyViewModel> resultOrException =
@@ -66,7 +66,9 @@ class DriverOtpVerifyController extends GetxController {
         status: StatusEnum.danger,
       ),
       (final response) {
-        _navigateToNextPage(response.isRegistered);
+        AppController.instance.driverToken = response.accessToken;
+        print('driver token:${AppController.instance.driverToken}');
+        _navigateToNextPage(response.isNew);
         Utils.showSnackBar(
           Get.context!,
           text: 'خوش آمدید',
@@ -81,6 +83,7 @@ class DriverOtpVerifyController extends GetxController {
     final DriverRegisterDto registerDto = DriverRegisterDto(
       phone: AppController.instance.phoneNumber!,
     );
+
     final Either<String, Map<String, dynamic>> resultOrException =
         await _repository.requestOtp(dto: registerDto);
     isLoading.value = false;
@@ -107,13 +110,13 @@ class DriverOtpVerifyController extends GetxController {
     return '$m:$s';
   }
 
-  void _navigateToNextPage(bool isRegistered) {
-    if (isRegistered) {
-      Get.offAndToNamed(TaxiRouteNames.profile.uri);
+  void _navigateToNextPage(bool isNew) {
+    if (isNew) {
+      Get.offAndToNamed(TaxiRouteNames.driverPersonalInfo.uri);
       return;
     }
 
-    Get.offAndToNamed(TaxiRouteNames.driverPersonalInfo.uri);
+    Get.offAndToNamed(TaxiRouteNames.profile.uri);
   }
 
   @override

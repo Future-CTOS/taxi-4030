@@ -20,7 +20,7 @@ class SplashScreenPageController extends GetxController {
 
   Future<bool> _checkConnection() async {
     await Future<void>.delayed(3000.milliseconds);
-    Get.offAllNamed(TaxiRouteNames.phoneInput.uri);
+    Get.offAllNamed(TaxiRouteNames.vehicleSelection.uri);
     // final Either<String, bool> result = await _repository.checkConnection();
     //
     // result.fold(

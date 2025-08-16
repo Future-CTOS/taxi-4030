@@ -1,15 +1,18 @@
 class DriverOtpVerifyViewModel {
-  final bool isRegistered;
+  final bool isNew;
   final String? accessToken;
+  final String role;
 
   DriverOtpVerifyViewModel({
-    required this.isRegistered,
+    required this.isNew,
     required this.accessToken,
+    required this.role,
   });
 
   factory DriverOtpVerifyViewModel.fromJson(final Map<String, dynamic> json) =>
       DriverOtpVerifyViewModel(
         accessToken: json['access_token'],
-        isRegistered: json['isRegistered'],
+        isNew: json['isNew'] ?? false,
+        role: json['driver'] ?? 'driver',
       );
 }

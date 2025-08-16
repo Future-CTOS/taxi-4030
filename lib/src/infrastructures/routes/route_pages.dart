@@ -56,21 +56,12 @@ import '../../pages/profile/views/profile_page.dart';
 import '../../pages/splash_screen/bindings/splash_screen_page_binding.dart';
 import '../../pages/splash_screen/controllers/splash_screen_page_controller.dart';
 import '../../pages/splash_screen/views/splash_screen_page.dart';
-import '../../pages/user_auth/phone_input/common/phone_input_page_binding.dart';
-import '../../pages/user_auth/phone_input/view/phone_input_page_view.dart';
-import '../../pages/user_auth/user_otp_verify/common/user_otp_verify_page_binding.dart';
-import '../../pages/user_auth/user_otp_verify/view/user_otp_verify_page_view.dart';
-import '../../pages/user_auth/user_register/common/user_register_binding.dart';
-import '../../pages/user_auth/user_register/view/user_register_page.dart';
 import 'route_names.dart';
 
 class TaxiAppPages {
   static final List<GetPage<dynamic>> routes = [
     _splashScreen,
     _profile,
-    _phoneInput,
-    _userOtpVerify,
-    _userRegister,
     _vehicleSelection,
     _driverOtpVerify,
     _driverPersonalInfo,
@@ -88,29 +79,10 @@ class TaxiAppPages {
     binding: ProfileBinding(),
   );
 
-  static GetPage<dynamic> get _phoneInput => GetPage(
-    name: TaxiRouteNames.phoneInput.path,
-    page: PhoneInputPageView.new,
-    binding: PhoneInputPageBinding(),
-    children: [_userOtpVerify],
-  );
-
-  static GetPage<dynamic> get _userOtpVerify => GetPage(
-    name: TaxiRouteNames.userOtpVerify.path,
-    page: UserOtpVerifyPageView.new,
-    binding: UserOtpVerifyPageBinding(),
-  );
-
   static GetPage<dynamic> get _driverOtpVerify => GetPage(
     name: TaxiRouteNames.driverOtpVerify.path,
     page: DriverOtpVerifyPage.new,
     binding: DriverOtpVerifyBinding(),
-  );
-
-  static GetPage<dynamic> get _userRegister => GetPage(
-    name: TaxiRouteNames.userRegister.path,
-    page: UserRegisterPage.new,
-    binding: RegisterBinding(),
   );
 
   static GetPage<dynamic> get _vehicleSelection => GetPage(

@@ -14,7 +14,7 @@ class MotorcycleDriverPage extends GetView<MotorcycleDriverController> {
     bodyPadding: AppSpacing.zeroPadding,
     body: Obx(
       () => RegisterDriverView(
-        title: 'ثبت نام رانننده موتور',
+        title: 'ثبت نام راننده موتور',
         subtitle: 'شماره همراه و کد ملی خود را وارد کنید.',
         imagePath: Assets.pngs.motorcycle2d.path,
         phoneNumberTextController: controller.phoneNumberController,

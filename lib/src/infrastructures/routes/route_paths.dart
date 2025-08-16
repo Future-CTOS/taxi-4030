@@ -5,11 +5,7 @@ class RoutePaths {
   static const String splashScreen = '/splash-screen';
 
   static const String driverOtpVerify = '/driver-otp-verify';
-  static const String userOtpVerify = '/user-otp-verify';
 
-  static const String phoneInput = '/phone-input';
-
-  static const String userRegister = '/user_register';
   static const String vehicleSelection = '/vehicle_selection';
 
   static const String vanDriverRegister = '/van-driver-register';

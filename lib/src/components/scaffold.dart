@@ -87,7 +87,7 @@ class CustomScaffold extends StatelessWidget {
         const Divider(),
         AppSpacing.mediumVerticalSpacer,
         InkWell(
-          onTap: () => Get.offAllNamed(TaxiRouteNames.phoneInput.path),
+          onTap: () => Get.offAllNamed(TaxiRouteNames.vehicleSelection.path),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

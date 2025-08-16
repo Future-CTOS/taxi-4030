@@ -15,7 +15,7 @@ class CarDriverPage extends GetView<CarDriverController> {
     bodyPadding: AppSpacing.zeroPadding,
     body: Obx(
       () => RegisterDriverView(
-        title: 'ثبت نام رانننده سواری',
+        title: 'ثبت نام راننده سواری',
         subtitle: 'شماره همراه و کد ملی خود را وارد کنید.',
         imagePath: Assets.pngs.car2d.path,
         phoneNumberTextController: controller.phoneNumberController,

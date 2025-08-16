@@ -18,7 +18,7 @@ class DriverOtpVerifyPage extends GetView<DriverOtpVerifyController> {
             controller.verifyOtp(context: context, value: value),
         resendOtp: () => controller.resendOtp(context),
         isLoading: controller.isLoading.value,
-        isSubmitLoading: false,
+        isSubmitLoading: controller.isLoading.value,
       ),
     ),
   );

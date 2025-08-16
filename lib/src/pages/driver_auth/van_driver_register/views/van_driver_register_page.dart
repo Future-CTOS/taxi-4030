@@ -15,7 +15,7 @@ class VanDriverRegisterPage extends GetView<VanDriverRegisterController> {
     bodyPadding: AppSpacing.zeroPadding,
     body: Obx(
       () => RegisterDriverView(
-        title: 'ثبت نام رانننده وانت',
+        title: 'ثبت نام راننده وانت',
         subtitle: 'شماره همراه و کد ملی خود را وارد کنید.',
         imagePath: Assets.pngs.van2d.path,
         phoneNumberTextController: controller.phoneNumberController,

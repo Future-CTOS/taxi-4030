@@ -1,12 +1,8 @@
-class DriverRegisterViewModel {
-  final String accessToken;
-  final String role;
+class DriverPersonalInfoViewModel {
+  final String message;
 
-  DriverRegisterViewModel({required this.role, required this.accessToken});
+  const DriverPersonalInfoViewModel({required this.message});
 
-  factory DriverRegisterViewModel.fromJson(final Map<String, dynamic> json) =>
-      DriverRegisterViewModel(
-        accessToken: json['access_token'],
-        role: json['role'],
-      );
+  factory DriverPersonalInfoViewModel.fromJson(Map<String, dynamic> json) =>
+      DriverPersonalInfoViewModel(message: json['message']);
 }
