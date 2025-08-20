@@ -1,0 +1,33 @@
+import 'dart:convert';
+
+import 'package:either_dart/either.dart';
+
+import '../../../../infrastructures/commons/repository_urls.dart';
+import '../../../../infrastructures/utils/utils.dart';
+import '../models/motorcycle_register_dto.dart';
+import 'package:http/http.dart' as http;
+
+class MotorcycleDriverRepository {
+  Future<Either<String, Map<String, dynamic>>> requestOtp({
+    required MotorcycleRegisterDto dto,
+  }) async {
+    try {
+      int? statusCode;
+      final String body = json.encode(dto.toJson());
+      final http.Response response = await http.post(
+        RepositoryUrls.driverRequestOtp,
+        headers: Utils.headers,
+        body: body,
+      );
+      final Map<String, dynamic> jsonData = json.decode(response.body);
+      statusCode = response.statusCode;
+      if (statusCode == 201) {
+        return Right(jsonData);
+      } else {
+        return const Left('درخواست ناموفق بود');
+      }
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+}

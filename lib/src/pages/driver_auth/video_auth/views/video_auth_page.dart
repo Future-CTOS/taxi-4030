@@ -18,10 +18,10 @@ class VideoAuthPage extends GetView<VideoAuthController> {
     ),
     body: Obx(
       () => VideoAuthView(
-        onContinueTap: controller.uploadInsuranceImage,
+        onContinueTap: controller.onContinueTap,
         isUploadLoading: controller.isUploadLoading.value,
         isActiveContinue: controller.isActiveContinue.value,
-        onUploadButtonTap: controller.onUploadButtonTap,
+        onUploadButtonTap: () => controller.onUploadAuthVideo(context),
         isLoading: controller.isLoading.value,
       ),
     ),

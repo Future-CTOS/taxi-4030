@@ -7,7 +7,7 @@ import '../../../infrastructures/utils/spacing.dart';
 import '../../../infrastructures/utils/validators.dart';
 import '../../shared/widgets/page_bottom_button.dart';
 
-class VehicleOwnerDetailsView extends StatefulWidget {
+class VehicleOwnerDetailsView extends StatelessWidget {
   const VehicleOwnerDetailsView({
     super.key,
     required this.items,
@@ -22,6 +22,8 @@ class VehicleOwnerDetailsView extends StatefulWidget {
     required this.isLoading,
     required this.isFormFilled,
     required this.onSubmit,
+    required this.onChangeTitle,
+    required this.selectedValue,
   });
 
   final List<String> items;
@@ -35,28 +37,9 @@ class VehicleOwnerDetailsView extends StatefulWidget {
   final int showFormOnIndex;
   final bool isLoading;
   final bool isFormFilled;
+  final String selectedValue;
   final void Function() onSubmit;
-
-  @override
-  State<VehicleOwnerDetailsView> createState() =>
-      _VehicleOwnerDetailsViewState();
-}
-
-class _VehicleOwnerDetailsViewState extends State<VehicleOwnerDetailsView> {
-  late String selectedValue;
-
-  @override
-  void initState() {
-    selectedValue = widget.initialValue;
-    super.initState();
-  }
-
-  String _onChangeTitle(String? value) {
-    setState(() {
-      selectedValue = value!;
-    });
-    return selectedValue;
-  }
+  final void Function(String?) onChangeTitle;
 
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
@@ -64,13 +47,13 @@ class _VehicleOwnerDetailsViewState extends State<VehicleOwnerDetailsView> {
     child: Column(
       children: [
         CustomDropDown(
-          title: widget.title,
-          items: widget.items,
+          title: title,
+          items: items,
           value: selectedValue,
           hint: selectedValue,
           defaultIcon: true,
           getTitle: (item) => item,
-          onSelectItem: _onChangeTitle,
+          onSelectItem: onChangeTitle,
         ),
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 300),
@@ -80,9 +63,9 @@ class _VehicleOwnerDetailsViewState extends State<VehicleOwnerDetailsView> {
           SizedBox(height: MediaQuery.of(context).size.height * 0.4),
           PageBottomButton(
             label: 'ادامه',
-            onTap: widget.onSubmit,
+            onTap: onSubmit,
             isActive: true,
-            isLoading: widget.isLoading,
+            isLoading: isLoading,
             transparentBackground: true,
           ),
         ],
@@ -91,7 +74,7 @@ class _VehicleOwnerDetailsViewState extends State<VehicleOwnerDetailsView> {
   );
 
   Widget _form() => Form(
-    key: widget.formKey,
+    key: formKey,
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -99,17 +82,17 @@ class _VehicleOwnerDetailsViewState extends State<VehicleOwnerDetailsView> {
         CustomTextField(
           label: 'نام',
           hint: 'نام خود را وارد کنید',
-          textController: widget.firstNameController,
+          textController: firstNameController,
         ),
         AppSpacing.largeVerticalSpacer,
         CustomTextField(
           label: 'نام خانوادگی',
           hint: 'نام خانوادگی خود را وارد کنید',
-          textController: widget.lastNameController,
+          textController: lastNameController,
         ),
         AppSpacing.largeVerticalSpacer,
         NumberTextField(
-          controller: widget.nationalIdController,
+          controller: nationalIdController,
           hint: 'شماره شناسامه خود را وارد کنید',
           label: 'شماره شناسامه',
           validator: Validators.nationalIdValidator,
@@ -118,14 +101,14 @@ class _VehicleOwnerDetailsViewState extends State<VehicleOwnerDetailsView> {
         CustomTextField(
           label: 'نام پدر',
           hint: 'نام پدر خود را وارد کنید',
-          textController: widget.fatherName,
+          textController: fatherName,
         ),
         AppSpacing.largeVerticalSpacer,
         PageBottomButton(
           label: 'ادامه',
-          onTap: widget.isFormFilled ? widget.onSubmit : () {},
-          isActive: widget.isFormFilled,
-          isLoading: widget.isLoading,
+          onTap: isFormFilled ? onSubmit : () {},
+          isActive: isFormFilled,
+          isLoading: isLoading,
           transparentBackground: true,
         ),
         AppSpacing.largeVerticalSpacer,
@@ -134,7 +117,7 @@ class _VehicleOwnerDetailsViewState extends State<VehicleOwnerDetailsView> {
   );
 
   bool _shouldShowForm(String value) {
-    final int index = widget.items.indexOf(value);
-    return index == widget.showFormOnIndex;
+    final int index = items.indexOf(value);
+    return index == showFormOnIndex;
   }
 }

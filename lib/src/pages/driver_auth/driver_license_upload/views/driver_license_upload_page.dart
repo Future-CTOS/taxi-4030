@@ -40,10 +40,8 @@ class DriverLicenseUploadPage extends GetView<DriverLicenseUploadController> {
         isBackLoading: controller.backImageModel.value.isLoading,
         hasFrontFile: controller.frontImageModel.value.file != null,
         hasBackFile: controller.backImageModel.value.file != null,
-        onFrontTap: () =>
-            controller.submitImage(isFrontImage: true, context: context),
-        onBackTap: () =>
-            controller.submitImage(isFrontImage: false, context: context),
+        onFrontTap: () => controller.submitFrontImage(context),
+        onBackTap: () => controller.submitBackImage(context),
       ),
     ),
   );

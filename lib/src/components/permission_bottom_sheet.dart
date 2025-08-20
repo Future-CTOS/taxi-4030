@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -45,18 +44,19 @@ class PermissionBottomSheet extends StatelessWidget {
     if (allGranted) {
       Navigator.of(context).pop();
       onGranted?.call();
-    } /*else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('لطفاً دسترسی‌ها را تایید کنید.')),
-      );
-    }*/
+    }
   }
 
   String _buildTitle() {
-    if (requestCamera && requestMicrophone && requestStorage && requestClipboard) {
+    if (requestCamera &&
+        requestMicrophone &&
+        requestStorage &&
+        requestClipboard) {
       return 'دسترسی‌های مورد نیاز';
-    } else if (requestCamera || requestMicrophone) {
-      return 'دسترسی به دوربین و میکروفون';
+    } else if (requestCamera) {
+      return 'دسترسی به دوربین';
+    } else if (requestMicrophone) {
+      return 'دسترسی به میکروفون';
     } else if (requestStorage) {
       return 'دسترسی به عکس‌ها';
     } else if (requestClipboard) {
@@ -84,7 +84,9 @@ class PermissionBottomSheet extends StatelessWidget {
     }
 
     if (requestClipboard) {
-      messages.add('برای خواندن یا نوشتن داده از کلیپ‌بورد لطفاً اجازه دسترسی را تایید کنید.');
+      messages.add(
+        'برای خواندن یا نوشتن داده از کلیپ‌بورد لطفاً اجازه دسترسی را تایید کنید.',
+      );
     }
 
     return messages.join('\n\n');
@@ -92,54 +94,55 @@ class PermissionBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Theme.of(context).brightness == Brightness.dark
-            ? Theme.of(context).scaffoldBackgroundColor
-            : Theme.of(context).colorScheme.surfaceContainer,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                _buildTitle(),
-                style: Theme.of(context).textTheme.bodyLarge,
+    return SafeArea(
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Theme.of(context).brightness == Brightness.dark
+              ? Theme.of(context).scaffoldBackgroundColor
+              : Theme.of(context).colorScheme.surfaceContainer,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  _buildTitle(),
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            Text(
+              _buildDescription(),
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+            const SizedBox(height: 32),
+            ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(
+                  Theme.of(context).primaryColor,
+                ),
               ),
-              IconButton(
-                icon: const Icon(Icons.close),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-            ],
-          ),
-          const SizedBox(height: 24),
-          Text(
-            _buildDescription(),
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-          const SizedBox(height: 32),
-          ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(
-                Theme.of(context).primaryColor,
+              onPressed: () => _requestPermissions(context),
+              child: Text(
+                'اجازه دادن',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
               ),
             ),
-            onPressed: () => _requestPermissions(context),
-            child: Text(
-              'اجازه دادن',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onPrimary,
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
-

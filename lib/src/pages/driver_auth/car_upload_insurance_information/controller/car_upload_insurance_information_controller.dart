@@ -1,69 +1,54 @@
-import 'package:camera/camera.dart';
+import 'dart:typed_data';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:taxi_4030/src/pages/shared/model/enum/status_enum.dart';
-import '../../../../components/telegram_style_camera.dart';
 import '../../../../infrastructures/routes/route_names.dart';
 import '../../../../infrastructures/utils/utils.dart';
+import '../repository/car_upload_insurance_information_repository.dart';
 
 class CarUploadInsuranceInformationController extends GetxController {
+  final _repository = CarUploadInsuranceInformationRepository();
   final RxBool isActiveContinue = false.obs;
   final RxBool isLoading = false.obs;
-  late final CameraController? cameraController;
-  late final List<CameraDescription>? cameras;
 
-  Future<void> _initCamera() async {
-    cameras = await availableCameras();
-    cameraController = CameraController(cameras!.first, ResolutionPreset.max);
-    await cameraController!.initialize();
-  }
-
-  Future<void> takePicture() async {
-    final image = await cameraController!.takePicture();
-    Get.back(result: image.path);
-  }
-
-  Future<void> pickFromGallery() async {
-    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (image != null) Get.back(result: image.path);
-  }
-
-  Future<void> uploadInsuranceImage() async {
-    if (!isActiveContinue.value) return;
+  Future<void> onUploadInsurance(BuildContext context) async {
     isLoading.value = true;
-    try {
-      Utils.showSnackBar(
-        Get.context!,
-        text: 'اطلاعات بیمه با موفقیت ثبت شد',
-        status: StatusEnum.success,
-      );
-      Get.toNamed(TaxiRouteNames.carSelfieAuth.uri);
-    } finally {
-      isLoading.value = false;
-    }
-  }
-
-  Future<void> onUploadButtonTap() async {
-    final result = await Get.to(
-      () => TelegramStyleCamera(
-        cameraController: cameraController,
-        cameras: cameras,
-        pickFromGallery: pickFromGallery,
-        takePicture: takePicture,
-      ),
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedFile = await picker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 80,
     );
-    isActiveContinue.value = result != null;
+
+    if (pickedFile == null) {
+      isLoading.value = false;
+      return;
+    }
+    isLoading.value = false;
+
+    Uint8List bytes = await pickedFile.readAsBytes();
+
+    final resultOrException = await _repository.uploadCardInsurance(
+      bytes: bytes,
+      file: pickedFile,
+    );
+
+    resultOrException.fold(
+      (error) =>
+          Utils.showSnackBar(context, text: error, status: StatusEnum.danger),
+      (response) {
+        isActiveContinue.value = true;
+        Utils.showSnackBar(
+          context,
+          text: response.message,
+          status: StatusEnum.success,
+        );
+      },
+    );
   }
 
-  @override
-  void onInit() async {
-    await _initCamera();
-    super.onInit();
-  }
-
-  @override
-  void onClose() {
-    cameraController?.dispose();
-    super.dispose();
+  void onContinueTap() {
+    if (!isActiveContinue.value) return;
+    Get.toNamed(TaxiRouteNames.carSelfieAuth.uri);
   }
 }

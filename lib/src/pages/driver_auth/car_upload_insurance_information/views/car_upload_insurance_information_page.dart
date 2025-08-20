@@ -19,18 +19,18 @@ class CarUploadInsuranceInformationPage
     bottomNavigationBar: Obx(
       () => PageBottomButton(
         label: 'ادامه',
-        onTap: controller.isActiveContinue.value
-            ? controller.uploadInsuranceImage
+        onTap: () => controller.isActiveContinue.value
+            ? controller.onContinueTap()
             : () {},
         isActive: controller.isActiveContinue.value,
-        isLoading: controller.isLoading.value,
+        isLoading: false,
         // transparentBackground: false,
       ),
     ),
     body: Obx(
       () => UploadImageButton(
         isLoading: controller.isLoading.value,
-        onTap: controller.onUploadButtonTap,
+        onTap: () => controller.onUploadInsurance(context),
         label: 'بارگذاری',
         emptyImagePath: '',
         filledImagePath: Assets.pngs.uploadImage.path,

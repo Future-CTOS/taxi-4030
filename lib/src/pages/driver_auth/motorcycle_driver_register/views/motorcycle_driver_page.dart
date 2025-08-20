@@ -18,7 +18,7 @@ class MotorcycleDriverPage extends GetView<MotorcycleDriverController> {
         subtitle: 'شماره همراه و کد ملی خود را وارد کنید.',
         imagePath: Assets.pngs.motorcycle2d.path,
         phoneNumberTextController: controller.phoneNumberController,
-        onSubmit: controller.submitUserInfo,
+        onSubmit: () => controller.submitUserInfo(context),
         isLoading: controller.isLoading.value,
         isActiveBottomButton: controller.isFormFilled.value,
       ),

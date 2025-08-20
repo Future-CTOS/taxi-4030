@@ -40,8 +40,8 @@ class CarCardUploadPage extends GetView<CarCardUploadController> {
         isBackLoading: controller.backImageModel.value.isLoading,
         hasFrontFile: controller.frontImageModel.value.file != null,
         hasBackFile: controller.backImageModel.value.file != null,
-        onFrontTap: () => controller.pickImage(isFrontImage: true),
-        onBackTap: () => controller.pickImage(isFrontImage: false),
+        onFrontTap: () => controller.submitFrontImage(context),
+        onBackTap: () => controller.submitBackImage(context),
       ),
     ),
   );

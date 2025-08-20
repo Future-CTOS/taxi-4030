@@ -30,6 +30,8 @@ class MotorcycleOwnerDetailsPage
         onSubmit: controller.submitVanOwnerInfo,
         isFormFilled: controller.isFormFilled.value,
         showFormOnIndex: 1,
+        selectedValue: '',
+        onChangeTitle: (p0) {},
       ),
     ),
   );

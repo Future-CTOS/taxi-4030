@@ -4,7 +4,6 @@ import '../../../../components/drop_down.dart';
 import '../../../../components/scaffold.dart';
 import '../../../../infrastructures/utils/constants.dart';
 import '../../../shared/widgets/page_bottom_button.dart';
-import '../../shared/widgets/iranian_car_plate.dart';
 import '../../shared/widgets/iranian_motorcycle_plate.dart';
 import '../controller/motorcycle_information_input_controller.dart';
 
@@ -23,7 +22,7 @@ class MotorcycleInformationInputPage
     bottomNavigationBar: Obx(
       () => PageBottomButton(
         label: 'ادامه',
-        onTap: controller.submitMotorcycleInfo,
+        onTap: () => controller.submitDriverInfo(context),
         isActive: controller.isFormFilled.value,
         isLoading: controller.isLoading.value,
       ),

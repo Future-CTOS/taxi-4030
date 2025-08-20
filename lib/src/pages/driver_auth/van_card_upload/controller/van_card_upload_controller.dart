@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../infrastructures/routes/route_names.dart';
+import '../../../../infrastructures/utils/utils.dart';
 import '../model/van_card_upload_model.dart';
 
 class VanCardUploadController extends GetxController {
@@ -49,5 +50,11 @@ class VanCardUploadController extends GetxController {
     } finally {
       isSubmitLoading.value = false;
     }
+  }
+
+  @override
+  void onInit() {
+    Utils.showPermissionBottomSheet(context: Get.context!, requestCamera: true);
+    super.onInit();
   }
 }

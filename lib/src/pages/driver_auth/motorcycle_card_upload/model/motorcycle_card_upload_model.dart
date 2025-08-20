@@ -1,8 +1,8 @@
-import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 class MotorcycleCardUploadModel {
   bool isLoading;
-  File? file;
+  XFile? file;
 
   MotorcycleCardUploadModel({this.isLoading = false, this.file});
 }

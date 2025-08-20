@@ -3,8 +3,8 @@ import 'package:taxi_4030/src/components/scaffold.dart';
 
 import '../../shared/auth_pending_view.dart';
 
-class VanAuthPendingPage extends StatelessWidget {
-  const VanAuthPendingPage({super.key});
+class AuthPendingPage extends StatelessWidget {
+  const AuthPendingPage({super.key});
 
   @override
   Widget build(BuildContext context) => CustomScaffold(

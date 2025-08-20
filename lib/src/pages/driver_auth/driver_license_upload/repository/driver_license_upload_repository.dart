@@ -4,7 +4,7 @@ import 'dart:typed_data';
 import 'package:either_dart/either.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:taxi_4030/src/infrastructures/app_controller/app_controller.dart';
+import '../../../../infrastructures/app_controller/app_controller.dart';
 import '../../../../infrastructures/commons/repository_urls.dart';
 import 'package:http/http.dart' as http;
 import '../model/view_models/driver_license_upload_view_model.dart';
@@ -22,6 +22,7 @@ class DriverLicenseUploadRepository {
 
       request.headers['Authorization'] =
           'Bearer ${AppController.instance.driverToken}';
+
       final ext = file.name.split('.').last.toLowerCase();
       String mimeType;
       switch (ext) {
@@ -44,7 +45,7 @@ class DriverLicenseUploadRepository {
           'licenseFront',
           bytes,
           contentType: MediaType('image', mimeType),
-          filename: file.name.split('/').last,
+          filename: 'example.jpg',
         ),
       );
 
@@ -53,7 +54,7 @@ class DriverLicenseUploadRepository {
 
       print('Response status: ${response.statusCode}');
       print('Response body: $responseBody');
-      
+
       if (response.statusCode == 201) {
         final Map<String, dynamic> jsonData = json.decode(responseBody);
         final driverActivityInfoViewModel =
@@ -77,11 +78,12 @@ class DriverLicenseUploadRepository {
     try {
       final request = http.MultipartRequest(
         'POST',
-        RepositoryUrls.driverLicenseUploadFront,
+        RepositoryUrls.driverLicenseUploadBack,
       );
 
       request.headers['Authorization'] =
-      'Bearer ${AppController.instance.driverToken}';
+          'Bearer ${AppController.instance.driverToken}';
+
       final ext = file.name.split('.').last.toLowerCase();
       String mimeType;
       switch (ext) {
@@ -104,9 +106,11 @@ class DriverLicenseUploadRepository {
           'licenseBack',
           bytes,
           contentType: MediaType('image', mimeType),
-          filename: file.name.split('/').last,
+          filename: 'example.jpg',
         ),
       );
+      print('Uploading: ${file.name}');
+      print('Field: Size: ${bytes.lengthInBytes}');
 
       final response = await request.send();
       final responseBody = await response.stream.bytesToString();
@@ -114,7 +118,7 @@ class DriverLicenseUploadRepository {
       if (response.statusCode == 201) {
         final Map<String, dynamic> jsonData = json.decode(responseBody);
         final driverActivityInfoViewModel =
-        DriverLicenseUploadViewModel.fromJson(jsonData);
+            DriverLicenseUploadViewModel.fromJson(jsonData);
         return Right(driverActivityInfoViewModel);
       } else {
         return Left(

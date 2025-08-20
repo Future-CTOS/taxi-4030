@@ -4,7 +4,7 @@ import 'package:taxi_4030/src/infrastructures/utils/spacing.dart';
 import '../../../infrastructures/utils/utils.dart';
 import 'widgets/upload_image_button.dart';
 
-class UploadDocumentView extends StatefulWidget {
+class UploadDocumentView extends StatelessWidget {
   final String frontEmptyImage;
   final String frontFilledImage;
   final String backEmptyImage;
@@ -35,22 +35,6 @@ class UploadDocumentView extends StatefulWidget {
   });
 
   @override
-  State<UploadDocumentView> createState() => _UploadDocumentViewState();
-}
-
-class _UploadDocumentViewState extends State<UploadDocumentView> {
-  @override
-  void initState() {
-    Utils.showPermissionBottomSheet(
-      context: context,
-      requestCamera: true,
-      requestStorage: true,
-      requestMicrophone: true,
-    );
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) => Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -62,20 +46,20 @@ class _UploadDocumentViewState extends State<UploadDocumentView> {
   );
 
   Widget _topSection() => UploadImageButton(
-    label: widget.frontLabel,
-    emptyImagePath: widget.frontEmptyImage,
-    filledImagePath: widget.frontFilledImage,
-    hasFile: widget.hasFrontFile,
-    isLoading: widget.isFrontLoading,
-    onTap: widget.onFrontTap,
+    label: frontLabel,
+    emptyImagePath: frontEmptyImage,
+    filledImagePath: frontFilledImage,
+    hasFile: hasFrontFile,
+    isLoading: isFrontLoading,
+    onTap: onFrontTap,
   );
 
   Widget _bottomSection() => UploadImageButton(
-    label: widget.backLabel,
-    emptyImagePath: widget.backEmptyImage,
-    filledImagePath: widget.backFilledImage,
-    hasFile: widget.hasBackFile,
-    isLoading: widget.isBackLoading,
-    onTap: widget.onBackTap,
+    label: backLabel,
+    emptyImagePath: backEmptyImage,
+    filledImagePath: backFilledImage,
+    hasFile: hasBackFile,
+    isLoading: isBackLoading,
+    onTap: onBackTap,
   );
 }

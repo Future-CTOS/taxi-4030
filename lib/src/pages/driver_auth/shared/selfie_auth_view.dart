@@ -3,7 +3,7 @@ import 'package:taxi_4030/src/infrastructures/utils/spacing.dart';
 import 'package:taxi_4030/src/pages/driver_auth/shared/widgets/upload_image_button.dart';
 
 import '../../../../gen/assets.gen.dart';
-import '../../shared/widgets/page_bottom_button.dart';
+
 
 class SelfieAuthView extends StatelessWidget {
   const SelfieAuthView({

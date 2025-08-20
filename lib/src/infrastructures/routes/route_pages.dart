@@ -6,6 +6,8 @@ import '../../pages/driver_auth/auth_guide_step1/views/auth_guide_step1_page.dar
 import '../../pages/driver_auth/auth_guide_step2/views/auth_guide_step2_page.dart';
 import '../../pages/driver_auth/auth_guide_step3/views/auth_guide_step3_page.dart';
 import '../../pages/driver_auth/auth_guide_step4/views/auth_guide_step4_page.dart';
+import '../../pages/driver_auth/auth_pending/common/auth_pending_binding.dart';
+import '../../pages/driver_auth/auth_pending/views/auth_pending_page.dart';
 import '../../pages/driver_auth/car_card_upload/common/car_card_upload_binding.dart';
 import '../../pages/driver_auth/car_card_upload/views/car_card_upload_page.dart';
 import '../../pages/driver_auth/car_driver_register/common/car_driver_binding.dart';
@@ -34,8 +36,6 @@ import '../../pages/driver_auth/motorcycle_information_input/common/motorcycle_i
 import '../../pages/driver_auth/motorcycle_information_input/views/motorcycle_information_input_page.dart';
 import '../../pages/driver_auth/motorcycle_owner_details/common/motorcycle_owner_details_binding.dart';
 import '../../pages/driver_auth/motorcycle_owner_details/views/motorcycle_owner_details_page.dart';
-import '../../pages/driver_auth/van_auth_pending/common/van_auth_pending_binding.dart';
-import '../../pages/driver_auth/van_auth_pending/views/van_auth_pending_page.dart';
 import '../../pages/driver_auth/van_card_upload/common/van_card_upload_binding.dart';
 import '../../pages/driver_auth/van_card_upload/views/van_card_upload_page.dart';
 import '../../pages/driver_auth/van_driver_register/common/van_driver_register_binding.dart';
@@ -262,7 +262,7 @@ class TaxiAppPages {
 
   static GetPage<dynamic> get _authPending => GetPage(
     name: TaxiRouteNames.authPending.path,
-    page: VanAuthPendingPage.new,
-    binding: VanAuthPendingBinding(),
+    page: AuthPendingPage.new,
+    binding: AuthPendingBinding(),
   );
 }

@@ -21,7 +21,7 @@ class CarSelfieAuthPage extends GetView<CarSelfieAuthController> {
       () => PageBottomButton(
         label: 'ادامه',
         onTap: controller.isActiveContinue.value
-            ? controller.uploadInsuranceImage
+            ? controller.onContinueTap
             : () {},
         isActive: controller.isActiveContinue.value,
         isLoading: controller.isUploadLoading.value,
@@ -30,7 +30,7 @@ class CarSelfieAuthPage extends GetView<CarSelfieAuthController> {
     body: Obx(
       () => SelfieAuthView(
         isLoading: controller.isLoading.value,
-        onUploadButtonTap: controller.pickImage,
+        onUploadButtonTap: () => controller.onUploadAuthVideo(context),
       ),
     ),
   );

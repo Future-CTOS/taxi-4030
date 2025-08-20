@@ -27,6 +27,8 @@ class VanOwnerDetailsPage extends GetView<VanOwnerDetailsController> {
         onSubmit: controller.submitVanOwnerInfo,
         isFormFilled: controller.isFormFilled.value,
         showFormOnIndex: 1,
+        selectedValue: '',
+        onChangeTitle: (p0) {},
       ),
     ),
   );

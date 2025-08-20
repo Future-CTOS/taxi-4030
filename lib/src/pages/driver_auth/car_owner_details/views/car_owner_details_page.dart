@@ -26,9 +26,11 @@ class CarOwnerDetailsPage extends GetView<CarOwnerDetailsController> {
         lastNameController: controller.lastNameController,
         nationalIdController: controller.nationalIdController,
         isLoading: controller.isLoading.value,
-        onSubmit: controller.submitVanOwnerInfo,
+        onSubmit: () => controller.submitUserInfo(context),
         isFormFilled: controller.isFormFilled.value,
         showFormOnIndex: 1,
+        onChangeTitle: (final value) => controller.selectedValue.value = value!,
+        selectedValue: controller.selectedValue.value,
       ),
     ),
   );
