@@ -71,9 +71,8 @@ class VideoAuthController extends GetxController {
     );
   }
 
-
   void onContinueTap() {
     if (!isActiveContinue.value) return;
-    Get.toNamed(TaxiRouteNames.authPending.uri);
+    Get.offAllNamed(TaxiRouteNames.authPending.uri);
   }
 }

@@ -1,20 +1,20 @@
 class MotorcycleInformationInputDto {
   final String licensePlate;
   final String type;
-  final String modelYear;
-  final String color;
+  final String safetyEquipments;
+  final String engineCapacity;
 
   const MotorcycleInformationInputDto({
     required this.licensePlate,
     required this.type,
-    required this.modelYear,
-    required this.color,
+    required this.safetyEquipments,
+    required this.engineCapacity,
   });
 
   Map<String, dynamic> toJson() => {
     "licensePlate": licensePlate,
-    "model": type,
-    "year": modelYear,
-    "color": color,
+    "engineCapacity": engineCapacity,
+    "motorType": type,
+    "safetyEquipments": safetyEquipments,
   };
 }

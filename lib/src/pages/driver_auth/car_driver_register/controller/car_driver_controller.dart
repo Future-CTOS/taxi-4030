@@ -40,7 +40,7 @@ class CarDriverController extends GetxController {
         AppController.instance.phoneNumber = phoneNumberController.text;
         Get.toNamed(TaxiRouteNames.driverOtpVerify.uri);
       },
-    );  
+    );
   }
 
   @override

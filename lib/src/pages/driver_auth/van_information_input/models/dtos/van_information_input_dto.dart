@@ -1,10 +1,10 @@
-class CarInformationInputDto {
+class VanInformationInputDto {
   final String licensePlate;
   final String type;
   final String modelYear;
   final String color;
 
-  const CarInformationInputDto({
+  const VanInformationInputDto({
     required this.licensePlate,
     required this.type,
     required this.modelYear,

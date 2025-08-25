@@ -48,7 +48,7 @@ class MotorcycleCardUploadController extends GetxController {
       (response) {
         Utils.showSnackBar(
           context,
-          text: response.message,
+          text: 'تصویر روی کارت موتور با موفقیت آپلود شد',
           status: StatusEnum.success,
         );
       },
@@ -69,7 +69,7 @@ class MotorcycleCardUploadController extends GetxController {
     );
 
     if (pickedFile == null) {
-      backImageModel.value.isLoading = false;
+      backImageModel.update((value) => value?.isLoading = false);
       return;
     }
     backImageModel.value.file = XFile(pickedFile.path);
@@ -89,7 +89,7 @@ class MotorcycleCardUploadController extends GetxController {
       (response) {
         Utils.showSnackBar(
           context,
-          text: response.message,
+          text: 'تصویر پشت کارت موتور با موفقیت آپلود شد',
           status: StatusEnum.success,
         );
       },

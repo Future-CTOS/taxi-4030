@@ -19,7 +19,7 @@ class VanDriverRegisterPage extends GetView<VanDriverRegisterController> {
         subtitle: 'شماره همراه و کد ملی خود را وارد کنید.',
         imagePath: Assets.pngs.van2d.path,
         phoneNumberTextController: controller.phoneNumberController,
-        onSubmit: controller.submitUserInfo,
+        onSubmit: () => controller.requestOtp(context),
         isLoading: controller.isLoading.value,
         isActiveBottomButton: controller.isFormFilled.value,
       ),

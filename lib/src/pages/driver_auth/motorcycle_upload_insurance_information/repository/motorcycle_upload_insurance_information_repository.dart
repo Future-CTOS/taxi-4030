@@ -9,45 +9,43 @@ import '../../../../infrastructures/commons/repository_urls.dart';
 import 'package:http/http.dart' as http;
 import '../../driver_license_upload/model/view_models/driver_license_upload_view_model.dart';
 
-class VideoAuthRepository {
-  Future<Either<String, DriverLicenseUploadViewModel>> uploadAuthVideo({
+class MotorcycleUploadInsuranceInformationRepository {
+  Future<Either<String, DriverLicenseUploadViewModel>> uploadCardInsurance({
     required Uint8List bytes,
     required XFile file,
   }) async {
     try {
       final request = http.MultipartRequest(
         'POST',
-        RepositoryUrls.driverVideoUpload,
+        RepositoryUrls.uploadInsurance,
       );
 
       request.headers['Authorization'] =
           'Bearer ${AppController.instance.driverToken}';
 
       final ext = file.name.split('.').last.toLowerCase();
-      String? mimeType;
+      String mimeType;
       switch (ext) {
-        case 'mp4':
-        case 'mov':
-        case 'avi':
-        case 'mkv':
-        case 'webm':
-          mimeType = ext;
+        case 'jpg':
+        case 'jpeg':
+          mimeType = 'jpeg';
+          break;
+        case 'png':
+          mimeType = 'png';
+          break;
+        case 'webp':
+          mimeType = 'webp';
           break;
         default:
-          mimeType = null;
-          break;
-      }
-
-      if (mimeType == null) {
-        return Left('فرمت ویدیو پشتیبانی نمیشود.');
+          mimeType = 'jpeg';
       }
 
       request.files.add(
         http.MultipartFile.fromBytes(
-          'video',
+          'insuranceImage',
           bytes,
-          contentType: MediaType('video', mimeType),
-          filename: 'video.$ext',
+          contentType: MediaType('image', mimeType),
+          filename: 'example.jpg',
         ),
       );
 

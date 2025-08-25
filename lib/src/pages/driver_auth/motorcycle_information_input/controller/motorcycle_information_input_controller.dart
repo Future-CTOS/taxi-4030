@@ -16,22 +16,23 @@ class MotorcycleInformationInputController extends GetxController {
   final RxBool isFormFilled = false.obs;
   final RxBool isLoading = false.obs;
 
-  Rxn<MotorcycleInformationInputViewModel> carInformation =
+  Rxn<MotorcycleInformationInputViewModel> motorcycleInformation =
       Rxn<MotorcycleInformationInputViewModel>();
-  Rxn<String> carType = Rxn();
-  Rxn<String> carYear = Rxn();
-  Rxn<String> carColor = Rxn();
+  Rxn<String> motorcycleType = Rxn();
+  Rxn<String> motorcycleCapacityEngine = Rxn();
+  Rxn<String> safetyEquipment = Rxn();
   String? licensePlate;
 
   void onCompletedIranianPlate(String? value) => licensePlate = value;
 
-  Future<void> _submitMotorcycleInfo(BuildContext context) async {
+  /// TODO(SHAYAN ZARE): UNTILL THIS, OUR BUG FOR THIS
+  Future<void> submitMotorcycleInfo(BuildContext context) async {
     isLoading.value = true;
     final MotorcycleInformationInputDto dto = MotorcycleInformationInputDto(
-      color: carColor.value!,
-      type: carType.value!,
-      modelYear: carYear.value!,
+      type: motorcycleType.value!,
       licensePlate: licensePlate!,
+      safetyEquipments: safetyEquipment.value!,
+      engineCapacity: motorcycleCapacityEngine.value!,
     );
     final Either<String, String> resultOrException = await _repository
         .submitMotorcycleInformation(dto: dto);
@@ -49,18 +50,6 @@ class MotorcycleInformationInputController extends GetxController {
     );
   }
 
-  Future<void> submitDriverInfo(BuildContext context) async {
-    if (carInformation.value != null &&
-        carType.value != null &&
-        carYear.value != null &&
-        carColor.value != null) {
-      isFormFilled.value = true;
-    }
-
-    if (!isFormFilled.value) return;
-
-    _submitMotorcycleInfo(context);
-  }
 
   Future<void> _fetchMotorcycleOptions(BuildContext context) async {
     isLoading.value = true;
@@ -74,12 +63,37 @@ class MotorcycleInformationInputController extends GetxController {
         status: StatusEnum.danger,
       ),
       (final response) {
-        carInformation.value = response;
-        carType = carInformation.value!.carModels.first;
-        carYear = carInformation.value!.carYears.first;
-        carColor = carInformation.value!.carColors.first;
+        motorcycleInformation.value = response;
+        motorcycleType.value =
+            motorcycleInformation.value!.motorcycleTypes.first;
+        motorcycleCapacityEngine.value =
+            motorcycleInformation.value!.motorcycleCapacityEngine.first;
       },
     );
+  }
+
+  void onSelectedMotorCycleTypeItem(final value) {
+    motorcycleType.value = value;
+    checkForActivateContinue();
+  }
+
+  void onSelectedMotorCycleEngineTypeItem(final value) {
+    motorcycleCapacityEngine.value = value;
+    checkForActivateContinue();
+  }
+
+  void onSelectedMotorCycleEngineSafetyEquipmentItem(final value) {
+    safetyEquipment.value = value;
+    checkForActivateContinue();
+  }
+
+  void checkForActivateContinue() {
+    if (motorcycleInformation.value != null &&
+        motorcycleType.value != null &&
+        motorcycleCapacityEngine.value != null &&
+        safetyEquipment.value != null) {
+      isFormFilled.value = true;
+    }
   }
 
   @override
@@ -121,4 +135,6 @@ class MotorcycleInformationInputController extends GetxController {
     'ه',
     'ی',
   ];
+
+  List<String> get safetyEquipments => ['بله', 'خیر'];
 }

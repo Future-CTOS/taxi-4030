@@ -7,10 +7,10 @@ import 'package:image_picker/image_picker.dart';
 import '../../../../infrastructures/routes/route_names.dart';
 import '../../../../infrastructures/utils/utils.dart';
 import '../../../shared/model/enum/status_enum.dart';
-import '../repository/car_selfie_auth_repository.dart';
+import '../repository/motorcycle_selfie_auth_repository.dart';
 
-class CarSelfieAuthController extends GetxController {
-  final _repository = CarSelfieAuthRepository();
+class MotorcycleSelfieAuthController extends GetxController {
+  final _repository = MotorcycleSelfieAuthRepository();
 
   final RxBool isActiveContinue = false.obs;
   final RxBool isLoading = false.obs;

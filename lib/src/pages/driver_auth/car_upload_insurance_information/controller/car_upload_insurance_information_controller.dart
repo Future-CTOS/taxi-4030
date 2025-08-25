@@ -24,7 +24,6 @@ class CarUploadInsuranceInformationController extends GetxController {
       isLoading.value = false;
       return;
     }
-    isLoading.value = false;
 
     Uint8List bytes = await pickedFile.readAsBytes();
 
@@ -32,6 +31,7 @@ class CarUploadInsuranceInformationController extends GetxController {
       bytes: bytes,
       file: pickedFile,
     );
+    isLoading.value = false;
 
     resultOrException.fold(
       (error) =>

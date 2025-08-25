@@ -45,6 +45,7 @@ class CarInformationInputRepository {
       );
 
       final Map<String, dynamic> jsonData = json.decode(response.body);
+      print('json Data = $jsonData');
       statusCode = response.statusCode;
       if (statusCode == 201) {
         return Right('اطلاعات با موفقیت ثبت شد');

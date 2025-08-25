@@ -1,6 +1,8 @@
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../components/permission_bottom_sheet.dart';
 import '../../pages/shared/model/enum/status_enum.dart';
@@ -46,7 +48,6 @@ class Utils {
     'Content-Type': 'application/json',
   };
 
-
   static void showPermissionBottomSheet({
     required BuildContext context,
     bool requestCamera = false,
@@ -54,6 +55,29 @@ class Utils {
     bool requestStorage = false,
     bool requestClipboard = false,
   }) => WidgetsBinding.instance.addPostFrameCallback((_) async {
+    bool isShouldShow = false;
+
+    if (requestCamera) {
+      final status = await Permission.camera.status;
+      if (!status.isGranted) isShouldShow = true;
+    }
+
+    if (requestMicrophone) {
+      final status = await Permission.microphone.status;
+      if (!status.isGranted) isShouldShow = true;
+    }
+
+    if (requestStorage) {
+      final status = await Permission.storage.status;
+      if (!status.isGranted) isShouldShow = true;
+    }
+
+    if (requestClipboard && !kIsWeb) {
+      isShouldShow = true;
+    }
+
+    if (!isShouldShow) return;
+
     await Future.delayed(Duration(seconds: 1));
     showGeneralDialog(
       context: context,

@@ -50,7 +50,7 @@ class RegisterDriverView extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: sizeScreen - imageHeight - offset,
+          top: sizeScreen - imageHeight - 10 - offset,
           left: 0,
           right: 0,
           child: Image.asset(

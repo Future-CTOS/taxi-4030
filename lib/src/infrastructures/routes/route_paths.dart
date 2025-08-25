@@ -23,8 +23,10 @@ class RoutePaths {
   static const String motorcycleOwnerDetails = '/motorcycle-owner-details';
   static const String vanUploadInsurance = '/van-upload-insurance';
   static const String carUploadInsurance = '/car-upload-insurance';
+  static const String motorcycleUploadInsurance = '/car-upload-insurance';
   static const String vanSelfieAuth = '/van-selfie-auth';
   static const String carSelfieAuth = '/car-selfie-auth';
+  static const String motorcycleSelfieAuth = '/motorcycle-selfie-auth';
 
   // ----------
 

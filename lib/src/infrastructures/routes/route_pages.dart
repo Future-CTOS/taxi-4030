@@ -1,6 +1,5 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:taxi_4030/src/infrastructures/routes/route_paths.dart';
-import 'package:taxi_4030/src/pages/profile/common/profile_binding.dart';
 
 import '../../pages/driver_auth/auth_guide_step1/views/auth_guide_step1_page.dart';
 import '../../pages/driver_auth/auth_guide_step2/views/auth_guide_step2_page.dart';
@@ -36,6 +35,10 @@ import '../../pages/driver_auth/motorcycle_information_input/common/motorcycle_i
 import '../../pages/driver_auth/motorcycle_information_input/views/motorcycle_information_input_page.dart';
 import '../../pages/driver_auth/motorcycle_owner_details/common/motorcycle_owner_details_binding.dart';
 import '../../pages/driver_auth/motorcycle_owner_details/views/motorcycle_owner_details_page.dart';
+import '../../pages/driver_auth/motorcycle_selfie_auth/common/motorcycle_selfie_auth_binding.dart';
+import '../../pages/driver_auth/motorcycle_selfie_auth/views/motorcycle_selfie_auth_page.dart';
+import '../../pages/driver_auth/motorcycle_upload_insurance_information/common/motorcycle_upload_insurance_information_binding.dart';
+import '../../pages/driver_auth/motorcycle_upload_insurance_information/views/motorcycle_upload_insurance_information_page.dart';
 import '../../pages/driver_auth/van_card_upload/common/van_card_upload_binding.dart';
 import '../../pages/driver_auth/van_card_upload/views/van_card_upload_page.dart';
 import '../../pages/driver_auth/van_driver_register/common/van_driver_register_binding.dart';
@@ -52,6 +55,7 @@ import '../../pages/driver_auth/vehicle_selection/common/vehicle_selection_bindi
 import '../../pages/driver_auth/vehicle_selection/view/vehicle_selection_page.dart';
 import '../../pages/driver_auth/video_auth/common/video_auth_binding.dart';
 import '../../pages/driver_auth/video_auth/views/video_auth_page.dart';
+import '../../pages/profile/common/profile_binding.dart';
 import '../../pages/profile/views/profile_page.dart';
 import '../../pages/splash_screen/bindings/splash_screen_page_binding.dart';
 import '../../pages/splash_screen/controllers/splash_screen_page_controller.dart';
@@ -198,7 +202,7 @@ class TaxiAppPages {
     name: TaxiRouteNames.motorcycleOwnerDetails.path,
     page: MotorcycleOwnerDetailsPage.new,
     binding: MotorcycleOwnerDetailsBinding(),
-    children: [_carUploadInsurance],
+    children: [_motorcycleUploadInsurance],
   );
 
   static GetPage<dynamic> get _carUploadInsurance => GetPage(
@@ -208,11 +212,25 @@ class TaxiAppPages {
     children: [_carSelfieAuth],
   );
 
+  static GetPage<dynamic> get _motorcycleUploadInsurance => GetPage(
+    name: TaxiRouteNames.motorcycleUploadInsurance.path,
+    page: MotorcycleUploadInsuranceInformationPage.new,
+    binding: MotorcycleUploadInsuranceInformationBinding(),
+    children: [_motorcycleSelfieAuth],
+  );
+
   static GetPage<dynamic> get _vanUploadInsurance => GetPage(
     name: TaxiRouteNames.vanUploadInsurance.path,
     page: VanUploadInsuranceInformationPage.new,
     binding: VanUploadInsuranceInformationBinding(),
     children: [_vanSelfieAuth],
+  );
+
+  static GetPage<dynamic> get _motorcycleSelfieAuth => GetPage(
+    name: TaxiRouteNames.motorcycleSelfieAuth.path,
+    page: MotorcycleSelfieAuthPage.new,
+    binding: MotorcycleSelfieAuthBinding(),
+    children: [_authGuideStep1],
   );
 
   static GetPage<dynamic> get _vanSelfieAuth => GetPage(

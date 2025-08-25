@@ -72,7 +72,7 @@ class DriverLicenseUploadController extends GetxController {
     );
 
     if (pickedFile == null) {
-      backImageModel.value.isLoading = false;
+      backImageModel.update((value) => value?.isLoading = false);
       return;
     }
     backImageModel.value.file = XFile(pickedFile.path);

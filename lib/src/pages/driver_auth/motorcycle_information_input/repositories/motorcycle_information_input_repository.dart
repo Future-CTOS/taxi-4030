@@ -5,6 +5,7 @@ import '../../../../infrastructures/commons/repository_urls.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../../infrastructures/commons/token_info.dart';
+import '../../../../infrastructures/utils/constants.dart';
 import '../models/dtos/motorcycle_information_input_dto.dart';
 import '../models/view_models/motorcycle_information_input_view_model.dart';
 
@@ -44,6 +45,7 @@ class MotorcycleInformationInputRepository {
       );
       final Map<String, dynamic> jsonData = json.decode(response.body);
       statusCode = response.statusCode;
+      print(jsonData);
       if (statusCode == 201) {
         return Right('اطلاعات با موفقیت ثبت شد');
       } else {

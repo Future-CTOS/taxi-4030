@@ -110,8 +110,6 @@ class MotorcycleCardUploadRepository {
           filename: 'example.jpg',
         ),
       );
-      print('Uploading: ${file.name}');
-      print('Field: Size: ${bytes.lengthInBytes}');
 
       final response = await request.send();
       final responseBody = await response.stream.bytesToString();

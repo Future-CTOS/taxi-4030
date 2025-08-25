@@ -1,11 +1,18 @@
+import 'package:either_dart/either.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../infrastructures/app_controller/app_controller.dart';
 import '../../../../infrastructures/routes/route_names.dart';
+import '../../../../infrastructures/utils/utils.dart';
 import '../../../../infrastructures/utils/validators.dart';
+import '../../../shared/model/enum/status_enum.dart';
+import '../models/van_register_dto.dart';
+import '../repositories/van_driver_repository.dart';
 
 class VanDriverRegisterController extends GetxController {
+  final _repository = VanDriverRepository();
   final phoneNumberController = TextEditingController();
 
   final RxBool isFormFilled = false.obs;
@@ -17,16 +24,23 @@ class VanDriverRegisterController extends GetxController {
     isFormFilled.value = phoneNumber;
   }
 
-  Future<void> submitUserInfo() async {
+  Future<void> requestOtp(BuildContext context) async {
     if (!isFormFilled.value) return;
     isLoading.value = true;
-    try {
-      await Future.delayed(const Duration(seconds: 2));
-
-      Get.toNamed(TaxiRouteNames.driverPersonalInfo.uri);
-    } finally {
-      isLoading.value = false;
-    }
+    final VanRegisterDto dto = VanRegisterDto(
+      phone: phoneNumberController.text,
+    );
+    final Either<String, Map<String, dynamic>> resultOrException =
+        await _repository.requestOtp(dto: dto);
+    isLoading.value = false;
+    resultOrException.fold(
+      (final error) =>
+          Utils.showSnackBar(context, text: error, status: StatusEnum.danger),
+      (final response) {
+        AppController.instance.phoneNumber = phoneNumberController.text;
+        Get.toNamed(TaxiRouteNames.driverOtpVerify.uri);
+      },
+    );
   }
 
   @override

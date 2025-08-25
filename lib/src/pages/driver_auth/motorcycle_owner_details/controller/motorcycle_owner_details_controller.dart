@@ -43,7 +43,7 @@ class MotorcycleOwnerDetailsController extends GetxController {
     try {
       await Future.delayed(const Duration(seconds: 2));
 
-      Get.toNamed(TaxiRouteNames.carUploadInsurance.uri);
+      Get.toNamed(TaxiRouteNames.motorcycleUploadInsurance.uri);
     } finally {
       isLoading.value = false;
     }
