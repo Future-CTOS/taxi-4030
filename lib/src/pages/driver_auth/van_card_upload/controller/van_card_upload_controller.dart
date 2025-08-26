@@ -1,25 +1,23 @@
-import 'dart:io';
-
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../../../infrastructures/routes/route_names.dart';
 import '../../../../infrastructures/utils/utils.dart';
+import '../../../shared/model/enum/status_enum.dart';
 import '../model/van_card_upload_model.dart';
+import '../repository/van_card_upload_repository.dart';
 
 class VanCardUploadController extends GetxController {
+  final _repository = VanCardUploadRepository();
   final isSubmitLoading = false.obs;
   final isCompletedInfo = false.obs;
 
   final frontImageModel = VanCardUploadModel().obs;
   final backImageModel = VanCardUploadModel().obs;
 
-  Future<void> pickImage({required bool isFrontImage}) async {
-    final Rx<VanCardUploadModel> target = isFrontImage
-        ? frontImageModel
-        : backImageModel;
-    target.update((val) => val?.isLoading = true);
+  Future<void> submitFrontImage(BuildContext context) async {
+    frontImageModel.update((value) => value?.isLoading = true);
     final ImagePicker picker = ImagePicker();
     final XFile? pickedFile = await picker.pickImage(
       source: ImageSource.camera,
@@ -27,13 +25,74 @@ class VanCardUploadController extends GetxController {
     );
 
     if (pickedFile == null) {
+      frontImageModel.update((value) => value?.isLoading = false);
+      ;
+      return;
+    }
+    frontImageModel.value.file = XFile(pickedFile.path);
+
+    Uint8List bytes = await pickedFile.readAsBytes();
+
+    final resultOrException = await _repository.uploadCardFront(
+      bytes: bytes,
+      file: frontImageModel.value.file!,
+    );
+
+    frontImageModel.update((value) => value?.isLoading = false);
+
+    resultOrException.fold(
+      (error) =>
+          Utils.showSnackBar(context, text: error, status: StatusEnum.danger),
+      (response) {
+        Utils.showSnackBar(
+          context,
+          text: response.message,
+          status: StatusEnum.success,
+        );
+      },
+    );
+
+    if (frontImageModel.value.file != null &&
+        backImageModel.value.file != null) {
+      isCompletedInfo.value = true;
+    }
+  }
+
+  Future<void> submitBackImage(BuildContext context) async {
+    backImageModel.update((value) => value?.isLoading = true);
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedFile = await picker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 80,
+    );
+
+    if (pickedFile == null) {
+      backImageModel.value.isLoading = false;
       return;
     }
 
-    target.update((val) {
-      val?.file = File(pickedFile.path);
-      val?.isLoading = false;
-    });
+    backImageModel.value.file = XFile(pickedFile.path);
+
+    Uint8List bytes = await pickedFile.readAsBytes();
+
+    final resultOrException = await _repository.uploadCardBack(
+      bytes: bytes,
+      file: backImageModel.value.file!,
+    );
+
+    backImageModel.update((value) => value?.isLoading = false);
+
+    resultOrException.fold(
+      (error) =>
+          Utils.showSnackBar(context, text: error, status: StatusEnum.danger),
+      (response) {
+        Utils.showSnackBar(
+          context,
+          text: response.message,
+          status: StatusEnum.success,
+        );
+      },
+    );
 
     if (frontImageModel.value.file != null &&
         backImageModel.value.file != null) {
@@ -43,13 +102,7 @@ class VanCardUploadController extends GetxController {
 
   Future<void> submitUserInfo() async {
     if (!isCompletedInfo.value) return;
-    isSubmitLoading.value = true;
-    try {
-      await Future.delayed(const Duration(seconds: 2));
-      Get.toNamed(TaxiRouteNames.vanInformationInput.uri);
-    } finally {
-      isSubmitLoading.value = false;
-    }
+    Get.toNamed(TaxiRouteNames.vanInformationInput.uri);
   }
 
   @override

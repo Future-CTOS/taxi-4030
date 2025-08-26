@@ -25,7 +25,7 @@ class MotorcycleInformationInputController extends GetxController {
 
   void onCompletedIranianPlate(String? value) => licensePlate = value;
 
-  /// TODO(SHAYAN ZARE): UNTILL THIS, OUR BUG FOR THIS
+
   Future<void> submitMotorcycleInfo(BuildContext context) async {
     isLoading.value = true;
     final MotorcycleInformationInputDto dto = MotorcycleInformationInputDto(
@@ -49,7 +49,6 @@ class MotorcycleInformationInputController extends GetxController {
       },
     );
   }
-
 
   Future<void> _fetchMotorcycleOptions(BuildContext context) async {
     isLoading.value = true;

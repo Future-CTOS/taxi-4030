@@ -1,8 +1,8 @@
-import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 class VanCardUploadModel {
   bool isLoading;
-  File? file;
+  XFile? file;
 
   VanCardUploadModel({this.isLoading = false, this.file});
 }

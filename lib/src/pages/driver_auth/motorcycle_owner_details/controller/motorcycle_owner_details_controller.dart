@@ -1,11 +1,19 @@
+import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../infrastructures/routes/route_names.dart';
+import '../../../../infrastructures/utils/utils.dart';
 import '../../../../infrastructures/utils/validators.dart';
+import '../../../shared/model/enum/status_enum.dart';
+import '../models/dtos/motorcycle_owner_details_dto.dart';
+import '../models/view_models/motorcycle_owner_details_view_model.dart';
+import '../repository/motorcycle_owner_details_repository.dart';
 
 class MotorcycleOwnerDetailsController extends GetxController {
+  final _repository = MotorcycleOwnerDetailsRepository();
   final List<String> items = ['خودم هستم', 'شخص دیگر'];
+  final Rx<String> selectedValue = Rx<String>('خودم هستم');
   final int showFormOnIndexForAnotherOwner = 1;
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
@@ -38,14 +46,61 @@ class MotorcycleOwnerDetailsController extends GetxController {
         firstNameValid && lastNameValid && nationalIdValid && fatherNameValid;
   }
 
-  Future<void> submitVanOwnerInfo() async {
+  Future<void> _submitOwnerForOtherInfo(BuildContext context) async {
     isLoading.value = true;
-    try {
-      await Future.delayed(const Duration(seconds: 2));
+    final MotorcycleOwnerDetailsDto dto = MotorcycleOwnerDetailsDto(
+      ownerFatherName: fatherName.text,
+      ownerFirstName: firstNameController.text,
+      ownerLastName: lastNameController.text,
+      ownerNationalId: nationalIdController.text,
+    );
+    final Either<String, MotorcycleOwnerDetailsViewModel> resultOrException =
+        await _repository.submitOwnerForOtherInfo(dto: dto);
+    isLoading.value = false;
+    resultOrException.fold(
+      (final errorMessage) => Utils.showSnackBar(
+        context,
+        text: errorMessage,
+        status: StatusEnum.danger,
+      ),
+      (final response) {
+        Utils.showSnackBar(
+          context,
+          text: response.message,
+          status: StatusEnum.success,
+        );
+        Get.toNamed(TaxiRouteNames.motorcycleUploadInsurance.uri);
+      },
+    );
+  }
 
-      Get.toNamed(TaxiRouteNames.motorcycleUploadInsurance.uri);
-    } finally {
-      isLoading.value = false;
+  Future<void> _submitOwnerForSelfInfo(BuildContext context) async {
+    isLoading.value = true;
+    final Either<String, MotorcycleOwnerDetailsViewModel> resultOrException =
+        await _repository.submitOwnerForSelfInfo(dto: {'ownership': 'self'});
+    isLoading.value = false;
+    resultOrException.fold(
+      (final errorMessage) => Utils.showSnackBar(
+        context,
+        text: errorMessage,
+        status: StatusEnum.danger,
+      ),
+      (final response) {
+        Utils.showSnackBar(
+          context,
+          text: response.message,
+          status: StatusEnum.success,
+        );
+        Get.toNamed(TaxiRouteNames.motorcycleUploadInsurance.uri);
+      },
+    );
+  }
+
+  Future<void> submitUserInfo(BuildContext context) async {
+    if (selectedValue.value == 'خودم هستم') {
+      await _submitOwnerForSelfInfo(context);
+    } else {
+      await _submitOwnerForOtherInfo(context);
     }
   }
 

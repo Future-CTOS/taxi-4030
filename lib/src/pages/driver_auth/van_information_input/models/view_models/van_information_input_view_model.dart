@@ -1,18 +1,21 @@
 class VanInformationInputViewModel {
-  final List<dynamic> carModels;
-  final List<dynamic> carYears;
-  final List<dynamic> carColors;
+  final List<dynamic> vanTypes;
+  final List<dynamic> vanYears;
+  final List<dynamic> vanColors;
+  final List<dynamic> vanLoadCapacities;
 
   const VanInformationInputViewModel({
-    required this.carModels,
-    required this.carYears,
-    required this.carColors,
+    required this.vanTypes,
+    required this.vanYears,
+    required this.vanColors,
+    required this.vanLoadCapacities,
   });
 
   factory VanInformationInputViewModel.fromJson(Map<String, dynamic> json) =>
       VanInformationInputViewModel(
-        carColors: json['carColors'],
-        carModels: json['carModels'],
-        carYears: json['carYears'],
+        vanColors: json['vanetColors'],
+        vanLoadCapacities: json['vanetLoadCapacity'],
+        vanTypes: json['vanetModels'],
+        vanYears: json['vanetYears'],
       );
 }

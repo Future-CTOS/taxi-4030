@@ -55,50 +55,53 @@ class CarOwnerDetailsController extends GetxController {
       ownerNationalId: nationalIdController.text,
     );
     final Either<String, CarOwnerDetailsViewModel> resultOrException =
-        await _repository.submitOwnerForOtherInfo(dto: dto);
+    await _repository.submitOwnerForOtherInfo(dto: dto);
     isLoading.value = false;
     resultOrException.fold(
-      (final errorMessage) => Utils.showSnackBar(
+          (final errorMessage) => Utils.showSnackBar(
         context,
         text: errorMessage,
         status: StatusEnum.danger,
       ),
-      (final response) => Utils.showSnackBar(
-        context,
-        text: response.message,
-        status: StatusEnum.success,
-      ),
+          (final response) {
+        Utils.showSnackBar(
+          context,
+          text: response.message,
+          status: StatusEnum.success,
+        );
+        Get.toNamed(TaxiRouteNames.carUploadInsurance.uri);
+      },
     );
   }
 
   Future<void> _submitOwnerForSelfInfo(BuildContext context) async {
     isLoading.value = true;
     final Either<String, CarOwnerDetailsViewModel> resultOrException =
-        await _repository.submitOwnerForSelfInfo(dto: {'ownership': 'self'});
+    await _repository.submitOwnerForSelfInfo(dto: {'ownership': 'self'});
     isLoading.value = false;
     resultOrException.fold(
-      (final errorMessage) => Utils.showSnackBar(
+          (final errorMessage) => Utils.showSnackBar(
         context,
         text: errorMessage,
         status: StatusEnum.danger,
       ),
-      (final response) => Utils.showSnackBar(
-        context,
-        text: response.message,
-        status: StatusEnum.success,
-      ),
+          (final response) {
+        Utils.showSnackBar(
+          context,
+          text: response.message,
+          status: StatusEnum.success,
+        );
+        Get.toNamed(TaxiRouteNames.carUploadInsurance.uri);
+      },
     );
   }
 
   Future<void> submitUserInfo(BuildContext context) async {
-    print(selectedValue.value);
     if (selectedValue.value == 'خودم هستم') {
       await _submitOwnerForSelfInfo(context);
     } else {
       await _submitOwnerForOtherInfo(context);
     }
-
-    Get.toNamed(TaxiRouteNames.carUploadInsurance.uri);
   }
 
   @override
