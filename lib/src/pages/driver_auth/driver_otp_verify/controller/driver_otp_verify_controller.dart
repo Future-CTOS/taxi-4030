@@ -16,7 +16,7 @@ import '../repository/driver_otp_verify_repository.dart';
 class DriverOtpVerifyController extends GetxController {
   final _repository = DriverOtpVerifyRepository();
 
-  RxInt totalSeconds = 30.obs;
+  RxInt totalSeconds = 120.obs;
   RxBool expired = false.obs;
   RxBool isExpired = false.obs;
   RxBool isResendEnabled = false.obs;
@@ -32,7 +32,7 @@ class DriverOtpVerifyController extends GetxController {
 
   void _startTimer() {
     _timer?.cancel();
-    totalSeconds.value = 30;
+    totalSeconds.value = 120;
     isExpired.value = false;
     isResendEnabled.value = false;
 
@@ -67,7 +67,7 @@ class DriverOtpVerifyController extends GetxController {
       ),
       (final response) {
         AppController.instance.driverToken = response.accessToken;
-        print('driver token:${AppController.instance.driverToken}');
+        print(response.isNew.toString());
         _navigateToNextPage(response.isNew);
         Utils.showSnackBar(
           Get.context!,

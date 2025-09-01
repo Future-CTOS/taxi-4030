@@ -12,7 +12,7 @@ class DriverOtpVerifyViewModel {
   factory DriverOtpVerifyViewModel.fromJson(final Map<String, dynamic> json) =>
       DriverOtpVerifyViewModel(
         accessToken: json['access_token'],
-        isNew: json['isNew'] ?? false,
+        isNew: json['isRegistered'] ?? false,
         role: json['driver'] ?? 'driver',
       );
 }

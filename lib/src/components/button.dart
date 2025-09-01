@@ -18,27 +18,34 @@ class CustomButton extends StatelessWidget {
   final bool? isHalfSize;
 
   @override
-  Widget build(BuildContext context) => Padding(
-    padding: AppSpacing.smallPadding,
-    child: SizedBox(
-      width: double.infinity,
-      height: isHalfSize ?? false ? 35 : 50,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          textStyle: TextStyle(
-            fontSize: isHalfSize ?? false ? 15 : 20,
-            fontWeight: FontWeight.bold,
-            color: Theme.of(context).colorScheme.onPrimary
-          ),
-          elevation: AppSpacing.giantSpace,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppSpacing.giantSpace),
+  Widget build(BuildContext context) =>
+      Padding(
+        padding: AppSpacing.smallPadding,
+        child: SizedBox(
+          width: double.infinity,
+          height: isHalfSize ?? false ? 35 : 50,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Theme
+                  .of(context)
+                  .colorScheme
+                  .primary,
+              textStyle: TextStyle(
+                  fontSize: isHalfSize ?? false ? 15 : 20,
+                  fontWeight: FontWeight.bold,
+                  color: Theme
+                      .of(context)
+                      .colorScheme
+                      .onPrimary
+              ),
+              elevation: AppSpacing.giantSpace,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(AppSpacing.giantSpace),
+              ),
+            ),
+            onPressed: isDisable! ? null : action,
+            child: isDisable! ? const CustomLoading() : Text(label),
           ),
         ),
-        onPressed: isDisable! ? null : action,
-        child: isDisable! ? const CustomLoading() : Text(label),
-      ),
-    ),
-  );
+      );
 }

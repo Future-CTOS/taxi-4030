@@ -5,7 +5,7 @@ import '../../../infrastructures/utils/spacing.dart';
 import '../../../infrastructures/utils/utils.dart';
 import '../widgets/page_bottom_button.dart';
 
-class OtoVerifyView extends StatefulWidget {
+class OtoVerifyView extends StatelessWidget {
   const OtoVerifyView({
     super.key,
     required this.isResendEnabled,
@@ -26,30 +26,19 @@ class OtoVerifyView extends StatefulWidget {
   final bool isSubmitLoading;
 
   @override
-  State<OtoVerifyView> createState() => _OtoVerifyViewState();
-}
-
-class _OtoVerifyViewState extends State<OtoVerifyView> {
-  @override
-  void initState() {
-    Utils.showPermissionBottomSheet(context: context, requestClipboard: true);
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) => _body(context);
 
   Widget _body(BuildContext context) => Column(
     children: [
       Expanded(flex: 1, child: _headerContent(context)),
       Expanded(flex: 2, child: _inputOtpVerifyNumbers(context)),
-      if (widget.isLoading) CircularProgressIndicator(),
-      if (widget.isResendEnabled)
+      if (isLoading) CircularProgressIndicator(),
+      if (isResendEnabled)
         PageBottomButton(
           label: 'دریافت مجدد کد',
           isActive: true,
-          onTap: widget.resendOtp,
-          isLoading: widget.isSubmitLoading,
+          onTap: resendOtp,
+          isLoading: isSubmitLoading,
           transparentBackground: true,
         )
       else
@@ -92,27 +81,27 @@ class _OtoVerifyViewState extends State<OtoVerifyView> {
       Text('کد', style: Theme.of(context).textTheme.bodySmall),
       AppSpacing.mediumVerticalSpacer,
       CustomOtpField(
-        isExpired: widget.isExpired,
-        onCompleted: widget.onCompleted,
-        enabled: !widget.isResendEnabled,
-        shouldClear: widget.isResendEnabled,
+        isExpired: isExpired,
+        onCompleted: onCompleted,
+        enabled: !isResendEnabled,
+        shouldClear: isResendEnabled,
       ),
       AppSpacing.mediumVerticalSpacer,
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            widget.isExpired ? 'زمان به پایان رسید' : 'کد را وارد کنید',
+            isExpired ? 'زمان به پایان رسید' : 'کد را وارد کنید',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: widget.isExpired
+              color: isExpired
                   ? Theme.of(context).colorScheme.error
                   : Theme.of(context).textTheme.bodySmall?.color,
             ),
           ),
           Text(
-            widget.formattedTime,
+            formattedTime,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: widget.isExpired
+              color: isExpired
                   ? Theme.of(context).colorScheme.error
                   : Theme.of(context).textTheme.bodySmall?.color,
             ),
