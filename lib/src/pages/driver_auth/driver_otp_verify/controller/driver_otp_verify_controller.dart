@@ -110,13 +110,12 @@ class DriverOtpVerifyController extends GetxController {
     return '$m:$s';
   }
 
-  void _navigateToNextPage(bool isNew) {
-    if (isNew) {
-      Get.offAndToNamed(TaxiRouteNames.driverPersonalInfo.uri);
+  void _navigateToNextPage(bool isRegistered) {
+    if (isRegistered) {
+      Get.offAndToNamed(TaxiRouteNames.profile.uri);
       return;
     }
-
-    Get.offAndToNamed(TaxiRouteNames.profile.uri);
+    Get.offAndToNamed(TaxiRouteNames.driverPersonalInfo.uri);
   }
 
   @override
